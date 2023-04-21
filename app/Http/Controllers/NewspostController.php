@@ -17,7 +17,7 @@ class NewspostController extends Controller
         $engineeringtasks = DB::table('engineeringtasks')
                                 ->join('users', 'engineeringtasks.user_id', '=', 'users.id')
                                 ->orderBy('engineeringtasks.creat_date', 'desc')
-                                ->select('engineeringtasks.name AS taskname', 'engineeringtasks.status', 'engineeringtasks.creat_date','users.name' )
+                                ->select('engineeringtasks.id AS taskid','engineeringtasks.name AS taskname', 'engineeringtasks.status', 'engineeringtasks.creat_date','users.name' )
                                 ->where('engineeringtasks.status', '=', 0)
                                 ->take(5)->get();
         return view('home', ['news' => $data, 'engineeringtasks' => $engineeringtasks]);
