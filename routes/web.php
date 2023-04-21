@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\EngineeringtaskController;
+use App\Http\Controllers\NewspostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', [NewspostController::class, 'home', EngineeringtaskController::class, 'home'])->name('home');
+Route::get('/news', [NewspostController::class, 'news'])->name('news');
+Route::get('/news/{id}', [NewspostController::class, 'single'])->name('news.single');
+Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('engineering');
