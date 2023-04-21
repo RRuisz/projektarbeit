@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\EngineeringtaskController;
-use App\Http\Controllers\NewspostController;
+use App\Http\Controllers\{CourseController, UserController, EngineeringtaskController, NewspostController};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

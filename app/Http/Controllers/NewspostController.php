@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class NewspostController extends Controller
 {
+    /**
+     * Homescreen with latest Newsposts and open Engineeringtasls
+     * 
+     * @return view and Newsposts and Engineeringtasks
+     */
     public function home(){
         $data = DB::table('newsposts')
                     ->join('users', 'newsposts.user_id', '=', 'users.id')
@@ -22,6 +27,12 @@ class NewspostController extends Controller
                                 ->take(5)->get();
         return view('home', ['news' => $data, 'engineeringtasks' => $engineeringtasks]);
     }
+
+    /**
+     * Overview of Newsposts
+     * 
+     * @return view and Newsposts
+     */
     public function news(){
         $data = DB::table('newsposts')->join('users', 'newsposts.user_id', '=', 'users.id')
                                       ->orderBy('newsposts.creat_date', 'desc')
@@ -29,7 +40,14 @@ class NewspostController extends Controller
                                       ->get();
         return view('news.index', ['news' => $data]);
     }
-    public function single($id){
+
+    /**
+     * Detailed view of Newsposts
+     * 
+     * @param int $id of newspost
+     * @return view and single Newsposts
+     */
+    public function single(int $id){
         $post = DB::table('newsposts')->where('newsposts.id', $id)
                                       ->join('users', 'newsposts.user_id', '=', 'users.id')
                                       ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.creat_date','users.name' )
