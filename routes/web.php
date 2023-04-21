@@ -24,3 +24,4 @@ Route::get('/home', [NewspostController::class, 'home', EngineeringtaskControlle
 Route::get('/news', [NewspostController::class, 'news'])->name('news');
 Route::get('/news/{id}', [NewspostController::class, 'single'])->name('news.single');
 Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('engineering');
+Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->name('engineeringtask.single');

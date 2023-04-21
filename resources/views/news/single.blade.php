@@ -10,7 +10,7 @@
             <h1 class="display-3 font-weight-bold text-center text-gray-dark mb-5">{{ $post->topic}} </h1>
           </div>
           <div class="col-lg-12">
-            <h1 class="display-6 font-weight-bold text-gray-dark mb-5">{{ $post->post }} </h1>
+            <h1 class="display-6 font-weight-bold text-gray-dark mb-5">{{ $post->content }} </h1>
           </div>
           <div class="col-lg-3">
             <p class="">Erstellt am: {{$post->creat_date}} </p>

@@ -20,7 +20,7 @@
                 <tbody class="table-hover">
                   @foreach ($opentask as $item)
                   <tr>
-                      <td colspan="3" class="text-white"><a>{{$item->task_name}}</a></td>
+                      <td colspan="3" class="text-white"><a href="{{route('engineeringtask.single', $item->id)}}">{{$item->taskname}}</a></td>
                       <td colspan="1" class="text-white">{{$item->name}}</td>
                       <td colspan="1" class="text-white">{{$item->creat_date}}</td>
                       <td colspan="1" class="text-white">Offen</td>
@@ -49,7 +49,7 @@
                 <tbody class="table-hover">
                   @foreach ($donetask as $item)
                     <tr>
-                        <td colspan="3" class="text-white"><a>{{$item->task_name}}</a></td>
+                        <td colspan="3" class="text-white"><a>{{$item->taskname}}</a></td>
                         <td colspan="1" class="text-white">{{$item->name}}</td>
                         <td colspan="1" class="text-white">{{$item->creat_date}}</td>
                         <td colspan="1" class="text-white">Abgeschlossen</td>

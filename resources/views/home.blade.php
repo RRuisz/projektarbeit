@@ -15,8 +15,6 @@
                     <th colspan="1" class="text-white">Datum</th>
                   </tr>
                 </thead>
-
-                
                 <tbody class="table-hover">
                   @foreach ($news as $newspost)
                     <tr>
@@ -47,7 +45,7 @@
                 <tbody class="table-hover">
                   @foreach ($engineeringtasks as $engineeringtask)
                     <tr>
-                        <td colspan="3" class="text-white"><a href="">{{$engineeringtask->task_description}}</a></td>
+                        <td colspan="3" class="text-white"><a href="">{{$engineeringtask->taskname}}</a></td>
                         <td colspan="1" class="text-white">{{$newspost->name}}</td>
                         <td colspan="1" class="text-white">{{$newspost->creat_date}}</td>
                         <td colspan="1" class="text-white">
