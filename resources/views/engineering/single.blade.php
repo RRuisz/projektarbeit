@@ -13,7 +13,7 @@
             <h1 class="display-6 font-weight-bold text-gray-dark mb-5">{{ $task->description }} </h1>
           </div>
           <div class="col-lg-3">
-            <p class="">Erstellt am: {{$task->creat_date}} </p>
+            <p class="">Erstellt am: {{$task->created_at}} </p>
              <p>   von: {{ $task->name }} </p>
           </div>
 

@@ -31,3 +31,6 @@ Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->na
 Route::get('/handover', [HandoverController::class, 'handover'])->name('handover');
 Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.new');
 Route::get('/handover/{id}', [HandoverController::class, 'single'])->name('handover.single');
+
+Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');
+Route::post('/admin/register', [UserController::class, 'save'])->name('admin.save');

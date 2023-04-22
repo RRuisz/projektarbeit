@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->boolean('status')->default(false);
-            $table->dateTime('creat_date');
+            $table->dateTime('created_at');
             $table->dateTime('complete_date');
             $table->foreignId('user_id')->constrained();
         });

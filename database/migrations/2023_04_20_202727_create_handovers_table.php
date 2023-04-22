@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('headline');
             $table->text('content');
             $table->foreignId('user_id')->constrained();
-            $table->dateTime('creat_date');
+            $table->dateTime('created_at');
         });
     }
 

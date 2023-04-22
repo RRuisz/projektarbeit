@@ -22,7 +22,7 @@
                   <tr>
                       <td colspan="3" class="text-white"><a href="{{route('engineeringtask.single', $item->id)}}">{{$item->taskname}}</a></td>
                       <td colspan="1" class="text-white">{{$item->name}}</td>
-                      <td colspan="1" class="text-white">{{$item->creat_date}}</td>
+                      <td colspan="1" class="text-white">{{$item->created_at}}</td>
                       <td colspan="1" class="text-white">Offen</td>
                     </tr>
                     @endforeach
@@ -51,7 +51,7 @@
                     <tr>
                         <td colspan="3" class="text-white"><a>{{$item->taskname}}</a></td>
                         <td colspan="1" class="text-white">{{$item->name}}</td>
-                        <td colspan="1" class="text-white">{{$item->creat_date}}</td>
+                        <td colspan="1" class="text-white">{{$item->created_at}}</td>
                         <td colspan="1" class="text-white">Abgeschlossen</td>
                     </tr>
                   @endforeach

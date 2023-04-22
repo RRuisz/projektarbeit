@@ -20,7 +20,7 @@
                     <tr>
                         <td colspan="3" class="text-white"><a href="{{ route('news.single', $newspost->id) }}">{{$newspost->topic}}</a></td>
                         <td colspan="1" class="text-white">{{$newspost->name}}</td>
-                        <td colspan="1" class="text-white">{{$newspost->creat_date}}</td>
+                        <td colspan="1" class="text-white">{{$newspost->created_at}}</td>
                     </tr>
                   @endforeach
                 </tbody>
@@ -47,7 +47,7 @@
                     <tr>
                         <td colspan="3" class="text-white"><a href="{{route('engineeringtask.single', $engineeringtask->taskid)}}">{{$engineeringtask->taskname}}</a></td>
                         <td colspan="1" class="text-white">{{$newspost->name}}</td>
-                        <td colspan="1" class="text-white">{{$newspost->creat_date}}</td>
+                        <td colspan="1" class="text-white">{{$newspost->created_at}}</td>
                         <td colspan="1" class="text-white">
                           @if ($engineeringtask->status === 0)
                           Offen

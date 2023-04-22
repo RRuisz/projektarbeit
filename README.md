@@ -1,9 +1,15 @@
 Konzept für Wifi-Projektarbeit
 
-1.	Einleitung
-Durch meinen derzeitigen Job als Barkeeper, war es für mich ziemlich schnell klar, das ich bei meinem Projekt, die zwei Welten für mein Projekt zusammenbringen möchte. Dadurch hab ich während dem arbeiten überlegt, was kann einem das arbeiten erleichtern. Da bin ich schnell auf die Idee gekommen, eine Seite zu bauen, mit der man Administrative Aufgaben in einem Hotel planen und erstellen kann wie z.B: Dienstplan erstellung, ToDo-Listen, Reparaturaufträge, Übergaben, interne News
+1.	Einleitung<br>
+Durch meinen derzeitigen Job als Barkeeper, war es für mich ziemlich schnell klar, das ich bei 
+meinem Projekt, die zwei Welten für mein Projekt zusammenbringen möchte. Dadurch hab ich 
+während dem arbeiten überlegt, was kann einem das arbeiten erleichtern. Da bin ich schnell auf 
+die Idee gekommen, eine Seite zu bauen, mit der man Administrative Aufgaben in einem Hotel 
+planen und erstellen kann wie z.B: Interne News, Übergaben, Technikaufträge, Informationen
+(Rezepte, Abläufe, ToDo-Listen?), Kalenderfunktion wo man eigene Termine einsehen, und mit 
+anderen Mitarbeitern Termine planen und erstellen kann
 
-2.	Techniken 
+2.	Techniken <br>
     2.1	Front-end
         HTML / CSS / JavaScript (möglicherweise Frameworks wie Bootstrap, jQuery)
 

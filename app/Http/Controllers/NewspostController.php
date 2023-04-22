@@ -15,14 +15,14 @@ class NewspostController extends Controller
     public function home(){
         $data = DB::table('newsposts')
                     ->join('users', 'newsposts.user_id', '=', 'users.id')
-                    ->orderBy('newsposts.creat_date', 'desc')
-                    ->select('newsposts.id', 'newsposts.topic','newsposts.creat_date', 'users.name')
+                    ->orderBy('newsposts.created_at', 'desc')
+                    ->select('newsposts.id', 'newsposts.topic','newsposts.created_at', 'users.name')
                     ->take(5)
                     ->get();
         $engineeringtasks = DB::table('engineeringtasks')
                                 ->join('users', 'engineeringtasks.user_id', '=', 'users.id')
-                                ->orderBy('engineeringtasks.creat_date', 'desc')
-                                ->select('engineeringtasks.id AS taskid','engineeringtasks.name AS taskname', 'engineeringtasks.status', 'engineeringtasks.creat_date','users.name' )
+                                ->orderBy('engineeringtasks.created_at', 'desc')
+                                ->select('engineeringtasks.id AS taskid','engineeringtasks.name AS taskname', 'engineeringtasks.status', 'engineeringtasks.created_at','users.name' )
                                 ->where('engineeringtasks.status', '=', 0)
                                 ->take(5)->get();
         return view('home', ['news' => $data, 'engineeringtasks' => $engineeringtasks]);
@@ -35,8 +35,8 @@ class NewspostController extends Controller
      */
     public function news(){
         $data = DB::table('newsposts')->join('users', 'newsposts.user_id', '=', 'users.id')
-                                      ->orderBy('newsposts.creat_date', 'desc')
-                                      ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.creat_date','users.name' )
+                                      ->orderBy('newsposts.created_at', 'desc')
+                                      ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.created_at','users.name' )
                                       ->get();
         return view('news.index', ['news' => $data]);
     }
@@ -50,7 +50,7 @@ class NewspostController extends Controller
     public function single(int $id){
         $post = DB::table('newsposts')->where('newsposts.id', $id)
                                       ->join('users', 'newsposts.user_id', '=', 'users.id')
-                                      ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.creat_date','users.name' )
+                                      ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.created_at','users.name' )
                                       ->first();;
         return view('news.single', ['post' => $post]);
     }   
