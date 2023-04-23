@@ -10,7 +10,7 @@ class NewspostController extends Controller
     /**
      * Homescreen with latest Newsposts and open Engineeringtasls
      * 
-     * @return view and Newsposts and Engineeringtasks
+     * @return view and Newsposts and engineering_tasks
      */
     public function home(){
         $data = DB::table('newsposts')
@@ -19,14 +19,14 @@ class NewspostController extends Controller
                     ->select('newsposts.id', 'newsposts.topic','newsposts.created_at', 'users.name')
                     ->take(5)
                     ->get();
-        $engineeringtasks = DB::table('engineeringtasks')
-                                ->join('users', 'engineeringtasks.user_id', '=', 'users.id')
-                                ->orderBy('engineeringtasks.created_at', 'desc')
-                                ->select('engineeringtasks.id AS taskid','engineeringtasks.name AS taskname', 'engineeringtasks.status', 'engineeringtasks.created_at','users.name' )
-                                ->where('engineeringtasks.status', '=', 0)
+        $engineering_tasks = DB::table('engineering_tasks')
+                                ->join('users', 'engineering_tasks.user_id', '=', 'users.id')
+                                ->orderBy('engineering_tasks.created_at', 'desc')
+                                ->select('engineering_tasks.id AS taskid','engineering_tasks.name AS taskname', 'engineering_tasks.status', 'engineering_tasks.created_at','users.name' )
+                                ->where('engineering_tasks.status', '=', 0)
                                 ->take(5)->get();
         $user = session('user');
-        return view('home', ['news' => $data, 'engineeringtasks' => $engineeringtasks, 'user' => $user]);
+        return view('home', ['news' => $data, 'engineering_tasks' => $engineering_tasks, 'user' => $user]);
     }
 
     /**

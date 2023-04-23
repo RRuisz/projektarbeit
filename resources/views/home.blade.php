@@ -43,7 +43,7 @@
                   </tr>
                 </thead>
                 <tbody class="table-hover">
-                  @foreach ($engineeringtasks as $engineeringtask)
+                  @foreach ($engineering_tasks as $engineeringtask)
                     <tr>
                         <td colspan="3" class="text-white"><a href="{{route('engineeringtask.single', $engineeringtask->taskid)}}">{{$engineeringtask->taskname}}</a></td>
                         <td colspan="1" class="text-white">{{$newspost->name}}</td>
