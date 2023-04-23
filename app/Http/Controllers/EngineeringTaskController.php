@@ -25,8 +25,8 @@ class EngineeringTaskController extends Controller
                                     ->join('users', 'users.id', '=', 'engineeringtasks.user_id')
                                     ->select('engineeringtasks.name AS taskname', 'engineeringtasks.status', 'engineeringtasks.created_at','users.name' )
                                     ->get();
-                                
-        return view('engineering.index', ['opentask' => $open,'donetask' => $done]);
+        $user = session('user');   
+        return view('engineering.index', ['opentask' => $open,'donetask' => $done, 'user' => $user]);
     }
 
     /**
@@ -41,7 +41,8 @@ class EngineeringTaskController extends Controller
                                     ->join('users', 'engineeringtasks.user_id', '=', 'users.id')
                                     ->select('engineeringtasks.name', 'engineeringtasks.description','engineeringtasks.created_at','engineeringtasks.complete_date','users.name' )
                                     ->first();;
-        return view('engineering.single', ['task' => $task]);
+        $user = session('user');
+        return view('engineering.single', ['task' => $task, 'user' => $user]);
     }   
 
 

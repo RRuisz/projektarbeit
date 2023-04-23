@@ -53,9 +53,15 @@
               </div>
             </div>
         </nav>
-        <div>
-          <p class="text-white pe-5 pt-1"> Angemeldet als: <a href="">Roman Ruisz{{-- $employee->name --}}</a> </p>
-        </div>
+        <li class="nav-item dropdown pe-5 pb-4">
+          <a class="nav-link dropdown-toggle text-info" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Userpanel
+          </a>
+          <ul class="dropdown-menu bg-dark">
+            <li><a class="dropdown-item text-info" href="{{ route('user.panel', $user->id) }}">Übersicht</a></li>
+            <li><a class="dropdown-item text-info" href="{{ route('logout') }}">Logout</a></li>
+          </ul>
+        </li>
       </div>
     </div>
     @yield('content')

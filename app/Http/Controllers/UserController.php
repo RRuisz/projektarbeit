@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\{User, Role, Department};
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Session;
 
 class UserController extends Controller
 {
@@ -18,7 +19,8 @@ class UserController extends Controller
     public function register(){
         $role = Role::all();
         $departments = Department::all();
-        return view('admin.register', ['roles' => $role, 'departments' => $departments]);
+        $user = session('user');
+        return view('admin.register', ['roles' => $role, 'departments' => $departments, 'user' => $user]);
     }
 
     /**
@@ -52,5 +54,24 @@ class UserController extends Controller
 
         return redirect()->route('home');
         
+    }
+
+    public function login(Request $request){
+        $request->validate(
+            [
+                'email' => 'required|email',
+                'password'=> 'required|min:6'
+            ]);
+        $user = User::where('email', $request->email)->first();
+        if(Hash::check($request->password, $user->password)){
+            $request->session()->put('user', $user);
+            return redirect()->route('home');
+        } 
+        
+    }
+
+    public function logout(){
+        session()->flush();
+        return redirect()->route('welcome');
     }
 }

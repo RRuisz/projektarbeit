@@ -59,16 +59,16 @@ body {
         <div class="container">
             <main class="form-signin justify-content-center align-items-center bg-secondary rounded">
                 <h1 class="h1 mb-3 text-center">Hotel Timeghost Workpanel</h1>
-                <form action="/home" method="get">
+                <form action="{{route('login')}}" method="post">
                   @csrf
                   <h1 class="h3 mb-3 fw-normal">Login</h1>
               
                   <div class="form-floating">
-                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" value="{{old('email')}}">
                     <label for="floatingInput">Email address</label>
                   </div>
                   <div class="form-floating">
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                   </div>
               

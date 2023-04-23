@@ -16,7 +16,9 @@ use App\Http\Controllers\{CourseController, UserController, EngineeringtaskContr
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+Route::post('/login', [Usercontroller::class, 'login'])->name('login');
+Route::get('/logout', [Usercontroller::class, 'logout'])->name('logout');
 
 Route::get('/home', [NewspostController::class, 'home', EngineeringtaskController::class, 'home'])->name('home');
 
@@ -34,3 +36,4 @@ Route::get('/handover/{id}', [HandoverController::class, 'single'])->name('hando
 
 Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');
 Route::post('/admin/register', [UserController::class, 'save'])->name('admin.save');
+Route::get('/userpanel/{id}', [UserController::class, 'panel'])->name('user.panel');

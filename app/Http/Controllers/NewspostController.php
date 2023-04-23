@@ -25,7 +25,8 @@ class NewspostController extends Controller
                                 ->select('engineeringtasks.id AS taskid','engineeringtasks.name AS taskname', 'engineeringtasks.status', 'engineeringtasks.created_at','users.name' )
                                 ->where('engineeringtasks.status', '=', 0)
                                 ->take(5)->get();
-        return view('home', ['news' => $data, 'engineeringtasks' => $engineeringtasks]);
+        $user = session('user');
+        return view('home', ['news' => $data, 'engineeringtasks' => $engineeringtasks, 'user' => $user]);
     }
 
     /**
@@ -38,7 +39,8 @@ class NewspostController extends Controller
                                       ->orderBy('newsposts.created_at', 'desc')
                                       ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.created_at','users.name' )
                                       ->get();
-        return view('news.index', ['news' => $data]);
+        $user = session('user');
+        return view('news.index', ['news' => $data, 'user' => $user]);
     }
 
     /**
@@ -52,6 +54,7 @@ class NewspostController extends Controller
                                       ->join('users', 'newsposts.user_id', '=', 'users.id')
                                       ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.created_at','users.name' )
                                       ->first();;
-        return view('news.single', ['post' => $post]);
+        $user = session('user');
+        return view('news.single', ['post' => $post, 'user' => $user]);
     }   
 }
