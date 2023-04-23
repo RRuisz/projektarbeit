@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CourseController, UserController, EngineeringtaskController, NewspostController};
+use App\Http\Controllers\{CourseController, UserController, EngineeringtaskController, NewspostController, HandoverController};
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ Route::get('/logout', [Usercontroller::class, 'logout'])->name('logout');
 
 Route::get('/home', [NewspostController::class, 'home', EngineeringtaskController::class, 'home'])->name('home');
 
-Route::get('/news', [NewspostController::class, 'news'])->name('news');
+Route::get('/news', [NewspostController::class, 'index'])->name('news');
 Route::get('/news/{id}', [NewspostController::class, 'single'])->name('news.single');
 Route::get('/news/create', [NewspostController::class, 'create'])->name('news.create');
 
@@ -31,8 +31,9 @@ Route::get('/engineering/new', [EngineeringtaskController::class, 'new'])->name(
 Route::post('/engineering/new', [EngineeringtaskController::class, 'save'])->name('engineering.new');
 Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->name('engineeringtask.single');
 
-Route::get('/handover', [HandoverController::class, 'handover'])->name('handover');
+Route::get('/handover', [HandoverController::class, 'index'])->name('handover');
 Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.new');
+Route::get('/handover/new', [HandoverController::class, 'save'])->name('handover.new');
 Route::get('/handover/{id}', [HandoverController::class, 'single'])->name('handover.single');
 
 Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');

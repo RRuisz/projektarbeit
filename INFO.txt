@@ -1,0 +1,7 @@
+Admin login:
+email: admin@gmail.com
+pw: admin123
+
+Mitarbeiter Login:
+email: mitarbeiter@gmail.com
+pw: mitarbeiter123

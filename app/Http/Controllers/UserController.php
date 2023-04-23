@@ -56,7 +56,14 @@ class UserController extends Controller
         
     }
 
+    /**
+     * validates user login data and starts session
+     * 
+     * @param Request $request
+     * @return View Home 
+     */
     public function login(Request $request){
+        //TODO: ERROR AUSGABE WENN DATEN FALSCH!!!!
         $request->validate(
             [
                 'email' => 'required|email',
@@ -69,7 +76,10 @@ class UserController extends Controller
         } 
         
     }
-
+    /**
+     * Logout, flush session
+     * 
+     */
     public function logout(){
         session()->flush();
         return redirect()->route('welcome');

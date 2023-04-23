@@ -47,12 +47,25 @@ class EngineeringTaskController extends Controller
         return view('engineering.single', ['task' => $task, 'user' => $user]);
     }   
 
+    /**
+     * Create a new Engineering Task.
+     * 
+     * @return view  
+     * 
+     */
+     
     public function new(){
         $user = session('user');
 
         return view('engineering.new', ['user' => $user]);
     }
 
+    /**
+     * saves the new Engineering Task.
+     * 
+     * @param Request $request
+     * @return redirect Engineering Overview
+     */
     public function save(Request $request){
         $request->validate([
             'name' => 'required|max:255',

@@ -34,7 +34,7 @@ class NewspostController extends Controller
      * 
      * @return view and Newsposts
      */
-    public function news(){
+    public function index(){
         $data = DB::table('newsposts')->join('users', 'newsposts.user_id', '=', 'users.id')
                                       ->orderBy('newsposts.created_at', 'desc')
                                       ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.created_at','users.name' )
