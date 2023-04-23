@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 22. Apr 2023 um 22:31
+-- Erstellungszeit: 23. Apr 2023 um 15:01
 -- Server-Version: 10.4.27-MariaDB
 -- PHP-Version: 8.1.12
 
@@ -56,30 +56,6 @@ INSERT INTO `departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `engineeringtasks`
---
-
-CREATE TABLE `engineeringtasks` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `complete_date` datetime DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Daten für Tabelle `engineeringtasks`
---
-
-INSERT INTO `engineeringtasks` (`id`, `name`, `description`, `status`, `created_at`, `complete_date`, `user_id`) VALUES
-(1, 'Fernseher Zimmer 255', 'Fernseher Zimmer 255 kein Bild mehr!\r\nHDMI-Kabel wurde überprüft und getauscht, leider dennoch kein Bild!', 1, '2023-04-21 13:58:19', '2023-04-28 13:59:57', 1),
-(2, 'Kaffeemaschine in der Bar ', 'Seit gestern heizt die Kaffeemaschine in der Bar nicht mehr richtig', 0, '2023-04-21 14:09:27', NULL, 1);
-
--- --------------------------------------------------------
-
---
 -- Tabellenstruktur für Tabelle `engineeringtask_taskcomment`
 --
 
@@ -94,6 +70,32 @@ CREATE TABLE `engineeringtask_taskcomment` (
 
 INSERT INTO `engineeringtask_taskcomment` (`engineeringtask_id`, `taskcomment_id`) VALUES
 (1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `engineering_tasks`
+--
+
+CREATE TABLE `engineering_tasks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `complete_date` datetime DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Daten für Tabelle `engineering_tasks`
+--
+
+INSERT INTO `engineering_tasks` (`id`, `name`, `description`, `status`, `created_at`, `complete_date`, `user_id`) VALUES
+(1, 'Fernseher Zimmer 255', 'Fernseher Zimmer 255 kein Bild mehr!\r\nHDMI-Kabel wurde überprüft und getauscht, leider dennoch kein Bild!', 1, '2023-04-21 13:58:19', '2023-04-28 13:59:57', 1),
+(2, 'Kaffeemaschine in der Bar ', 'Seit gestern heizt die Kaffeemaschine in der Bar nicht mehr richtig', 0, '2023-04-21 14:09:27', NULL, 1),
+(3, 'Zi 258 Warmwasser', 'Zimmer 258 hat in der Dusche kein Warmwasser,\r\nWaschbecken funktioniert ganz normal!', 0, '2023-04-23 14:43:48', NULL, 1),
+(5, 'Test', 'Test', 0, '2023-04-23 14:51:51', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -296,10 +298,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `birthdate`, `password`, `role_id`, `department_id`, `updated_at`, `created_at`) VALUES
-(1, 'Roman Ruisz', 'roman@ruisz.cc', '1997-09-03', '****', 3, 1, NULL, NULL),
+(1, 'Roman Ruisz', 'roman@ruisz.cc', '1997-09-03', '$2y$10$GRYTiYekrUeyQXFmDsdLz.eCyXE3gia5.PXBSQjbETOgQjRBbzIxi', 3, 1, NULL, NULL),
 (2, 'Max Mustermann', 'max@mustermann.at', '2001-01-01', '$2y$10$GRYTiYekrUeyQXFmDsdLz.eCyXE3gia5.PXBSQjbETOgQjRBbzIxi', 3, 4, '2023-04-22 18:21:43', '2023-04-22 18:21:43'),
 (3, 'John Doe', 'John@doe.de', '2003-03-03', '$2y$10$UFrASFF4XtyiprMwdL0Tie1T60SYIpM9M1X5XYW2hsn0gc5WhOCxi', 2, 2, '2023-04-22 18:25:03', '2023-04-22 18:25:03'),
-(4, 'Jane Doe', 'jane@doe.at', '2010-10-10', '$2y$10$ABuuV/QmjvdiLbk79y8zo.5J0EwkYIt4MhusTcMbgHVOcuH3Cb5TG', 1, 4, '2023-04-22 18:26:03', '2023-04-22 18:26:03');
+(4, 'Jane Doe', 'jane@doe.at', '2010-10-10', '$2y$10$ABuuV/QmjvdiLbk79y8zo.5J0EwkYIt4MhusTcMbgHVOcuH3Cb5TG', 1, 4, '2023-04-22 18:26:03', '2023-04-22 18:26:03'),
+(5, 'Victoria Unfried', 'vicy@gmail.com', '2003-08-06', '$2y$10$hMzamMFdp0c4ZWdumJDpuuTkltdgkVMfsfow14PewP6dQFPGzZToi', 3, 2, '2023-04-22 18:38:45', '2023-04-22 18:38:45');
 
 --
 -- Indizes der exportierten Tabellen
@@ -318,18 +321,18 @@ ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `engineeringtasks`
---
-ALTER TABLE `engineeringtasks`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `engineeringtasks_user_id_foreign` (`user_id`);
-
---
 -- Indizes für die Tabelle `engineeringtask_taskcomment`
 --
 ALTER TABLE `engineeringtask_taskcomment`
   ADD PRIMARY KEY (`engineeringtask_id`),
   ADD KEY `engineeringtask_taskcomment_taskcomment_id_foreign` (`taskcomment_id`);
+
+--
+-- Indizes für die Tabelle `engineering_tasks`
+--
+ALTER TABLE `engineering_tasks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `engineeringtasks_user_id_foreign` (`user_id`);
 
 --
 -- Indizes für die Tabelle `failed_jobs`
@@ -425,10 +428,10 @@ ALTER TABLE `departments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `engineeringtasks`
+-- AUTO_INCREMENT für Tabelle `engineering_tasks`
 --
-ALTER TABLE `engineeringtasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `engineering_tasks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `failed_jobs`
@@ -482,24 +485,24 @@ ALTER TABLE `taskcomments`
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints der exportierten Tabellen
 --
 
 --
--- Constraints der Tabelle `engineeringtasks`
---
-ALTER TABLE `engineeringtasks`
-  ADD CONSTRAINT `engineeringtasks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
 -- Constraints der Tabelle `engineeringtask_taskcomment`
 --
 ALTER TABLE `engineeringtask_taskcomment`
-  ADD CONSTRAINT `engineeringtask_taskcomment_engineeringtask_id_foreign` FOREIGN KEY (`engineeringtask_id`) REFERENCES `engineeringtasks` (`id`),
+  ADD CONSTRAINT `engineeringtask_taskcomment_engineeringtask_id_foreign` FOREIGN KEY (`engineeringtask_id`) REFERENCES `engineering_tasks` (`id`),
   ADD CONSTRAINT `engineeringtask_taskcomment_taskcomment_id_foreign` FOREIGN KEY (`taskcomment_id`) REFERENCES `taskcomments` (`id`);
+
+--
+-- Constraints der Tabelle `engineering_tasks`
+--
+ALTER TABLE `engineering_tasks`
+  ADD CONSTRAINT `engineeringtasks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints der Tabelle `handovers`
