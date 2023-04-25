@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{User, Role, Department};
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Session;
@@ -83,5 +84,33 @@ class UserController extends Controller
     public function logout(){
         session()->flush();
         return redirect()->route('welcome');
+    }
+
+    /**
+     * Holt daten fürs eigene Userpanel 
+     * 
+     * @param Request $request
+     * @return view Userpanel / $user / $deparment
+     */
+    public function panel(Request $request){
+        $user = session()->get('user');
+        $department = Department::find($user->department_id);
+        return view('user.panel', ['user' => $user, 'department' => $department]);
+    }
+
+    /**
+     * Holt alle Userdaten für Admin Übersicht
+     * 
+     * @return view / $user -> Usersession / $users -> alle Userdaten 
+     */
+    public function all(){
+        $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.role_id')
+                                    ->join('departments', 'departments.id', '=', 'users.department_id')
+                                    ->select('users.*', 'roles.name as role', 'departments.name as department')
+                                    ->orderBy('roles.id', 'ASC')
+                                    ->get();
+        $user = session()->get('user');
+        return view('admin.all', ['users' => $users, 'user' => $user]);
+
     }
 }

@@ -33,9 +33,12 @@ Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->na
 
 Route::get('/handover', [HandoverController::class, 'index'])->name('handover');
 Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.new');
-Route::get('/handover/new', [HandoverController::class, 'save'])->name('handover.new');
+Route::post('/handover/new', [HandoverController::class, 'save'])->name('handover.new');
 Route::get('/handover/{id}', [HandoverController::class, 'single'])->name('handover.single');
 
 Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');
 Route::post('/admin/register', [UserController::class, 'save'])->name('admin.save');
+Route::get('/userpanel/all', [UserController::class, 'all'])->name('user.all');
 Route::get('/userpanel/{id}', [UserController::class, 'panel'])->name('user.panel');
+Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('user.change');
+Route::get('/userpanel/overview/{id}', [UserController::class, 'overview'])->name('user.overview');

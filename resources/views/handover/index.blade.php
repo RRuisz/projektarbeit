@@ -41,7 +41,7 @@
 
                 </tbody>
               </table>
-              <a href="{{ route('news.create') }} " class="btn btn-primary btn-block">Neue Übergabe anlegen</a>
+              <a href="{{ route('handover.new') }} " class="btn btn-primary btn-block">Neue Übergabe anlegen</a>
           </div>
       </div>
   </div>
