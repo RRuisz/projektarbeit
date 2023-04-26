@@ -21,8 +21,8 @@
                     <tr>
                         {{-- TODO: Name Klickbar -> Userbearbeiten --}}
                         <td colspan="3" class="text-white">{{$users->name}}</td>
-                        <td colspan="1" class="text-white">{{$users->department}}</td>
-                        <td colspan="1" class="text-white">{{$users->role}}</td>
+                        <td colspan="1" class="text-white">{{$users->department->name}}</td>
+                        <td colspan="1" class="text-white">{{$users->role->name}}</td>
                         <td colspan="1" class="text-white">{{$users->email}}</td>
                         
                     </tr>

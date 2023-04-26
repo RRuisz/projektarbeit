@@ -19,22 +19,28 @@
                 <tbody class="table-hover">
                   @if($user->role_id == 3)  
                   @foreach ($handover as $handoverpost)
-                  @if ($handoverpost->department_id == $user->department_id)
-                  <tr>
+                    @foreach($handoverpost->department as $department)
+                      @if ($department->id == $user->department_id)
+                      <tr>
                         <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
-                        <td colspan="1" class="text-white">{{$handoverpost->user_name}}</td>
+                        <td colspan="1" class="text-white">{{$handoverpost->user->name}}</td>
                         <td colspan="1" class="text-white">{{$handoverpost->created_at}}</td>
-                        <td colspan="1" class="text-white">{{$handoverpost->department_name}}</td>
+                        <td colspan="1" class="text-white">{{$department->name}}</td>
                     </tr>
                     @endif
+                  @endforeach
                   @endforeach
                   @elseif($user->role_id <= 2)
                   @foreach ($handover as $handoverpost)
                   <tr>
                     <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
-                    <td colspan="1" class="text-white">{{$handoverpost->user_name}}</td>
+                    <td colspan="1" class="text-white">{{$handoverpost->user->name}}</td>
                     <td colspan="1" class="text-white">{{$handoverpost->created_at}}</td>
-                    <td colspan="1" class="text-white">{{$handoverpost->department_name}}</td>
+                    <td colspan="1" class="text-white">
+                      @foreach($handoverpost->department as $department)
+                      {{ $department->name }}
+                      @endforeach
+                    </td>
                 </tr>
                 @endforeach
                 @endif

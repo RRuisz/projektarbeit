@@ -104,11 +104,7 @@ class UserController extends Controller
      * @return view / $user -> Usersession / $users -> alle Userdaten 
      */
     public function all(){
-        $users = DB::table('users')->join('roles', 'roles.id', '=', 'users.role_id')
-                                    ->join('departments', 'departments.id', '=', 'users.department_id')
-                                    ->select('users.*', 'roles.name as role', 'departments.name as department')
-                                    ->orderBy('roles.id', 'ASC')
-                                    ->get();
+        $users = User::all();
         $user = session()->get('user');
         return view('admin.all', ['users' => $users, 'user' => $user]);
 

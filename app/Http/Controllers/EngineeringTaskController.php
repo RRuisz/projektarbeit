@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\EngineeringTask;
+use App\Models\Handover;
 
-class EngineeringTaskController extends Controller
+class EngineeringtaskController extends Controller
 {
     /**
      * Overviews of all Engineering Tasks.
@@ -16,16 +17,8 @@ class EngineeringTaskController extends Controller
      */
     public function index() 
     {
-        $open = DB::table('engineering_tasks')
-                                    ->where('status', '=', 0)
-                                    ->join('users', 'users.id', '=', 'engineering_tasks.user_id')
-                                    ->select('engineering_tasks.id','engineering_tasks.name AS taskname','engineering_tasks.description', 'engineering_tasks.status', 'engineering_tasks.created_at','users.name' )
-                                    ->get();
-        $done = DB::table('engineering_tasks')
-                                    ->where('status', '=', 1)
-                                    ->join('users', 'users.id', '=', 'engineering_tasks.user_id')
-                                    ->select('engineering_tasks.name AS taskname', 'engineering_tasks.status', 'engineering_tasks.created_at','users.name' )
-                                    ->get();
+        $open = Engineeringtask::where('status', 0)->get();
+        $done = Engineeringtask::where('status', 1)->get();
         $user = session('user');   
         
         return view('engineering.index', ['opentask' => $open,'donetask' => $done, 'user' => $user]);
@@ -38,11 +31,12 @@ class EngineeringTaskController extends Controller
      * @return view and a single task 
      */
     public function single(int $id){
-        $task = DB::table('engineering_tasks')
-                                    ->where('engineering_tasks.id', $id)
-                                    ->join('users', 'engineering_tasks.user_id', '=', 'users.id')
-                                    ->select('engineering_tasks.name', 'engineering_tasks.description','engineering_tasks.created_at','engineering_tasks.complete_date','users.name' )
-                                    ->first();;
+        $task = Engineeringtask::find($id);
+        // $task = DB::table('engineering_tasks')
+        //                             ->where('engineering_tasks.id', $id)
+        //                             ->join('users', 'engineering_tasks.user_id', '=', 'users.id')
+        //                             ->select('engineering_tasks.name', 'engineering_tasks.description','engineering_tasks.created_at','engineering_tasks.complete_date','users.name' )
+        //                             ->first();;
         $user = session('user');
         return view('engineering.single', ['task' => $task, 'user' => $user]);
     }   
