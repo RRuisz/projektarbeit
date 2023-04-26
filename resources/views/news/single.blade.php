@@ -14,7 +14,7 @@
           </div>
           <div class="col-lg-3">
             <p class="">Erstellt am: {{$post->created_at}} </p>
-             <p>   von: {{ $post->name }} </p>
+             <p>   von: {{ $post->user->name }} </p>
           </div>
 
           

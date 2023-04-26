@@ -20,7 +20,7 @@
                     <tr>
                       
                         <td colspan="3" class="text-white"><a href="{{route('news.single', $newspost->id)}}">{{$newspost->topic}}</a></td>
-                        <td colspan="1" class="text-white">{{$newspost->name}}</td>
+                        <td colspan="1" class="text-white">{{$newspost->user->name}}</td>
                         <td colspan="1" class="text-white">{{$newspost->created_at}}</td>
                     </tr>
                   @endforeach

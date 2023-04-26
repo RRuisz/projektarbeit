@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\{Newspost, Engineeringtask};
 
 class NewspostController extends Controller
 {
@@ -13,18 +14,8 @@ class NewspostController extends Controller
      * @return view and Newsposts and engineering_tasks
      */
     public function home(){
-        $data = DB::table('newsposts')
-                    ->join('users', 'newsposts.user_id', '=', 'users.id')
-                    ->orderBy('newsposts.created_at', 'desc')
-                    ->select('newsposts.id', 'newsposts.topic','newsposts.created_at', 'users.name')
-                    ->take(5)
-                    ->get();
-        $engineering_tasks = DB::table('engineering_tasks')
-                                ->join('users', 'engineering_tasks.user_id', '=', 'users.id')
-                                ->orderBy('engineering_tasks.created_at', 'desc')
-                                ->select('engineering_tasks.id AS taskid','engineering_tasks.name AS taskname', 'engineering_tasks.status', 'engineering_tasks.created_at','users.name' )
-                                ->where('engineering_tasks.status', '=', 0)
-                                ->take(5)->get();
+        $data = Newspost::orderBy('created_at','desc')->take(5)->get();
+        $engineering_tasks = Engineeringtask::orderBy('created_at','desc')->take(5)->where('status', '=', 0)->get();
         $user = session('user');
         return view('home', ['news' => $data, 'engineering_tasks' => $engineering_tasks, 'user' => $user]);
     }
@@ -35,10 +26,7 @@ class NewspostController extends Controller
      * @return view and Newsposts
      */
     public function index(){
-        $data = DB::table('newsposts')->join('users', 'newsposts.user_id', '=', 'users.id')
-                                      ->orderBy('newsposts.created_at', 'desc')
-                                      ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.created_at','users.name' )
-                                      ->get();
+        $data = Newspost::orderBy('created_at','desc')->get();
         $user = session('user');
         return view('news.index', ['news' => $data, 'user' => $user]);
     }
@@ -50,10 +38,7 @@ class NewspostController extends Controller
      * @return view and single Newsposts
      */
     public function single(int $id){
-        $post = DB::table('newsposts')->where('newsposts.id', $id)
-                                      ->join('users', 'newsposts.user_id', '=', 'users.id')
-                                      ->select('newsposts.id', 'newsposts.topic', 'newsposts.content','newsposts.created_at','users.name' )
-                                      ->first();;
+        $post = Newspost::find($id);
         $user = session('user');
         return view('news.single', ['post' => $post, 'user' => $user]);
     }   

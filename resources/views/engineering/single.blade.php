@@ -14,7 +14,7 @@
           </div>
           <div class="col-lg-3">
             <p class="">Erstellt am: {{$task->created_at}} </p>
-             <p>   von: {{ $task->name }} </p>
+             <p>   von: {{ $task->user->name }} </p>
           </div>
 
           

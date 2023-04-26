@@ -13,12 +13,8 @@ class HandoverController extends Controller
      * @return view / $handover & $user
      */
     public function index(){
-        $handover = Handover::join('users', 'users.id', '=', 'handovers.user_id')
-                                ->join('handover_department', 'handovers.id', '=', 'handover_department.handover_id')
-                                ->join('departments', 'departments.id', '=', 'handover_department.department_id')
-                                ->select('handovers.*', 'departments.name as department_name', 'handover_department.department_id', 'users.name as user_name')
-                                ->orderBy('handovers.id', 'desc')
-                                ->get();
+
+        $handover = Handover::orderBy('id', 'desc')->get();
         $user = session('user');
         return view('handover.index', compact('handover', 'user'));
     }
@@ -30,13 +26,9 @@ class HandoverController extends Controller
      * @return view $handover & $user
      */
     public function single(Request $request){
+        // TODO: NOCH NICHT IMPLEMINTIERT!!!!
         $handover = Handover::find($request->id);
-        $handover->join('users', 'users.id', '=', 'handovers.user_id')
-                ->join('handover_department', 'handovers.id', '=', 'handover_department.handover_id')
-                ->join('departments', 'departments.id', '=', 'handover_department.department_id')
-                ->select('handovers.*', 'departments.name as department_name', 'users.name as user_name')
-                ->get();
-        
+        return $handover;
     }
 
     /**
