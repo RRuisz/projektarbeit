@@ -39,9 +39,10 @@ class HandoverController extends Controller
      */
     public function new(){
         $user = session('user');
+        $userdepartment = Department::where('id', '=', $user->id)->get();
         $departments = Department::all();
 
-        return view('handover.new', compact('departments', 'user'));
+        return view('handover.new', compact('departments', 'user', 'userdepartment'));
     }
     
     
@@ -52,22 +53,20 @@ class HandoverController extends Controller
      * @return view of created Handover
      */
     public function save(Request $request){
-        //TODO: NOCH NICHT IMPLEMENTIERT 
+        //TODO: NOCH NICHT IMPLEMENTIERT
         $request->validate([
             'headline' => 'required|max:255',
             'content' => 'required',
-            'department_id' => 'required',
+            // 'department' => 'required',
         ]);
-
+        
         $user = session('user');
-
         $handover = new Handover();
         $handover->user_id = $user->id;
         $handover->headline = $request->headline;
         $handover->content = $request->content;
-        $handover->departments()->attach($request->department_id);
-        // $handover->save();
-        dd($handover);
+        $handover->save();
+        $handover->department()->attach($request->department);
 
         return redirect()->route('handover.single', $handover->id);
     }

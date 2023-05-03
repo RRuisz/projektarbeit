@@ -14,18 +14,14 @@
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="name" class="text-white col-form-label text-md-right">Überschrift</label>
-                                    <input id="name" type="text" class="form-control bg-secondary text-white" name="name" value="{{ old('name') }}" required>
-                                    @if ($errors->has('name'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
+                                    <label for="headline" class="text-white col-form-label text-md-right">Überschrift</label>
+                                    <input id="headline" type="text" class="form-control bg-secondary text-white" name="headline" value="{{ old('name') }}" required>
+                                   
                                 </div>
 
                                 <div class="col-md-12 form-outline">
-                                    <label for="name" class="col-form-label text-md-right text-white ">Beschreibung:</label>
-                                    <textarea class="form-control bg-secondary text-white" id="textAreaExample1" name="description" rows="6"></textarea>
+                                    <label for="content" class="col-form-label text-md-right text-white ">Beschreibung:</label>
+                                    <textarea class="form-control bg-secondary text-white" id="textAreaExample1" name="content" rows="6"></textarea>
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -33,10 +29,17 @@
                                     @endif
                                 </div>
                                 <div class="col-md-12 form-outline">
-                                    {{-- TODO: IF ROLE: 3 Users department only! --}}
+                                    <label for="name" class="col-form-label text-md-right text-white mt-3">Abteilung:</label>
                                     @if($user->role_id == 3)
-                                    <select class="form-control bg-dark text-white" id="department" name="department">
-                                        <option value="{{ $user->department_id }}"> </option>
+                                    <select class="form-control bg-dark text-white " id="department" name="department">
+                                        <option value="{{ $user->department_id }}" selected>{{ $userdepartment[0]->name }}</option>
+                                        @elseif($user->role_id <= 2)
+                                        <select class="form-control bg-dark text-white" id="department" name="department">
+                                        @foreach($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        @endforeach
+                                        @endif
+                                    </select>
                                 <div class="col-md-12">
                                     <input type="submit" class="form-control btn btn-primary mt-3" value="Speichern">
                                 </div>
