@@ -17,10 +17,10 @@
                   </tr>
                 </thead>
                 <tbody class="table-hover">
-                  @if($user->role_id == 3)  
+                  @if(Auth::user()->role_id == 3)  
                   @foreach ($handover as $handoverpost)
                     @foreach($handoverpost->department as $department)
-                      @if ($department->id == $user->department_id)
+                      @if ($department->id == Auth::user()->department_id)
                       <tr>
                         <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
                         <td colspan="1" class="text-white">{{$handoverpost->user->name}}</td>
@@ -30,7 +30,7 @@
                     @endif
                   @endforeach
                   @endforeach
-                  @elseif($user->role_id <= 2)
+                  @elseif(Auth::user()->role_id <= 2)
                   @foreach ($handover as $handoverpost)
                   <tr>
                     <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>

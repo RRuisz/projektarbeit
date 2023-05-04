@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Handover, Department};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\{DB, Auth};
 
 class HandoverController extends Controller
 {
@@ -15,8 +16,7 @@ class HandoverController extends Controller
     public function index(){
 
         $handover = Handover::orderBy('id', 'desc')->get();
-        $user = session('user');
-        return view('handover.index', compact('handover', 'user'));
+        return view('handover.index', compact('handover'));
     }
 
     /**
@@ -38,11 +38,10 @@ class HandoverController extends Controller
      * @return view $department & $user
      */
     public function new(){
-        $user = session('user');
-        $userdepartment = Department::where('id', '=', $user->id)->get();
+        $userdepartment = Department::where('id', '=', Auth::user()->id)->get();
         $departments = Department::all();
 
-        return view('handover.new', compact('departments', 'user', 'userdepartment'));
+        return view('handover.new', compact('departments', 'userdepartment'));
     }
     
     
@@ -58,10 +57,9 @@ class HandoverController extends Controller
             'content' => 'required',
             'department' => 'required',
         ]);
-        
-        $user = session('user');
+
         $handover = new Handover();
-        $handover->user_id = $user->id;
+        $handover->user_id = Auth::user()->id;
         $handover->headline = $request->headline;
         $handover->content = $request->content;
         $handover->save();

@@ -18,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 Route::post('/login', [Usercontroller::class, 'login'])->name('login');
-Route::get('/logout', [Usercontroller::class, 'logout'])->name('logout');
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', [Usercontroller::class, 'logout'])->name('logout');
 
 Route::get('/home', [NewspostController::class, 'home', EngineeringtaskController::class, 'home'])->name('home');
 
@@ -43,3 +44,4 @@ Route::get('/userpanel/all', [UserController::class, 'all'])->name('user.all');
 Route::get('/userpanel/{id}', [UserController::class, 'panel'])->name('user.panel');
 Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('user.change');
 Route::get('/userpanel/overview/{id}', [UserController::class, 'overview'])->name('user.overview');
+});

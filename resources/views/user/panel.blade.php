@@ -20,21 +20,21 @@
                                     </div>
                                     <div class="container">
                                         <div class="row text-center fs-3">
-                                            <p class=""> Name: {{ $user->name }} </p>
-                                            <p> Email: {{ $user->email }} </p>
-                                            <p> Geburtsdatum: {{ $user->birthdate }} </p>
+                                            <p class=""> Name: {{ Auth::user()->name }} </p>
+                                            <p> Email: {{ Auth::user()->email }} </p>
+                                            <p> Geburtsdatum: {{ Auth::user()->birthdate }} </p>
                                             <p> Abteilung: {{ $department->name }} </p>
                                         </div>
                                     </div>
                                     <div class="container mt-5 mb-3">
-                                        <a href="{{ route('user.change', $user->id) }}" class="btn btn-primary">Daten ändern</a>
+                                        <a href="{{ route('user.change', Auth::user()->id) }}" class="btn btn-primary">Daten ändern</a>
                                     </div>
-                                    @if ($user->role_id == 2)
+                                    @if (Auth::user()->role_id == 2)
                                     <div class="container mb-3">
-                                        <a href="{{ route('user.overview', $user->department_id) }}" class="btn btn-primary">Alle Mitarbeiter der Abteilung</a>
+                                        <a href="{{ route('user.overview', Auth::user()->department_id) }}" class="btn btn-primary">Alle Mitarbeiter der Abteilung</a>
                                     </div>
                                     @endif
-                                    @if ($user->role_id == 1)
+                                    @if (Auth::user()->role_id == 1)
                                     <div class="container mb-3">
                                         <a href="{{ route('user.all') }}" class="btn btn-primary">Übersicht aller Mitarbeiter</a>
                                     </div>

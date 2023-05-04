@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\{User, Role, Department};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Session;
 
@@ -20,8 +21,7 @@ class UserController extends Controller
     public function register(){
         $role = Role::all();
         $departments = Department::all();
-        $user = session('user');
-        return view('admin.register', ['roles' => $role, 'departments' => $departments, 'user' => $user]);
+        return view('admin.register', ['roles' => $role, 'departments' => $departments]);
     }
 
     /**
@@ -58,25 +58,27 @@ class UserController extends Controller
     }
 
     /**
-     * validates user login data and starts session
+     * Userlogin
      * 
      * @param Request $request
-     * @return View Home 
+     * @return view Home // view welcome
      */
-    public function login(Request $request){
-        //TODO: ERROR AUSGABE WENN DATEN FALSCH!!!!
-        $request->validate(
-            [
-                'email' => 'required|email',
-                'password'=> 'required|min:6'
-            ]);
-        $user = User::where('email', $request->email)->first();
-        if(Hash::check($request->password, $user->password)){
-            $request->session()->put('user', $user);
-            return redirect()->route('home');
-        } 
-        
+    public function login(Request $request)
+{
+    $user = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+    
+    if (Auth::attempt($user)) {
+        Auth::login(Auth::user());
+        return redirect()->route('home');
+    } else {
+        return redirect()->route('welcome')->withErrors([
+            'email' => 'Die Anmeldeinformationen sind ungültig.',
+        ]);
     }
+}
     /**
      * Logout, flush session
      * 
@@ -93,9 +95,9 @@ class UserController extends Controller
      * @return view Userpanel / $user / $deparment
      */
     public function panel(Request $request){
-        $user = session()->get('user');
-        $department = Department::find($user->department_id);
-        return view('user.panel', ['user' => $user, 'department' => $department]);
+        
+        $department = Department::find(Auth::user()->department_id);
+        return view('user.panel', ['department' => $department]);
     }
 
     /**
@@ -105,8 +107,7 @@ class UserController extends Controller
      */
     public function all(){
         $users = User::all();
-        $user = session()->get('user');
-        return view('admin.all', ['users' => $users, 'user' => $user]);
+        return view('admin.all', ['users' => $users]);
 
     }
 }

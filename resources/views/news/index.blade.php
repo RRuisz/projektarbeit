@@ -26,7 +26,7 @@
                   @endforeach
                 </tbody>
               </table>
-              @if ($user->role_id < 3)
+              @if (Auth::user()->role_id < 3)
               <a href="{{ route('news.create') }} " class="btn btn-primary btn-block">Neue News anlegen</a>
               @endif
           </div>

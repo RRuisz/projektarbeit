@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\{DB, Auth};
 use App\Models\{Newspost, Engineeringtask};
 
 class NewspostController extends Controller
@@ -16,8 +16,7 @@ class NewspostController extends Controller
     public function home(){
         $data = Newspost::orderBy('created_at','desc')->take(5)->get();
         $engineering_tasks = Engineeringtask::orderBy('created_at','desc')->take(5)->where('status', '=', 0)->get();
-        $user = session('user');
-        return view('home', ['news' => $data, 'engineering_tasks' => $engineering_tasks, 'user' => $user]);
+        return view('home', ['news' => $data, 'engineering_tasks' => $engineering_tasks]);
     }
 
     /**
@@ -27,8 +26,7 @@ class NewspostController extends Controller
      */
     public function index(){
         $data = Newspost::orderBy('created_at','desc')->get();
-        $user = session('user');
-        return view('news.index', ['news' => $data, 'user' => $user]);
+        return view('news.index', ['news' => $data]);
     }
 
     /**
@@ -39,7 +37,6 @@ class NewspostController extends Controller
      */
     public function single(int $id){
         $post = Newspost::find($id);
-        $user = session('user');
-        return view('news.single', ['post' => $post, 'user' => $user]);
+        return view('news.single', ['post' => $post]);
     }   
 }

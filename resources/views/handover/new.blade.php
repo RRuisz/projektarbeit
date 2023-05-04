@@ -30,10 +30,10 @@
                                 </div>
                                 <div class="col-md-12 form-outline">
                                     <label for="name" class="col-form-label text-md-right text-white mt-3">Abteilung:</label>
-                                    @if($user->role_id == 3)
+                                    @if(Auth::user()->role_id == 3)
                                     <select class="form-control bg-dark text-white " id="department" name="department">
-                                        <option value="{{ $user->department_id }}" selected>{{ $userdepartment[0]->name }}</option>
-                                        @elseif($user->role_id <= 2)
+                                        <option value="{{ Auth::user()->department_id }}" selected>{{ $userdepartment[0]->name }}</option>
+                                        @elseif(Auth::user()->role_id <= 2)
                                         <select class="form-control bg-dark text-white" id="department" name="department">
                                         @foreach($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->name }}</option>

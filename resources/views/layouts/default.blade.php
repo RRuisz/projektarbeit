@@ -27,7 +27,7 @@
                     </a>
                     <ul class="dropdown-menu bg-dark">
                       <li><a class="dropdown-item text-info text-center" href="{{route('news')}}">Übersicht</a></li>
-                      @if ($user->role_id < 3)
+                      @if (Auth::user()->role_id < 3)
                       <li><a href="{{ route('news.create') }} " class="dropdown-item text-info text-center">Erstellen</a></li>
                       @endif
                     </ul>
@@ -62,8 +62,8 @@
           </a>
           <ul class="dropdown-menu bg-dark">
             <li class="text-info text-center"> Eingeloggt:</li>
-            <li class="text-warning text-center mb-1"> {{ $user->name }} </li>
-            <li><a class="dropdown-item text-info" href="{{ route('user.panel', $user->id) }}">Übersicht</a></li>
+            <li class="text-warning text-center mb-1"> {{ Auth::user()->name }} </li>
+            <li><a class="dropdown-item text-info" href="{{ route('user.panel', Auth::user()->id) }}">Übersicht</a></li>
             <li><a class="dropdown-item text-info" href="{{ route('logout') }}">Logout</a></li>
           </ul>
         </li>
