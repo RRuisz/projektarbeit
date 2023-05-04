@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Engineeringtask extends Model
+class Taskcomment extends Model
 {
     use HasFactory;
     public $timestamps = false;
 
-    public function user()
+    public function user() 
     {
         return $this->belongsTo(User::class);
     }
 
-    public function taskcomment()
+    public function engineeringtask()
     {
-        return $this->belongsToMany(Taskcomment::class, 'engineeringtask_taskcomment');
+        return $this->belongsToMany(Engineeringtask::class);
     }
 }

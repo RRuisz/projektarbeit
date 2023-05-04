@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Models\EngineeringTask;
+use App\Models\{EngineeringTask, Taskcomment};
 use App\Models\Handover;
 
 class EngineeringtaskController extends Controller
@@ -73,6 +73,33 @@ class EngineeringtaskController extends Controller
         $task->status = 0;
         $task->save();
         
+        return redirect()->route('engineering');
+    }
+
+    /**
+     * saves comment for an engineering task.
+     * 
+     * @param Request $request
+     * @return redirect Engineering Overview
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            // 'description' => 'required|max:255',
+            // 'user_id' => 'required|integer|exists:users,id',
+            // 'status' => 'required'
+        ]);
+        $comment = new Taskcomment;
+        $user = session('user');
+        $task = Engineeringtask::find($request->id);
+        $comment->description = $request->description;
+        $comment->user_id = $user->id;
+        $task->status = $request->status;
+        $task->save();
+        $comment->save();
+        $comment->engineeringtask()->attach($request->id);
+        $comment->save;
+
         return redirect()->route('engineering');
     }
 }

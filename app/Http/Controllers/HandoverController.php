@@ -53,11 +53,10 @@ class HandoverController extends Controller
      * @return view of created Handover
      */
     public function save(Request $request){
-        //TODO: NOCH NICHT IMPLEMENTIERT
         $request->validate([
             'headline' => 'required|max:255',
             'content' => 'required',
-            // 'department' => 'required',
+            'department' => 'required',
         ]);
         
         $user = session('user');

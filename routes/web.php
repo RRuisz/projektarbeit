@@ -30,6 +30,7 @@ Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('e
 Route::get('/engineering/new', [EngineeringtaskController::class, 'new'])->name('engineering.new');
 Route::post('/engineering/new', [EngineeringtaskController::class, 'save'])->name('engineering.new');
 Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->name('engineeringtask.single');
+Route::post('/engineering/{id}', [EngineeringtaskController::class,'update'])->name('engineeringtask.single');
 
 Route::get('/handover', [HandoverController::class, 'index'])->name('handover');
 Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.new');
