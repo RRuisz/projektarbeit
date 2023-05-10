@@ -71,8 +71,9 @@ body {
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                   </div>
-              
-                  
+                  @if ($errors->has('message'))
+                  <span class="text-white ps-1">{{ $errors->first() }}</span>
+                  @endif
                   <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
                 </form>
               </main>

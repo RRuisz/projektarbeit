@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-5  h-100">
-    <h2 class="text-center fs-1 fw-bolder">Alle News</h2>
+    <h2 class="text-center fs-1 fw-bolder">Alle Übergaben</h2>
       <div class="row">
           <div class="col-lg-12">
               <table class="table table-bordered table-dark table-hover " >

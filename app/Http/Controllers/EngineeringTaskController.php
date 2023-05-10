@@ -70,8 +70,7 @@ class EngineeringtaskController extends Controller
         $task->user_id = Auth::user()->id;
         $task->status = 0;
         $task->save();
-        
-        return redirect()->route('engineering');
+        return redirect()->route('engineeringtask.single', $task->id);
     }
 
     /**
@@ -99,5 +98,15 @@ class EngineeringtaskController extends Controller
         $comment->save;
 
         return redirect()->route('engineering');
+    }
+
+    public function delete()
+    {
+        
+    }
+
+    public function updatetask()
+    {
+
     }
 }

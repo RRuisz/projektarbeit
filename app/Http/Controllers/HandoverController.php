@@ -38,7 +38,7 @@ class HandoverController extends Controller
      * @return view $department & $user
      */
     public function new(){
-        $userdepartment = Department::where('id', '=', Auth::user()->id)->get();
+        $userdepartment = Department::where('id', '=', Auth::user()->department_id)->get();
         $departments = Department::all();
 
         return view('handover.new', compact('departments', 'userdepartment'));

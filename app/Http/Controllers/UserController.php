@@ -75,7 +75,7 @@ class UserController extends Controller
         return redirect()->route('home');
     } else {
         return redirect()->route('welcome')->withErrors([
-            'email' => 'Die Anmeldeinformationen sind ungültig.',
+            'message' => 'Die Anmeldeinformationen sind ungültig.',
         ]);
     }
 }
