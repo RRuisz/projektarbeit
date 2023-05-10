@@ -39,6 +39,11 @@
                                         <a href="{{ route('user.all') }}" class="btn btn-primary">Übersicht aller Mitarbeiter</a>
                                     </div>
                                     @endif
+                                    @if (Auth::user()->role_id == 1)
+                                    <div class="container mb-3">
+                                        <a href="{{ route('admin.register') }}" class="btn btn-primary">Neuen Mitarbeiter anlegen</a>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

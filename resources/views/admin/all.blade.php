@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container mt-5  h-100">
+  <a href="{{ route('user.panel', Auth::id()) }}" class="btn btn-primary">Zurück zum Userpanel</a> 
     <h2 class="text-center fs-1 fw-bolder">Alle Mitarbeiter</h2>
       <div class="row">
           <div class="col-lg-12">

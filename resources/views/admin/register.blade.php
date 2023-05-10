@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container mt-5 p-5">
+        <a href="{{route('user.panel', Auth::id())}}" class="btn btn-primary">Zurück zum Userpanel</a>
         <h1 class="text-center mb-5">Neuen Mitarbeiter anlegen</h1>
         <form action="{{ route('admin.save') }}" method="POST" class="form-control p-5">
             @csrf

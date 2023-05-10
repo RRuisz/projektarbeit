@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('topic');
             $table->text('content');
             $table->foreignId('user_id')->constrained();
-            $table->dateTime('created_at');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

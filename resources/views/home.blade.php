@@ -46,8 +46,8 @@
                   @foreach ($engineering_tasks as $engineeringtask)
                     <tr>
                         <td colspan="3" class="text-white"><a href="{{route('engineeringtask.single', $engineeringtask->id)}}">{{$engineeringtask->name}}</a></td>
-                        <td colspan="1" class="text-white">{{$newspost->user->name}}</td>
-                        <td colspan="1" class="text-white">{{$newspost->created_at}}</td>
+                        <td colspan="1" class="text-white">{{$engineeringtask->user->name}}</td>
+                        <td colspan="1" class="text-white">{{$engineeringtask->created_at}}</td>
                         <td colspan="1" class="text-white">
                           @if ($engineeringtask->status === 0)
                           Offen
