@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('handover_department', function (Blueprint $table) {
+        Schema::create('handover_user', function (Blueprint $table) {
             $table->foreignId('handover_id')->constrained();
-            $table->foreignId('department_id')->constrained();
-            $table->primary(['handover_id', 'department_id']);
+            $table->foreignId('user_id')->constrained();
+            $table->primary(['handover_id', 'user_id']);
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('handover_department');
+        Schema::dropIfExists('handover_user');
     }
 };

@@ -13,4 +13,9 @@ class Department extends Model
     {
         return $this->belongsToMany(Handover::class, 'handover_department');
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

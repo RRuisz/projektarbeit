@@ -25,10 +25,27 @@ class HandoverController extends Controller
      * @param int $id Handover id
      * @return view $handover & $user
      */
-    public function single(Request $request){
+    public function single($id) {
         // TODO: NOCH NICHT IMPLEMINTIERT!!!!
-        $handover = Handover::find($request->id);
-        return $handover;
+        $handover = Handover::find($id);
+        if (!$handover->userread->contains(Auth::id())) {
+            $handover->userread()->attach(Auth::id());
+        }
+        return $handover->userread;
+        /**
+         * in einer view, bspw. alle user, die es gelesen haben:
+         * @foreach ($handoverpost->userread as $user)
+         * ...
+         */
+        /**
+         * in einer view, bspw. alle user, die es nicht gelesen haben:
+         * @foreach ($handoverpost->department as $department)
+         *   @foreach ($deparment->user as $user)
+         *      @if (!$handoverpost->userread->contains($user->id))
+         *          $user hats nicht gelesen
+         * 
+         * ...
+         */
     }
 
     /**

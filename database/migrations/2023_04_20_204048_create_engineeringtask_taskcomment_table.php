@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('engineeringtask_taskcomment', function (Blueprint $table) {
             $table->foreignId('engineeringtask_id')->constrained();
             $table->foreignId('taskcomment_id')->constrained();
-            $table->primary('engineeringtask_id', 'taskcomment_id');
+            $table->primary(['engineeringtask_id', 'taskcomment_id']);
         });
     }
 

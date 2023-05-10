@@ -19,16 +19,16 @@
                 <tbody class="table-hover">
                   @if(Auth::user()->role_id == 3)  
                   @foreach ($handover as $handoverpost)
-                    @foreach($handoverpost->department as $department)
-                      @if ($department->id == Auth::user()->department_id)
+                      @if ($handoverpost->department->contains(Auth::user()->department_id))
+                      @if (!$handoverpost->userread->contains(Auth::id()))
                       <tr>
                         <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
                         <td colspan="1" class="text-white">{{$handoverpost->user->name}}</td>
                         <td colspan="1" class="text-white">{{$handoverpost->created_at}}</td>
-                        <td colspan="1" class="text-white">{{$department->name}}</td>
+                        <td colspan="1" class="text-white">{{Auth::user()->department->name}}</td>
                     </tr>
                     @endif
-                  @endforeach
+                    @endif
                   @endforeach
                   @elseif(Auth::user()->role_id <= 2)
                   @foreach ($handover as $handoverpost)
