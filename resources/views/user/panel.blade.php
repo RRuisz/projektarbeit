@@ -29,6 +29,7 @@
                                     <div class="container mt-5 mb-3">
                                         <a href="{{ route('user.change', Auth::user()->id) }}" class="btn btn-primary">Daten ändern</a>
                                     </div>
+                                    {{-- TODO: Abteilungsleiter overview bauen!! --}}
                                     @if (Auth::user()->role_id == 2)
                                     <div class="container mb-3">
                                         <a href="{{ route('user.overview', Auth::user()->department_id) }}" class="btn btn-primary">Alle Mitarbeiter der Abteilung</a>

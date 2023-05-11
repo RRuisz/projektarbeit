@@ -151,4 +151,11 @@ class UserController extends Controller
 
         return redirect()->route('admin.all');
     }
+
+    public function singleuser($id) 
+    {
+        $user = User::find($id);
+        // return $user;
+        return view('user.single', compact('user'));
+    }
 }

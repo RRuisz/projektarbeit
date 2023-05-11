@@ -16,7 +16,6 @@
                         <th colspan="1" class="text-white">Status</th>
                     </tr>
                 </thead>
-                {{-- {{dd($opentask ) }} --}}
                 <tbody class="table-hover">
                   @foreach ($opentask as $item)
                   <tr>
@@ -45,7 +44,6 @@
                         <th colspan="1" class="text-white">Status</th>
                     </tr>
                 </thead>
-                {{-- {{dd($opentask ) }} --}}
                 <tbody class="table-hover">
                   @foreach ($donetask as $item)
                     <tr>

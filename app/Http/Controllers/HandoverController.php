@@ -31,6 +31,7 @@ class HandoverController extends Controller
         if (!$handover->userread->contains(Auth::id())) {
             $handover->userread()->attach(Auth::id());
         }
+        $handover = Handover::find($id);
         return view('handover.single', compact('handover', 'department'));
 
     }

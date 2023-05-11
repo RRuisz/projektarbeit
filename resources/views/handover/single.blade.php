@@ -19,7 +19,7 @@
             <p class="display-6 font-weight-bold text-gray-dark p-5">{{ $handover->content }} </p>
           </div>
           </div>
-          <div>
+          <div class="mt-2">
             @if(Auth::user()->role_id <= 2 || Auth::user()->id == $handover->user_id)
             <button type="button" id="delete-btn" class="btn btn-primary">Löschen</button>
           <a href="{{ route('engineeringtask.update', $handover->id) }}" class="btn btn-primary "> Bearbeiten </a>
@@ -31,20 +31,21 @@
           <button type="button" id="no-btn" class="btn btn-primary">Nein!</button>
         </div>
         
-          <div class="card-footer">
-            {{-- TODO: gescheites design! --}}
-            <div> Gelesen von:</div>
+          <div class="card-footer mt-2">
+              <div class="d-flex">
               @foreach ($handover->userread as $user)
-              {{$user->name}}
+             <div class="bg-success ms-3 p-1 rounded text-white"><a class="text-white" href=" {{ route('user.single', $user->id) }} "> {{$user->name}}</a> </div>
               @endforeach
-          <div> Ungelesen: </div>
+            </div>
+          <div class="d-flex mt-2">
           @foreach ($handover->department as $department)
             @foreach ($department->user as $user)
                 @if (!$handover->userread->contains($user->id))
-                   {{$user->name}}
+             <div class="bg-danger ms-3 p-1 rounded text-white"><a class="text-white" href=" {{ route('user.single', $user->id) }} "> {{$user->name}}</a> </div>
                 @endif
               @endforeach
               @endforeach
+          </div>
           
 @endsection
 
