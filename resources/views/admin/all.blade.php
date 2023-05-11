@@ -21,10 +21,10 @@
                 <tbody class="table-hover">
                   @foreach ($users as $users)
                     <tr>
-                        <td colspan="3" class="text-white"><a href="{{route('admin.change', $users->id)}}" class="">{{$users->name}}</td>
+                        <td colspan="3" class="text-white"><a class="text-white" href="{{route('admin.change', $users->id)}}" class="">{{$users->name}}</td>
                         <td colspan="1" class="text-white">{{$users->department->name}}</td>
                         <td colspan="1" class="text-white">{{$users->role->name}}</td>
-                        <td colspan="1" class="text-white">{{$users->email}}</td>
+                        <td colspan="1" class="text-white"><a class="text-white" href="mailto:{{$users->email}}">{{$users->email}}</td>
                     </tr>
                   @endforeach
                 </tbody>

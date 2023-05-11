@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{DB, Auth};
-use App\Models\{Newspost, Engineeringtask};
+use App\Models\{Newspost, Engineeringtask, User};
 
 class NewspostController extends Controller
 {
@@ -37,8 +37,13 @@ class NewspostController extends Controller
      */
     public function single(int $id){
         $post = Newspost::find($id);
-        return view('news.single', ['post' => $post]);
-    }   
+        $user = User::all();
+        if (!$post->userread->contains(Auth::id())) {
+            $post->userread()->attach(Auth::id());
+        }
+
+        return view('news.single', ['post' => $post, 'users' => $user]);
+    }    
 
     /**
      * Shows Form for new Newspost

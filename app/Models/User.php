@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Handover::class);
     }
+
+    public function newsread()
+    {
+        return $this->belongsToMany(Newspost::class);
+    }
 }

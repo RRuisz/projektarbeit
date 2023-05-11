@@ -14,4 +14,9 @@ class Newspost extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function userread()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

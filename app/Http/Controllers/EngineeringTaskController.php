@@ -32,11 +32,6 @@ class EngineeringtaskController extends Controller
      */
     public function single(int $id){
         $task = Engineeringtask::find($id);
-        // $task = DB::table('engineering_tasks')
-        //                             ->where('engineering_tasks.id', $id)
-        //                             ->join('users', 'engineering_tasks.user_id', '=', 'users.id')
-        //                             ->select('engineering_tasks.name', 'engineering_tasks.description','engineering_tasks.created_at','engineering_tasks.complete_date','users.name' )
-        //                             ->first();;
         
         return view('engineering.single', ['task' => $task]);
     }   
@@ -82,9 +77,8 @@ class EngineeringtaskController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            // 'description' => 'required|max:255',
-            // 'user_id' => 'required|integer|exists:users,id',
-            // 'status' => 'required'
+            'description' => 'required|max:255',
+            'status' => 'required'
         ]);
         $comment = new Taskcomment;
         

@@ -27,7 +27,7 @@
                                         </div>
                                     </div>
                                     <div class="container mt-5 mb-3">
-                                        <a href="{{ route('user.change', Auth::user()->id) }}" class="btn btn-primary">Daten ändern</a>
+                                        <a href="{{ route('user.update') }}" class="btn btn-primary">Daten ändern</a>
                                     </div>
                                     {{-- TODO: Abteilungsleiter overview bauen!! --}}
                                     @if (Auth::user()->role_id == 2)

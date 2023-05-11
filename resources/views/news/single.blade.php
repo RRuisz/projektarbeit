@@ -30,6 +30,20 @@
           <button type="button" class="btn btn-primary"><a class="text-white" href="{{route('news.delete', $post->id)}}">Ja!</a></button>
           <button type="button" id="no-btn" class="btn btn-primary">Nein!</button>
         </div>
+        <div class="card-footer mt-2">
+          <div class="d-flex">
+          @foreach ($post->userread as $user)
+         <div class="bg-success ms-3 p-1 rounded text-white"><a class="text-white" href=" {{ route('user.single', $user->id) }} "> {{$user->name}}</a> </div>
+          @endforeach
+        </div>
+      <div class="d-flex mt-2">
+       @foreach($users as $user)
+       @if(!$post->userread->contains($user->id))
+       <div class="bg-danger ms-3 p-1 rounded text-white"><a class="text-white" href=" {{ route('user.single', $user->id) }} "> {{$user->name}}</a> </div>
+       @endif
+       @endforeach
+       
+      </div>
       
 
           

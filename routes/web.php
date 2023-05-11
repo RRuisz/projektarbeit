@@ -56,5 +56,6 @@ Route::get('/admin/all', [UserController::class, 'all'])->name('admin.all');
 Route::get('/userpanel/{id}', [UserController::class, 'panel'])->name('user.panel');
 Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('user.change');
 Route::get('/userpanel/overview/{id}', [UserController::class, 'overview'])->name('user.overview');
+Route::get('/user/change', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}', [UserController::class, 'singleuser'])->name('user.single');
 });

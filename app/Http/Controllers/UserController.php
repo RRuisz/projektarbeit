@@ -158,4 +158,11 @@ class UserController extends Controller
         // return $user;
         return view('user.single', compact('user'));
     }
+
+    public function update()
+    {
+        $user = Auth::user();
+
+        return view('user.update', compact('user'));
+    }
 }
