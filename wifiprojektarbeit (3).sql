@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 10. Mai 2023 um 22:57
+-- Erstellungszeit: 11. Mai 2023 um 15:09
 -- Server-Version: 10.4.27-MariaDB
 -- PHP-Version: 8.1.12
 
@@ -74,7 +74,8 @@ CREATE TABLE `engineeringtasks` (
 --
 
 INSERT INTO `engineeringtasks` (`id`, `name`, `description`, `status`, `created_at`, `complete_date`, `user_id`) VALUES
-(1, 'aoiwdoawijdaiowdj', 'jiodwajoidawjodjawoidjawoidjoawijd', 0, '2023-05-10 20:31:02', NULL, 1);
+(8, 'aaa', 'aaaa', 0, '2023-05-11 12:28:49', NULL, 1),
+(9, 'wadawdawda', 'wdawdwdawdwdawd', 0, '2023-05-11 12:50:12', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,7 @@ CREATE TABLE `engineeringtask_taskcomment` (
 --
 
 INSERT INTO `engineeringtask_taskcomment` (`engineeringtask_id`, `taskcomment_id`) VALUES
-(1, 1);
+(8, 15);
 
 -- --------------------------------------------------------
 
@@ -130,8 +131,7 @@ CREATE TABLE `handovers` (
 --
 
 INSERT INTO `handovers` (`id`, `headline`, `content`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'aiowdioawjdapwjd', 'ojwadpodjpaowdjopawjdpawdjpoa', 1, '2023-05-10 18:31:18', '2023-05-10 18:31:18'),
-(2, 'ioawdhaoiwdhoiawhd', 'iodwhoaidhoiwahdawhoidawhoidawhoid', 1, '2023-05-10 18:52:18', '2023-05-10 18:52:18');
+(1, 'aiowdioawjdapwjd', 'ojwadpodjpaowdjopawjdpawdjpoa', 1, '2023-05-10 18:31:18', '2023-05-10 18:31:18');
 
 -- --------------------------------------------------------
 
@@ -149,8 +149,7 @@ CREATE TABLE `handover_department` (
 --
 
 INSERT INTO `handover_department` (`handover_id`, `department_id`) VALUES
-(1, 1),
-(2, 1);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -169,8 +168,7 @@ CREATE TABLE `handover_user` (
 
 INSERT INTO `handover_user` (`handover_id`, `user_id`) VALUES
 (1, 1),
-(1, 3),
-(2, 1);
+(1, 3);
 
 -- --------------------------------------------------------
 
@@ -218,6 +216,13 @@ CREATE TABLE `newsposts` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Daten für Tabelle `newsposts`
+--
+
+INSERT INTO `newsposts` (`id`, `topic`, `content`, `user_id`, `created_at`) VALUES
+(4, 'awdawdaw', 'dawdawdawdawd', 1, '2023-05-11 12:10:03');
 
 -- --------------------------------------------------------
 
@@ -302,7 +307,15 @@ CREATE TABLE `taskcomments` (
 --
 
 INSERT INTO `taskcomments` (`id`, `description`, `user_id`) VALUES
-(1, 'awdadawdawdawd', 1);
+(1, 'awdadawdawdawd', 1),
+(2, 'awdawdawdawdawdawd', 3),
+(3, 'bla bla', 1),
+(5, 'testtest', 1),
+(6, 'wadawdawdwadaw', 1),
+(8, 'adwawdawdawd', 1),
+(9, 'awdawd', 1),
+(14, 'awedfawdawdwadawd', 1),
+(15, 'awdawdawdawdawd', 1);
 
 -- --------------------------------------------------------
 
@@ -327,9 +340,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `birthdate`, `password`, `role_id`, `department_id`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '1998-03-03', '$2y$10$h0hBXhT2nD/VFACizWQXa.RIlFH5otzlJXJjVRGFDe5nLwmuihc2.', 1, 1, NULL, NULL),
-(2, 'mitarbeiter', 'mitarbeiter@gmail.com', '1998-03-03', '$2y$10$WepkmDiSTJ6u8BGLZ61bwej04dF719LW1Ak88EsZesq2iCp1tp3Cm', 3, 2, NULL, NULL),
-(3, 'Roman Ruisz', 'roman@ruisz.cc', '1997-09-03', '$2y$10$e8syJaACMT2dtPEYog6DRe8ea5pj4wzaQq3Z73n51dDRsK/.ez0PO', 3, 1, '2023-05-10 18:53:12', '2023-05-10 18:53:12');
+(1, 'Admin', 'admin@gmail.com', '1998-03-03', '$2y$10$TlDc611uXZKGxel6pJ87HeJWomx8MhTmuZR.lahR2e/mpIxOd/NZO', 1, 1, NULL, '2023-05-11 07:28:17'),
+(2, 'Mitarbeiter', 'mitarbeiter@gmail.com', '1998-03-03', '$2y$10$WepkmDiSTJ6u8BGLZ61bwej04dF719LW1Ak88EsZesq2iCp1tp3Cm', 3, 4, NULL, '2023-05-11 07:30:29'),
+(3, 'Roman Ruisz', 'roman@ruisz.cc', '1997-09-03', '$2y$10$EyUXHQaDWW9/B7nxrgOcSO4HTJdkSPB1s94PzcfJo.Cwh9QbJgnvS', 3, 1, '2023-05-10 18:53:12', '2023-05-11 07:31:18'),
+(4, 'Max Mustermann', 'max@gmail.com', '1997-09-03', '$2y$10$VxAtkSTEy0TDTLpt0vjT1umy4PE/Uwm0yn5/hcsGVLop8aOerbNA.', 2, 3, '2023-05-11 07:14:20', '2023-05-11 07:14:20');
 
 --
 -- Indizes der exportierten Tabellen
@@ -466,7 +480,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT für Tabelle `engineeringtasks`
 --
 ALTER TABLE `engineeringtasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT für Tabelle `failed_jobs`
@@ -478,7 +492,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT für Tabelle `handovers`
 --
 ALTER TABLE `handovers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `migrations`
@@ -490,7 +504,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT für Tabelle `newsposts`
 --
 ALTER TABLE `newsposts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `personal_access_tokens`
@@ -514,13 +528,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT für Tabelle `taskcomments`
 --
 ALTER TABLE `taskcomments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints der exportierten Tabellen
