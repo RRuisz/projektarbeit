@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Mai 2023 um 15:09
+-- Erstellungszeit: 11. Mai 2023 um 20:48
 -- Server-Version: 10.4.27-MariaDB
 -- PHP-Version: 8.1.12
 
@@ -75,7 +75,8 @@ CREATE TABLE `engineeringtasks` (
 
 INSERT INTO `engineeringtasks` (`id`, `name`, `description`, `status`, `created_at`, `complete_date`, `user_id`) VALUES
 (8, 'aaa', 'aaaa', 0, '2023-05-11 12:28:49', NULL, 1),
-(9, 'wadawdawda', 'wdawdwdawdwdawd', 0, '2023-05-11 12:50:12', NULL, 1);
+(9, 'wadawdawda', 'wdawdwdawdwdawd', 0, '2023-05-11 12:50:12', NULL, 1),
+(10, 'Kaffeemaschine in der Bar heizt nicht auf', 'Seit gestern Abend heizt die Kaffeemaschine in der Bar nicht mehr auf!', 0, '2023-05-11 13:13:24', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,10 @@ CREATE TABLE `engineeringtask_taskcomment` (
 --
 
 INSERT INTO `engineeringtask_taskcomment` (`engineeringtask_id`, `taskcomment_id`) VALUES
-(8, 15);
+(8, 15),
+(8, 19),
+(8, 21),
+(10, 20);
 
 -- --------------------------------------------------------
 
@@ -131,7 +135,12 @@ CREATE TABLE `handovers` (
 --
 
 INSERT INTO `handovers` (`id`, `headline`, `content`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'aiowdioawjdapwjd', 'ojwadpodjpaowdjopawjdpawdjpoa', 1, '2023-05-10 18:31:18', '2023-05-10 18:31:18');
+(1, 'aiowdioawjdapwjd', 'ojwadpodjpaowdjopawjdpawdjpoa', 1, '2023-05-10 18:31:18', '2023-05-10 18:31:18'),
+(5, 'Kaffeemaschine Bar', 'Hab mir die Kaffeemaschine angeschaut, muss eine externe Firma machen, bitte beauftragen!!', 2, '2023-05-11 11:17:07', '2023-05-11 11:17:07'),
+(6, 'test test', 'awuidgwaiodghwaiud', 3, '2023-05-11 13:20:04', '2023-05-11 13:20:04'),
+(7, 'wjkgduiawgdiauwdgiuwa', 'uiwdqgiuawguidgau9iwdgaiudgiuaw', 3, '2023-05-11 13:21:09', '2023-05-11 13:21:09'),
+(9, 'awdawdawd', 'awdawdawdawdawdawd', 3, '2023-05-11 16:27:31', '2023-05-11 16:27:31'),
+(10, 'Übergabe 22.3 Spätdienst', 'Nicht alle Gläser gewaschen,\r\nNach Veranstaltung alles weggeräumt und Raum Setup für Montag hergerichten\r\n\r\nViel Spaß,\r\nRoman', 3, '2023-05-11 16:34:24', '2023-05-11 16:34:24');
 
 -- --------------------------------------------------------
 
@@ -149,7 +158,12 @@ CREATE TABLE `handover_department` (
 --
 
 INSERT INTO `handover_department` (`handover_id`, `department_id`) VALUES
-(1, 1);
+(1, 1),
+(5, 4),
+(6, 1),
+(7, 1),
+(9, 1),
+(10, 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +182,23 @@ CREATE TABLE `handover_user` (
 
 INSERT INTO `handover_user` (`handover_id`, `user_id`) VALUES
 (1, 1),
-(1, 3);
+(1, 3),
+(1, 4),
+(1, 5),
+(5, 1),
+(5, 2),
+(5, 4),
+(5, 5),
+(6, 1),
+(6, 3),
+(6, 4),
+(6, 5),
+(7, 1),
+(7, 3),
+(7, 5),
+(9, 1),
+(9, 3),
+(10, 3);
 
 -- --------------------------------------------------------
 
@@ -201,7 +231,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2023_04_20_204048_create_engineeringtask_taskcomment_table', 1),
 (13, '2023_04_20_204322_create_categorys_table', 1),
 (14, '2023_04_20_204349_create_recipes_table', 1),
-(15, '2023_05_10_182913_handover_user', 1);
+(15, '2023_05_10_182913_handover_user', 1),
+(16, '2023_05_11_183720_create_newspost_user_table', 2);
 
 -- --------------------------------------------------------
 
@@ -223,6 +254,24 @@ CREATE TABLE `newsposts` (
 
 INSERT INTO `newsposts` (`id`, `topic`, `content`, `user_id`, `created_at`) VALUES
 (4, 'awdawdaw', 'dawdawdawdawd', 1, '2023-05-11 12:10:03');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `newspost_user`
+--
+
+CREATE TABLE `newspost_user` (
+  `newspost_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Daten für Tabelle `newspost_user`
+--
+
+INSERT INTO `newspost_user` (`newspost_id`, `user_id`) VALUES
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -315,7 +364,10 @@ INSERT INTO `taskcomments` (`id`, `description`, `user_id`) VALUES
 (8, 'adwawdawdawd', 1),
 (9, 'awdawd', 1),
 (14, 'awedfawdawdwadawd', 1),
-(15, 'awdawdawdawdawd', 1);
+(15, 'awdawdawdawdawd', 1),
+(19, 'done', 3),
+(20, 'Muss über Externe Firma repariert werden!', 2),
+(21, 'awdawdawdawdaw', 1);
 
 -- --------------------------------------------------------
 
@@ -342,8 +394,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `birthdate`, `password`, `role_id`, `department_id`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@gmail.com', '1998-03-03', '$2y$10$TlDc611uXZKGxel6pJ87HeJWomx8MhTmuZR.lahR2e/mpIxOd/NZO', 1, 1, NULL, '2023-05-11 07:28:17'),
 (2, 'Mitarbeiter', 'mitarbeiter@gmail.com', '1998-03-03', '$2y$10$WepkmDiSTJ6u8BGLZ61bwej04dF719LW1Ak88EsZesq2iCp1tp3Cm', 3, 4, NULL, '2023-05-11 07:30:29'),
-(3, 'Roman Ruisz', 'roman@ruisz.cc', '1997-09-03', '$2y$10$EyUXHQaDWW9/B7nxrgOcSO4HTJdkSPB1s94PzcfJo.Cwh9QbJgnvS', 3, 1, '2023-05-10 18:53:12', '2023-05-11 07:31:18'),
-(4, 'Max Mustermann', 'max@gmail.com', '1997-09-03', '$2y$10$VxAtkSTEy0TDTLpt0vjT1umy4PE/Uwm0yn5/hcsGVLop8aOerbNA.', 2, 3, '2023-05-11 07:14:20', '2023-05-11 07:14:20');
+(3, 'Roman Ruisz', 'roman@ruisz.cc', '1997-09-03', '$2y$10$zgBXnqqvueB9IVRicMEVq.k7kxc3mbD8ZSVC9BWvoA2sVbTsiyFFG', 3, 1, '2023-05-10 18:53:12', '2023-05-11 11:12:19'),
+(4, 'Max Mustermann', 'max@gmail.com', '1997-09-03', '$2y$10$cOv8v7xV7fWI2MMzrxXJUu1tBjBkvu2IhyzeOAPP6Vtt.EpqcskHm', 2, 2, '2023-05-11 07:14:20', '2023-05-11 16:44:54'),
+(5, 'John Doe', 'john@gmail.com', '1887-03-09', '$2y$10$AOMkOU/JOpMwrpYqdo6WC.UtAaZWGLTQBQFQzpfa7RbP8pXZZCixu', 2, 1, '2023-05-11 13:29:39', '2023-05-11 13:29:39');
 
 --
 -- Indizes der exportierten Tabellen
@@ -417,6 +470,13 @@ ALTER TABLE `newsposts`
   ADD KEY `newsposts_user_id_foreign` (`user_id`);
 
 --
+-- Indizes für die Tabelle `newspost_user`
+--
+ALTER TABLE `newspost_user`
+  ADD PRIMARY KEY (`newspost_id`,`user_id`),
+  ADD KEY `newspost_user_user_id_foreign` (`user_id`);
+
+--
 -- Indizes für die Tabelle `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
@@ -480,7 +540,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT für Tabelle `engineeringtasks`
 --
 ALTER TABLE `engineeringtasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT für Tabelle `failed_jobs`
@@ -492,13 +552,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT für Tabelle `handovers`
 --
 ALTER TABLE `handovers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT für Tabelle `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT für Tabelle `newsposts`
@@ -528,13 +588,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT für Tabelle `taskcomments`
 --
 ALTER TABLE `taskcomments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints der exportierten Tabellen
@@ -578,6 +638,13 @@ ALTER TABLE `handover_user`
 --
 ALTER TABLE `newsposts`
   ADD CONSTRAINT `newsposts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints der Tabelle `newspost_user`
+--
+ALTER TABLE `newspost_user`
+  ADD CONSTRAINT `newspost_user_newspost_id_foreign` FOREIGN KEY (`newspost_id`) REFERENCES `newsposts` (`id`),
+  ADD CONSTRAINT `newspost_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints der Tabelle `recipes`
