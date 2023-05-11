@@ -11,7 +11,7 @@
         <div class="col-lg-12">
           <h1 class="text-gray-dark mb-3">{{ $post->topic}} </h1>
           <p class="text-gray-dark mb-1 font-weight-bold">Erstellt am: {{ $post->created_at }}</p>
-          <p class="text-gray-dark mb-2 font-weight-bold">von: {{ $post->user->name }}</p>
+          <p class="text-gray-dark mb-2 font-weight-bold">von: <a href="{{route('user.single', $post->user_id)}}">{{ $post->user->name }}</a></p>
         </div>
         </div>
         <div class="card-body mt-2" style="background-color: #f5f5f5">

@@ -11,7 +11,7 @@
           <div class="col-lg-12">
             <h1 class="text-gray-dark mb-3">{{ $handover->headline}} </h1>
             <p class="text-gray-dark mb-1 font-weight-bold">Erstellt am: {{ $handover->created_at }}</p>
-            <p class="text-gray-dark mb-2 font-weight-bold">von: {{ $handover->user->name }}</p>
+            <p class="text-gray-dark mb-2 font-weight-bold">von: <a href="{{route('user.single', $handover->user_id)}}">{{ $handover->user->name }}</a></p>
           </div>
           </div>
           <div class="card-body mt-2" style="background-color: #f5f5f5">

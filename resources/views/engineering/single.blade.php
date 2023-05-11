@@ -11,7 +11,7 @@
           <div class="col-lg-12">
             <h1 class="text-gray-dark mb-3">{{ $task->name}} </h1>
             <p class="text-gray-dark mb-1 font-weight-bold">Erstellt am: {{ $task->created_at }}</p>
-            <p class="text-gray-dark mb-2 font-weight-bold">von: {{ $task->user->name }}</p>
+            <p class="text-gray-dark mb-2 font-weight-bold">von:<a href="{{route('user.single', $task->user_id)}}">{{ $task->user->name }} </a></p>
           </div>
           </div>
           <div class="card-body mt-2" style="background-color: #f5f5f5">
@@ -40,7 +40,7 @@
             @foreach ($task->taskcomment as $comment)
             <div class="card-footer-item" style="background-color: #f5f5f5">
               <p class="font-weight-bold text-gray-dark" style="font-size: 1.5rem;"> {{ $comment->description }} </p>
-              <p class="font-weight-bold text-gray-dark"> von: {{ $comment->user->name }} </p>
+              <p class="font-weight-bold text-gray-dark"> von: <a href="{{route('user.single', $comment->user_id)}}">{{ $comment->user->name }} </p>
               <a href="{{ route('comment.delete', $comment->id) }}">löschen</a>
             </div>
             <hr>
