@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CourseController, UserController, EngineeringtaskController, NewspostController, HandoverController};
+use App\Http\Controllers\{CourseController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcommentController};
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,8 @@ Route::get('/news', [NewspostController::class, 'index'])->name('news');
 Route::get('/news/new', [NewspostController::class, 'new'])->name('news.new');
 Route::post('/news/new', [NewspostController::class, 'save'])->name('news.new');
 Route::get('/news/{id}', [NewspostController::class, 'single'])->name('news.single');
+Route::get('/news/{id}/delete', [NewspostController::class, 'delete'])->name('news.delete');
+Route::get('/news/{id}/update', [NewspostController::class, 'update'])->name('news.update');
 
 Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('engineering');
 Route::get('/engineering/new', [EngineeringtaskController::class, 'new'])->name('engineering.new');
@@ -34,12 +36,17 @@ Route::post('/engineering/new', [EngineeringtaskController::class, 'save'])->nam
 Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->name('engineeringtask.single');
 Route::post('/engineering/{id}', [EngineeringtaskController::class,'update'])->name('engineeringtask.single');
 Route::get('/engineering/{id}/update', [EngineeringtaskController::class, 'updatetask'])->name('engineeringtask.update');
-Route::post('/engineering/{id}/delete', [EngineeringtaskController::class, 'delete'])->name('engineeringtask.delete');
+Route::get('/engineering/{id}/delete', [EngineeringtaskController::class, 'delete'])->name('engineeringtask.delete');
+Route::get('/comment/delete/{id}', [TaskcommentController::class, 'deleteComment'])->name('comment.delete');
+Route::get('/engineering/open/{id}', [EngineeringtaskController::class, 'open'])->name('engineeringtask.open');
 
 Route::get('/handover', [HandoverController::class, 'index'])->name('handover');
 Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.new');
 Route::post('/handover/new', [HandoverController::class, 'save'])->name('handover.new');
 Route::get('/handover/{id}', [HandoverController::class, 'single'])->name('handover.single');
+Route::get('/handover/{id}/delete', [HandoverController::class, 'delete'])->name('handover.delete');
+Route::get('/handover/{id}/update', [HandoverController::class, 'update'])->name('handover.update');
+
 
 Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');
 Route::post('/admin/register', [UserController::class, 'save'])->name('admin.save');

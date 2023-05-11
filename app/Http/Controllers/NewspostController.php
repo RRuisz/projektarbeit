@@ -71,4 +71,17 @@ class NewspostController extends Controller
 
         return redirect()->route('news');
     }
+
+    /**
+     * deletes an Newspost from the database
+     * 
+     * @param int $id
+     * @return redirect News overview
+     */
+    public function delete($id)
+    {
+        $task = Newspost::find($id);
+        $task->delete();
+        return redirect()->route('news');
+    }
 }

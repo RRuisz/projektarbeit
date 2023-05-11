@@ -71,6 +71,22 @@ class HandoverController extends Controller
 
         return redirect()->route('handover.single', $handover->id);
     }
+
+    /**
+     * datach the many to many relationship from userread and department
+     * deletes an Handover from the database
+     * 
+     * @param int $id
+     * @return redirect Handover overview
+     */
+    public function delete($id)
+    {
+        $task = Handover::find($id);
+        $task->userread()->detach();
+        $task->department()->detach();
+        $task->delete();
+        return redirect()->route('handover');
+    }
 }
 
 

@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Newspost')
+@section('title', 'Technikauftrag')
 
 @section('content')
 <div class="container mt-5  h-100">
@@ -21,9 +21,18 @@
           </div>
           <div>
             @if(Auth::user()->role_id <= 2 || Auth::user()->id == $task->user_id)
-          <a href="{{ route('engineeringtask.delete', $task->id) }}" class="btn btn-primary "> Löschen </a>
+          <button type="button" id="delete-btn" class="btn btn-primary">Löschen</button>
           <a href="{{ route('engineeringtask.update', $task->id) }}" class="btn btn-primary "> Bearbeiten </a>
+          @if($task->status == 1)
+          <a href="{{ route('engineeringtask.open', $task->id) }}" class="btn btn-primary">Neu öffnen!</a>
+          @endif
           @endif 
+          
+        </div>
+        <div id="deletebutton" class="mb-3" style="display: none;">
+          <p>möchten Sie diesen Beitrag endgültig löschen?</p>
+          <button type="button" class="btn btn-primary"><a class="text-white" href="{{route('engineeringtask.delete', $task->id)}}">Ja!</a></button>
+          <button type="button" id="no-btn" class="btn btn-primary">Nein!</button>
         </div>
           <div class="card-footer">
  
@@ -32,6 +41,7 @@
             <div class="card-footer-item" style="background-color: #f5f5f5">
               <p class="font-weight-bold text-gray-dark" style="font-size: 1.5rem;"> {{ $comment->description }} </p>
               <p class="font-weight-bold text-gray-dark"> von: {{ $comment->user->name }} </p>
+              <a href="{{ route('comment.delete', $comment->id) }}">löschen</a>
             </div>
             <hr>
             @endforeach
@@ -48,4 +58,24 @@
               <input type="submit" class="form-control btn btn-primary" value="Speichern">
               @endif
           
+              
+@endsection
+
+@section('scripts')
+<script>
+let delBtn = document.getElementById('delete-btn');
+let delDiv = document.getElementById('deletebutton');
+let noBtn = document.getElementById('no-btn');
+
+delBtn.addEventListener('click', deleteContent);
+noBtn.addEventListener('click', clearDiv);
+
+function deleteContent() {
+  delDiv.style.display = 'block';
+}
+
+function clearDiv() {
+  delDiv.style.display = 'none';
+}
+</script>
 @endsection

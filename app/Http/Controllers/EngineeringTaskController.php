@@ -97,12 +97,40 @@ class EngineeringtaskController extends Controller
         $comment->engineeringtask()->attach($request->id);
         $comment->save;
 
+        return redirect()->route('engineeringtask.single', $task->id);
+    }
+
+    /**
+     * deletes an Engineeringtask from the database
+     * 
+     * @param int $id
+     * @return redirect engineering overview
+     */
+    public function delete($id)
+    {
+        $task = EngineeringTask::find($id);
+        foreach($task->taskcomment as $taskComment){
+            $comment = TaskComment::find($taskComment->id);
+            $task->taskcomment()->detach();
+            $comment->delete();
+        }
+        $task->delete();
         return redirect()->route('engineering');
     }
 
-    public function delete()
+    /**
+     * Opens a finished Task again
+     * 
+     * @param int $id
+     * @return back 
+     */
+    public function open($id) 
     {
-        
+        $task = EngineeringTask::find($id);
+        $task->status = 0;
+        $task->save();
+
+        return back();
     }
 
     public function updatetask()

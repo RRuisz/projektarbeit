@@ -19,13 +19,37 @@
           <p class="display-6 font-weight-bold text-gray-dark p-5">{{ $post->content }} </p>
         </div>
         </div>
-        <div>
+        <div class="mt-3">
           @if(Auth::user()->role_id <= 2 || Auth::user()->id == $post->user_id)
-          {{-- TODO: DEL / Update erstellen --}}
-        {{-- <a href="{{ route('news.delete', $post->id) }}" class="btn btn-primary "> Löschen </a>
-        <a href="{{ route('news.update', $post->id) }}" class="btn btn-primary "> Bearbeiten </a> --}}
-        @endif 
+          <button type="button" id="delete-btn" class="btn btn-primary">Löschen</button>
+          <a href="{{ route('news.update', $post->id) }}" class="btn btn-primary "> Bearbeiten </a>
+          @endif 
+        </div>
+        <div id="deletebutton" class="mb-3" style="display: none;">
+          <p>möchten Sie diesen Beitrag endgültig löschen?</p>
+          <button type="button" class="btn btn-primary"><a class="text-white" href="{{route('news.delete', $post->id)}}">Ja!</a></button>
+          <button type="button" id="no-btn" class="btn btn-primary">Nein!</button>
+        </div>
       
 
           
+@endsection
+
+@section('scripts')
+<script>
+let delBtn = document.getElementById('delete-btn');
+let delDiv = document.getElementById('deletebutton');
+let noBtn = document.getElementById('no-btn');
+
+delBtn.addEventListener('click', deleteContent);
+noBtn.addEventListener('click', clearDiv);
+
+function deleteContent() {
+  delDiv.style.display = 'block';
+}
+
+function clearDiv() {
+  delDiv.style.display = 'none';
+}
+</script>
 @endsection

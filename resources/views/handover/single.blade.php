@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Newspost')
+@section('title', 'Übergabe')
 
 @section('content')
 <div class="container mt-5  h-100">
@@ -21,11 +21,16 @@
           </div>
           <div>
             @if(Auth::user()->role_id <= 2 || Auth::user()->id == $handover->user_id)
-            {{-- TODO: DEL / Update erstellen --}}
-          <a href="{{ route('engineeringtask.delete', $handover->id) }}" class="btn btn-primary "> Löschen </a>
+            <button type="button" id="delete-btn" class="btn btn-primary">Löschen</button>
           <a href="{{ route('engineeringtask.update', $handover->id) }}" class="btn btn-primary "> Bearbeiten </a>
           @endif 
         </div>
+        <div id="deletebutton" class="mb-3" style="display: none;">
+          <p>möchten Sie diesen Beitrag endgültig löschen?</p>
+          <button type="button" class="btn btn-primary"><a class="text-white" href="{{route('handover.delete', $handover->id)}}">Ja!</a></button>
+          <button type="button" id="no-btn" class="btn btn-primary">Nein!</button>
+        </div>
+        
           <div class="card-footer">
             {{-- TODO: gescheites design! --}}
             <div> Gelesen von:</div>
@@ -41,4 +46,23 @@
               @endforeach
               @endforeach
           
+@endsection
+
+@section('scripts')
+<script>
+let delBtn = document.getElementById('delete-btn');
+let delDiv = document.getElementById('deletebutton');
+let noBtn = document.getElementById('no-btn');
+
+delBtn.addEventListener('click', deleteContent);
+noBtn.addEventListener('click', clearDiv);
+
+function deleteContent() {
+  delDiv.style.display = 'block';
+}
+
+function clearDiv() {
+  delDiv.style.display = 'none';
+}
+</script>
 @endsection
