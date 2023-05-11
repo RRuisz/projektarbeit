@@ -28,7 +28,7 @@
                     <ul class="dropdown-menu bg-dark">
                       <li><a class="dropdown-item text-info text-center" href="{{route('news')}}">Übersicht</a></li>
                       @if (Auth::user()->role_id < 3)
-                      <li><a href="{{ route('news.create') }} " class="dropdown-item text-info text-center">Erstellen</a></li>
+                      <li><a href="{{ route('news.new') }} " class="dropdown-item text-info text-center">Erstellen</a></li>
                       @endif
                     </ul>
                   </li>

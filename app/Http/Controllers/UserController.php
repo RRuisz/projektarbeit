@@ -53,7 +53,7 @@ class UserController extends Controller
         $user->department_id = $request->department_id;
         $user->save();
 
-        return redirect()->route('home');
+        return redirect()->route('admin.all');
         
     }
 
@@ -109,5 +109,46 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.all', ['users' => $users]);
 
+    }
+
+    /**
+     * Site for Admin to change user data
+     * gets user data from database by user_id
+     * saves the userdata into value in the form 
+     * 
+     * @param int $id
+     * @return view, $user, $roles, $departments
+     */
+    public function adminchange($id)
+    {
+        
+        $user = User::find($id);
+        $roles = Role::all();
+        $departments = Department::all();
+
+        return view('admin.change', compact('user', 'roles', 'departments'));
+    }
+
+    /**
+     * Updates and User and saves to database
+     * 
+     * @param Request $request
+     * @param int $is
+     * @return redirect to admin user overview
+     */
+    public function adminsavechange(Request $request, $id)
+    {
+        $changeuser = User::find($id);
+        $changeuser->name = $request->name;
+        $changeuser->email = $request->email;
+        if(isset($request->password)){
+            $changeuser->password = hash::make($request->password);
+        }
+        $changeuser->birthdate = $request->birthdate;
+        $changeuser->role_id = $request->role_id;
+        $changeuser->department_id = $request->department_id;
+        $changeuser->save();
+
+        return redirect()->route('admin.all');
     }
 }

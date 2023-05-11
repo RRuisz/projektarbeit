@@ -24,7 +24,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/home', [NewspostController::class, 'home', EngineeringtaskController::class, 'home'])->name('home');
 
 Route::get('/news', [NewspostController::class, 'index'])->name('news');
-Route::get('/news/create', [NewspostController::class, 'create'])->name('news.create');
+Route::get('/news/new', [NewspostController::class, 'new'])->name('news.new');
+Route::post('/news/new', [NewspostController::class, 'save'])->name('news.new');
 Route::get('/news/{id}', [NewspostController::class, 'single'])->name('news.single');
 
 Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('engineering');
@@ -33,7 +34,7 @@ Route::post('/engineering/new', [EngineeringtaskController::class, 'save'])->nam
 Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->name('engineeringtask.single');
 Route::post('/engineering/{id}', [EngineeringtaskController::class,'update'])->name('engineeringtask.single');
 Route::get('/engineering/{id}/update', [EngineeringtaskController::class, 'updatetask'])->name('engineeringtask.update');
-Route::get('/engineering/{id}/delete', [EngineeringtaskController::class, 'delete'])->name('engineeringtask.delete');
+Route::post('/engineering/{id}/delete', [EngineeringtaskController::class, 'delete'])->name('engineeringtask.delete');
 
 Route::get('/handover', [HandoverController::class, 'index'])->name('handover');
 Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.new');
@@ -42,7 +43,9 @@ Route::get('/handover/{id}', [HandoverController::class, 'single'])->name('hando
 
 Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');
 Route::post('/admin/register', [UserController::class, 'save'])->name('admin.save');
-Route::get('/userpanel/all', [UserController::class, 'all'])->name('user.all');
+Route::get('/admin/change/{id}', [UserController::class, 'adminchange'])->name('admin.change');
+Route::post('/admin/change/{id}', [UserController::class, 'adminsavechange'])->name('admin.savechange');
+Route::get('/admin/all', [UserController::class, 'all'])->name('admin.all');
 Route::get('/userpanel/{id}', [UserController::class, 'panel'])->name('user.panel');
 Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('user.change');
 Route::get('/userpanel/overview/{id}', [UserController::class, 'overview'])->name('user.overview');

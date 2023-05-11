@@ -27,7 +27,7 @@
                 </tbody>
               </table>
               @if (Auth::user()->role_id < 3)
-              <a href="{{ route('news.create') }} " class="btn btn-primary btn-block">Neue News anlegen</a>
+              <a href="{{ route('news.new') }} " class="btn btn-primary btn-block">Neue News anlegen</a>
               @endif
           </div>
       </div>

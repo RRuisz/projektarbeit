@@ -39,4 +39,36 @@ class NewspostController extends Controller
         $post = Newspost::find($id);
         return view('news.single', ['post' => $post]);
     }   
+
+    /**
+     * Shows Form for new Newspost
+     * 
+     */
+    public function new() 
+    {
+        return view('news.new');
+    }
+
+    /**
+     * Saves new Newspost
+     * 
+     * @param Request $request
+     * return redirect to news overview page
+     */
+    public function save(Request $request)
+    {
+
+        $request->validate([
+            'topic' => 'required',
+            'content' => 'required'
+        ]);
+
+        $news = new Newspost();
+        $news->topic = $request->topic;
+        $news->content = $request->content;
+        $news->user_id = Auth::id();
+        $news->save();
+
+        return redirect()->route('news');
+    }
 }

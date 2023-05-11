@@ -15,20 +15,21 @@
                     <th colspan="1" class="text-white">Abteilung</th>
                     <th colspan="1" class="text-white">Rang</th>
                     <th colspan="1" class="text-white">Email</th>
+                    
                   </tr>
                 </thead>
                 <tbody class="table-hover">
                   @foreach ($users as $users)
                     <tr>
-                        {{-- TODO: Name Klickbar -> Userbearbeiten --}}
-                        <td colspan="3" class="text-white">{{$users->name}}</td>
+                        <td colspan="3" class="text-white"><a href="{{route('admin.change', $users->id)}}" class="">{{$users->name}}</td>
                         <td colspan="1" class="text-white">{{$users->department->name}}</td>
                         <td colspan="1" class="text-white">{{$users->role->name}}</td>
                         <td colspan="1" class="text-white">{{$users->email}}</td>
-                        
                     </tr>
                   @endforeach
                 </tbody>
               </table>
-
+              <div class="container mb-3">
+                <a href="{{ route('admin.register') }}" class="btn btn-primary">Neuen Mitarbeiter anlegen</a>
+            </div>
 @endsection
