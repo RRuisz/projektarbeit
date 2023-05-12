@@ -9,7 +9,8 @@ class RecipeController extends Controller
 {
     public function test() 
     {
-        $zutat = Recipe::find(1);
-        return $zutat->ingredient_amount;
+        $test = Recipe::find(1);
+        return $test->ingredient;
+        // return view('test', compact('test'));
     }
 }
