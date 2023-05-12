@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CourseController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcommentController};
+use App\Http\Controllers\{RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcommentController};
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +58,6 @@ Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('u
 Route::get('/userpanel/overview/{id}', [UserController::class, 'overview'])->name('user.overview');
 Route::get('/user/change', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}', [UserController::class, 'singleuser'])->name('user.single');
+
+Route::get('/test', [RecipeController::class, 'test']);
 });

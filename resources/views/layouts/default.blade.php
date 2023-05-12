@@ -26,9 +26,9 @@
                       News
                     </a>
                     <ul class="dropdown-menu bg-dark">
-                      <li><a class="dropdown-item text-info text-center" href="{{route('news')}}">Übersicht</a></li>
+                      <li><a class="dropdown-item text-info" href="{{route('news')}}">Übersicht</a></li>
                       @if (Auth::user()->role_id < 3)
-                      <li><a href="{{ route('news.new') }} " class="dropdown-item text-info text-center">Erstellen</a></li>
+                      <li><a href="{{ route('news.new') }} " class="dropdown-item text-info">Erstellen</a></li>
                       @endif
                     </ul>
                   </li>
@@ -50,7 +50,7 @@
                       <li><a class="dropdown-item text-info" href="{{route('engineering.new')}}">Erstellen</a></li>
                     </ul>
                   </li>
-                  <a class="nav-link text-info pe-5" href="#">Informationen</a>                  
+                  {{-- <a class="nav-link text-info pe-5" href="{{route('info.overview')}}">Informationen</a>                   --}}
                   
                 </div>
               </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{DB, Auth};
-use App\Models\{Newspost, Engineeringtask, User};
+use App\Models\{Newspost, Engineeringtask, Ingredient, User, Recipe};
 
 class NewspostController extends Controller
 {
@@ -41,6 +41,7 @@ class NewspostController extends Controller
         if (!$post->userread->contains(Auth::id())) {
             $post->userread()->attach(Auth::id());
         }
+        $post = Newspost::find($id);
 
         return view('news.single', ['post' => $post, 'users' => $user]);
     }    
@@ -86,6 +87,7 @@ class NewspostController extends Controller
     public function delete($id)
     {
         $task = Newspost::find($id);
+        $task->userread()->detach();
         $task->delete();
         return redirect()->route('news');
     }

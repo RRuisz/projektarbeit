@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Mai 2023 um 20:48
+-- Erstellungszeit: 12. Mai 2023 um 15:16
 -- Server-Version: 10.4.27-MariaDB
 -- PHP-Version: 8.1.12
 
@@ -31,6 +31,14 @@ CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Daten für Tabelle `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Küche'),
+(2, 'Service');
 
 -- --------------------------------------------------------
 
@@ -75,8 +83,9 @@ CREATE TABLE `engineeringtasks` (
 
 INSERT INTO `engineeringtasks` (`id`, `name`, `description`, `status`, `created_at`, `complete_date`, `user_id`) VALUES
 (8, 'aaa', 'aaaa', 0, '2023-05-11 12:28:49', NULL, 1),
-(9, 'wadawdawda', 'wdawdwdawdwdawd', 0, '2023-05-11 12:50:12', NULL, 1),
-(10, 'Kaffeemaschine in der Bar heizt nicht auf', 'Seit gestern Abend heizt die Kaffeemaschine in der Bar nicht mehr auf!', 0, '2023-05-11 13:13:24', NULL, 3);
+(9, 'wadawdawda', 'wdawdwdawdwdawd', 1, '2023-05-11 12:50:12', NULL, 1),
+(10, 'Kaffeemaschine in der Bar heizt nicht auf', 'Seit gestern Abend heizt die Kaffeemaschine in der Bar nicht mehr auf!', 0, '2023-05-11 13:13:24', NULL, 3),
+(11, 'Lampe in der Bar flackert', 'Seit gestern Abend flackert eine Lampe in der Bar, bitte Glühbirne austauschen!', 0, '2023-05-11 19:18:37', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -97,6 +106,9 @@ INSERT INTO `engineeringtask_taskcomment` (`engineeringtask_id`, `taskcomment_id
 (8, 15),
 (8, 19),
 (8, 21),
+(9, 22),
+(9, 23),
+(9, 24),
 (10, 20);
 
 -- --------------------------------------------------------
@@ -137,10 +149,10 @@ CREATE TABLE `handovers` (
 INSERT INTO `handovers` (`id`, `headline`, `content`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 'aiowdioawjdapwjd', 'ojwadpodjpaowdjopawjdpawdjpoa', 1, '2023-05-10 18:31:18', '2023-05-10 18:31:18'),
 (5, 'Kaffeemaschine Bar', 'Hab mir die Kaffeemaschine angeschaut, muss eine externe Firma machen, bitte beauftragen!!', 2, '2023-05-11 11:17:07', '2023-05-11 11:17:07'),
-(6, 'test test', 'awuidgwaiodghwaiud', 3, '2023-05-11 13:20:04', '2023-05-11 13:20:04'),
 (7, 'wjkgduiawgdiauwdgiuwa', 'uiwdqgiuawguidgau9iwdgaiudgiuaw', 3, '2023-05-11 13:21:09', '2023-05-11 13:21:09'),
 (9, 'awdawdawd', 'awdawdawdawdawdawd', 3, '2023-05-11 16:27:31', '2023-05-11 16:27:31'),
-(10, 'Übergabe 22.3 Spätdienst', 'Nicht alle Gläser gewaschen,\r\nNach Veranstaltung alles weggeräumt und Raum Setup für Montag hergerichten\r\n\r\nViel Spaß,\r\nRoman', 3, '2023-05-11 16:34:24', '2023-05-11 16:34:24');
+(10, 'Übergabe 22.3 Spätdienst', 'Nicht alle Gläser gewaschen,\r\nNach Veranstaltung alles weggeräumt und Raum Setup für Montag hergerichten\r\n\r\nViel Spaß,\r\nRoman', 3, '2023-05-11 16:34:24', '2023-05-11 16:34:24'),
+(11, 'Übergabe 22.3 Spätdienst', 'Ein paar Gläser sind noch zu waschen!', 3, '2023-05-11 17:20:36', '2023-05-11 17:20:36');
 
 -- --------------------------------------------------------
 
@@ -160,10 +172,10 @@ CREATE TABLE `handover_department` (
 INSERT INTO `handover_department` (`handover_id`, `department_id`) VALUES
 (1, 1),
 (5, 4),
-(6, 1),
 (7, 1),
 (9, 1),
-(10, 1);
+(10, 1),
+(11, 1);
 
 -- --------------------------------------------------------
 
@@ -189,16 +201,54 @@ INSERT INTO `handover_user` (`handover_id`, `user_id`) VALUES
 (5, 2),
 (5, 4),
 (5, 5),
-(6, 1),
-(6, 3),
-(6, 4),
-(6, 5),
 (7, 1),
 (7, 3),
 (7, 5),
 (9, 1),
 (9, 3),
-(10, 3);
+(10, 1),
+(10, 3),
+(11, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `ingredients`
+--
+
+CREATE TABLE `ingredients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `measure` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Daten für Tabelle `ingredients`
+--
+
+INSERT INTO `ingredients` (`id`, `name`, `price`, `amount`, `measure`) VALUES
+(1, 'Russian Standart Vodka', 1, 1, 'cl');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `ingredient_recipe`
+--
+
+CREATE TABLE `ingredient_recipe` (
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `ingredient_id` bigint(20) UNSIGNED NOT NULL,
+  `ingredient_amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Daten für Tabelle `ingredient_recipe`
+--
+
+INSERT INTO `ingredient_recipe` (`recipe_id`, `ingredient_id`, `ingredient_amount`) VALUES
+(1, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -230,9 +280,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2023_04_20_203934_create_taskcomments_table', 1),
 (12, '2023_04_20_204048_create_engineeringtask_taskcomment_table', 1),
 (13, '2023_04_20_204322_create_categorys_table', 1),
-(14, '2023_04_20_204349_create_recipes_table', 1),
 (15, '2023_05_10_182913_handover_user', 1),
-(16, '2023_05_11_183720_create_newspost_user_table', 2);
+(16, '2023_05_11_183720_create_newspost_user_table', 2),
+(17, '2023_05_12_124324_create_ingredients_table', 3),
+(19, '2023_04_20_204349_create_recipes_table', 4),
+(23, '2023_05_12_124425_create_ingredient_recipe_table', 5);
 
 -- --------------------------------------------------------
 
@@ -313,11 +365,17 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `recipes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Daten für Tabelle `recipes`
+--
+
+INSERT INTO `recipes` (`id`, `name`, `image`, `user_id`, `category_id`) VALUES
+(1, 'Cosmo', NULL, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -367,7 +425,10 @@ INSERT INTO `taskcomments` (`id`, `description`, `user_id`) VALUES
 (15, 'awdawdawdawdawd', 1),
 (19, 'done', 3),
 (20, 'Muss über Externe Firma repariert werden!', 2),
-(21, 'awdawdawdawdaw', 1);
+(21, 'awdawdawdawdaw', 1),
+(22, 'hadiuwahdiuah', 3),
+(23, 'Neu geöffnet, geht immer noch nicht!', 4),
+(24, 'erledigt', 1);
 
 -- --------------------------------------------------------
 
@@ -457,6 +518,19 @@ ALTER TABLE `handover_user`
   ADD KEY `handover_user_user_id_foreign` (`user_id`);
 
 --
+-- Indizes für die Tabelle `ingredients`
+--
+ALTER TABLE `ingredients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `ingredient_recipe`
+--
+ALTER TABLE `ingredient_recipe`
+  ADD PRIMARY KEY (`recipe_id`,`ingredient_id`),
+  ADD KEY `ingredient_recipe_ingredient_id_foreign` (`ingredient_id`);
+
+--
 -- Indizes für die Tabelle `migrations`
 --
 ALTER TABLE `migrations`
@@ -528,7 +602,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `departments`
@@ -540,7 +614,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT für Tabelle `engineeringtasks`
 --
 ALTER TABLE `engineeringtasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT für Tabelle `failed_jobs`
@@ -552,13 +626,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT für Tabelle `handovers`
 --
 ALTER TABLE `handovers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT für Tabelle `ingredients`
+--
+ALTER TABLE `ingredients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT für Tabelle `newsposts`
@@ -576,7 +656,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT für Tabelle `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `roles`
@@ -588,7 +668,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT für Tabelle `taskcomments`
 --
 ALTER TABLE `taskcomments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT für Tabelle `users`
@@ -632,6 +712,13 @@ ALTER TABLE `handover_department`
 ALTER TABLE `handover_user`
   ADD CONSTRAINT `handover_user_handover_id_foreign` FOREIGN KEY (`handover_id`) REFERENCES `handovers` (`id`),
   ADD CONSTRAINT `handover_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints der Tabelle `ingredient_recipe`
+--
+ALTER TABLE `ingredient_recipe`
+  ADD CONSTRAINT `ingredient_recipe_ingredient_id_foreign` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`),
+  ADD CONSTRAINT `ingredient_recipe_recipe_id_foreign` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`);
 
 --
 -- Constraints der Tabelle `newsposts`
