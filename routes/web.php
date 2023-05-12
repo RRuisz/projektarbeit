@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcommentController};
+use App\Http\Controllers\{IngredientController, InfoController, RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcommentController};
 
 /*
 |--------------------------------------------------------------------------
@@ -59,5 +59,12 @@ Route::get('/userpanel/overview/{id}', [UserController::class, 'overview'])->nam
 Route::get('/user/change', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}', [UserController::class, 'singleuser'])->name('user.single');
 
-Route::get('/test', [RecipeController::class, 'test']);
+Route::get('/informations', [InfoController::class, 'index'])->name('infos');
+Route::get('/informations/{id}', [InfoController::class, 'category'])->name('info.cat')->where('id', '[0-9]+');
+Route::get('/informations/recipe/new', [RecipeController::class, 'new'])->name('recipe.new');
+Route::post('/informations/recipe/new', [RecipeController::class, 'save'])->name('recipe.new');
+Route::get('/informations/ingredients', [IngredientController::class, 'all'])->name('ingredient.all');
+Route::get('/informations/ingredients/{id}', [IngredientController::class, 'single'])->name('ingredient.single')->where('id', '[0-9]+');
+Route::get('/informations/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new');
+Route::post('/informations/ingredient/new', [IngredientController::class, 'save'])->name('ingredient.new');
 });

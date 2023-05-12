@@ -10,18 +10,19 @@
               <table class="table table-bordered table-dark table-hover " >
                 <thead>
                   <tr>
-                    <th colspan="3" class="text-white">Thema</th>
-                    <th colspan="1" class="text-white">Ersteller</th>
-                    <th colspan="1" class="text-white">Datum</th>
+                    {{-- TODO: Datumsanzeige Europa!!! --}}
+                    <th class="col-6"class="text-white text-center">Thema</th>
+                    <th class="col-4" class="text-white">Ersteller</th>
+                    <th class="col-2" class="text-white">Datum</th>
                   </tr>
                 </thead>
                 <tbody class="table-hover">
                   @foreach ($news as $newspost)
                     <tr>
                       
-                        <td colspan="3" class="text-white"><a href="{{route('news.single', $newspost->id)}}">{{$newspost->topic}}</a></td>
-                        <td colspan="1" class="text-white"><a href="{{route('user.single', $newspost->user_id)}}" class="text-white">{{$newspost->user->name}}</td>
-                        <td colspan="1" class="text-white">{{$newspost->created_at}}</td>
+                        <td class="col-6" class="text-white"><a href="{{route('news.single', $newspost->id)}}">{{$newspost->topic}}</a></td>
+                        <td class="col-4" class="text-white"><a href="{{route('user.single', $newspost->user_id)}}" class="text-white">{{$newspost->user->name}}</td>
+                        <td class="col-2" class="text-white">{{$newspost->created_at}}</td>
                     </tr>
                   @endforeach
                 </tbody>
