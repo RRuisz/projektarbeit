@@ -10,7 +10,16 @@ class RecipeController extends Controller
     public function test() 
     {
         $test = Recipe::find(1);
-        return $test->ingredient;
+        $testarray = [];
+        foreach ($test->ingredient as $ingredient) {
+            $testarray[] = [
+                'name' => $ingredient->name,
+                'amount' => $ingredient->pivot->ingredient_amount
+            ];
+        }
+        return $testarray;
+        // return $test->ingredient->pivot->ingredient_amount;
+        // return $test->ingredient;
         // return view('test', compact('test'));
     }
 }
