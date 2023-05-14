@@ -17,7 +17,6 @@ class IngredientController extends Controller
         $request->validate([
             'name' => 'unique:ingredients'
         ]);
-
         $ingredient = new Ingredient;
         $ingredient->name = $request->name;
         $ingredient->price = $request->price;

@@ -16,7 +16,7 @@
         </div>
         <div class="card-body mt-2" style="background-color: #f5f5f5">
         <div class="">
-          <p class="display-6 font-weight-bold text-gray-dark p-5">{{ $post->content }} </p>
+          <p class="display-6 font-weight-bold text-gray-dark p-5">{!! nl2br($post->content) !!} </p>
         </div>
         </div>
         <div class="mt-3">

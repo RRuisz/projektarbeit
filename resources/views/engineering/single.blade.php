@@ -53,7 +53,7 @@
               <label for="status" class="font-weight-bold text-gray-dark">Status</label>
               <select class="form-control mb-5" id="status" name="status">
                 <option value="1">Erledigt</option>
-                <option value="0">Noch Offen</option>
+                <option value="0" selected>Noch Offen</option>
               </select>
               <input type="submit" class="form-control btn btn-primary" value="Speichern">
               @endif

@@ -63,6 +63,7 @@ Route::get('/informations', [InfoController::class, 'index'])->name('infos');
 Route::get('/informations/{id}', [InfoController::class, 'category'])->name('info.cat')->where('id', '[0-9]+');
 Route::get('/informations/recipe/new', [RecipeController::class, 'new'])->name('recipe.new');
 Route::post('/informations/recipe/new', [RecipeController::class, 'save'])->name('recipe.new');
+Route::get('/information/recipe/{id}', [RecipeController::class, 'single'])->name('recipe.single')->where('id', '[0-9]+');
 Route::get('/informations/ingredients', [IngredientController::class, 'all'])->name('ingredient.all');
 Route::get('/informations/ingredients/{id}', [IngredientController::class, 'single'])->name('ingredient.single')->where('id', '[0-9]+');
 Route::get('/informations/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new');

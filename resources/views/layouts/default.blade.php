@@ -50,7 +50,7 @@
                       <li><a class="dropdown-item text-info" href="{{route('engineering.new')}}">Erstellen</a></li>
                     </ul>
                   </li>
-                  {{-- <a class="nav-link text-info pe-5" href="{{route('info.overview')}}">Informationen</a>                   --}}
+                  <a class="nav-link text-info pe-5" href="{{route('infos')}}">Informationen</a>                  
                   
                 </div>
               </div>

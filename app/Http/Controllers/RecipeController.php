@@ -22,4 +22,11 @@ class RecipeController extends Controller
         // return $test->ingredient;
         // return view('test', compact('test'));
     // }
+
+    public function single($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+
+        return view('informations.singlerecipe', compact('recipe'));
+    }
 }

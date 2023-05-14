@@ -15,22 +15,21 @@
                         <th colspan="1" class="text-white">Ersteller</th>
                     </tr>
                 </thead>
-                <tbody class="table-hover">
+                <tbody class="table-hover"> 
+                    {{-- TODO: Was wenn kein Rezept? --}}
                   @foreach ($category->recipe as $item)
                   <tr >
-                      <td colspan="2" class="text-white"><a href="{{route('engineeringtask.single', $item->id)}}">{{$item->name}}</a></td>
+                      <td colspan="2" class="text-white"><a href="{{route('recipe.single', $item->id)}}">{{$item->name}}</a></td>
                       <td colspan="1" class="text-white"><a href="{{route('user.single', $item->user_id)}}" class="text-white">{{$item->user->name}}</a></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="mb-3">
-            <a class="btn btn-primary " href="{{route('recipe.new')}}">Alle Rezepte anzeigen</a>
             <a class="btn btn-primary " href="{{route('ingredient.all')}}">Alle Zutaten anzeigen</a>
             </div>
             <div>
             <a class="btn btn-primary " href="{{route('recipe.new')}}">Neues Rezept anlegen</a>
-            <a class="btn btn-primary " href="{{route('ingredient.new')}}">Neue Zutat anlegen</a>
             </div>
         </div>
     </div>
