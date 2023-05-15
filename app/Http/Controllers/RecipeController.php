@@ -71,6 +71,7 @@ class RecipeController extends Controller
         $recipe->name = $request->name;
         $recipe->user_id = Auth::id();
         $recipe->category_id = 1;
+        $recipe->cost = $request->cost;
         $recipe->save();
 
         foreach($combinedData as $data){
