@@ -10,7 +10,6 @@
               <table class="table table-bordered table-dark table-hover " >
                 <thead>
                   <tr>
-                    {{-- TODO: Datumsanzeige Europa!!! --}}
                     <th class="col-6"class="text-white text-center">Thema</th>
                     <th class="col-4" class="text-white">Ersteller</th>
                     <th class="col-2" class="text-white">Datum</th>
@@ -22,7 +21,7 @@
                       
                         <td class="col-6" class="text-white"><a href="{{route('news.single', $newspost->id)}}">{{$newspost->topic}}</a></td>
                         <td class="col-4" class="text-white"><a href="{{route('user.single', $newspost->user_id)}}" class="text-white">{{$newspost->user->name}}</td>
-                        <td class="col-2" class="text-white">{{$newspost->created_at}}</td>
+                        <td class="col-2" class="text-white">{{\Carbon\Carbon::parse($newspost->created_at)->format('d.m.Y')}}</td>
                     </tr>
                   @endforeach
                 </tbody>

@@ -26,7 +26,7 @@
                       <tr>
                         <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
                         <td colspan="1" class="text-white">{{$handoverpost->user->name}}</td>
-                        <td colspan="1" class="text-white">{{$handoverpost->created_at}}</td>
+                        <td colspan="1" class="text-white">{{\Carbon\Carbon::parse($handoverpost->created_at)->format('d.m.Y')}}</td>
                         <td colspan="1" class="text-white">{{Auth::user()->department->name}}</td>
                     </tr>
                     @endif
@@ -39,7 +39,7 @@
                   <tr>
                     <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
                     <td colspan="1" class="text-white">{{$handoverpost->user->name}}</td>
-                    <td colspan="1" class="text-white">{{$handoverpost->created_at}}</td>
+                    <td colspan="1" class="text-white">{{\Carbon\Carbon::parse($handoverpost->created_at)->format('d.m.Y')}}</td>
                     <td colspan="1" class="text-white">
                       @foreach($handoverpost->department as $department)
                       {{ $department->name }}
@@ -76,7 +76,7 @@
                               <tr>
                                 <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
                                 <td colspan="1" class="text-white"><a href="{{route('user.single', $handoverpost->user->id)}}" class="text-white">{{$handoverpost->user->name}}</td>
-                                <td colspan="1" class="text-white">{{$handoverpost->created_at}}</td>
+                                <td colspan="1" class="text-white">{{\Carbon\Carbon::parse($handoverpost->created_at)->format('d.m.Y')}}</td>
                                 <td colspan="1" class="text-white">{{Auth::user()->department->name}}</td>
                             </tr>
                             @endif
@@ -89,7 +89,7 @@
                           <tr>
                             <td colspan="3" class="text-white"><a href="{{route('handover.single', $handoverpost->id)}}">{{$handoverpost->headline}}</a></td>
                             <td colspan="1" class="text-white"><a href="{{route('user.single', $handoverpost->user_id)}}" class="text-white">{{$handoverpost->user->name}}</a></td>
-                            <td colspan="1" class="text-white">{{$handoverpost->created_at}}</td>
+                            <td colspan="1" class="text-white">{{\Carbon\Carbon::parse($handoverpost->created_at)->format('d.m.Y')}}</td>
                             <td colspan="1" class="text-white">
                               @foreach($handoverpost->department as $department)
                               {{ $department->name }}

@@ -10,7 +10,7 @@
         <div class="card-header">
         <div class="col-lg-12">
           <h1 class="text-gray-dark mb-3">{{ $post->topic}} </h1>
-          <p class="text-gray-dark mb-1 font-weight-bold">Erstellt am: {{ $post->created_at }}</p>
+          <p class="text-gray-dark mb-1 font-weight-bold">Erstellt am: {{\Carbon\Carbon::parse($post->created_at)->format('d.m.Y H:i')}}</p>
           <p class="text-gray-dark mb-2 font-weight-bold">von: <a href="{{route('user.single', $post->user_id)}}">{{ $post->user->name }}</a></p>
         </div>
         </div>

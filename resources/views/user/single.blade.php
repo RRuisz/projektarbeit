@@ -20,7 +20,7 @@
                                     <div class="row text-center fs-3">
                                         <p class=""> Name: {{ $user->name }} </p>
                                         <p> Email:<a href="mailto: {{ $user->email }} ">{{ $user->email }} </a> </p>
-                                        <p> Geburtsdatum: {{ $user->birthdate }} </p>
+                                        <p> Geburtsdatum: {{ \Carbon\Carbon::parse($user->birthdate)->format('d.m.Y') }} </p>
                                         <p> Abteilung: {{ $user->department->name }} </p>
                                     </div>
                                 </div>

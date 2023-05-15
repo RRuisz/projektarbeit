@@ -22,15 +22,21 @@
                                         <p> Zutaten: </p>
                                         @foreach($recipe->ingredient as $ingredient)
                                         <p> {{ $ingredient->name }}: {{ $ingredient->pivot->ingredient_amount }}{{$ingredient->measure}} </p>
-                                            <p> Wareneinsatz: {{ $ingredient->pivot->ingredient_amount * $ingredient->price}}€</p>
                                         @endforeach
                                     </div>
                                 </div>
                                
-                            </div> 
-                            @if(Auth::user()->role_id <= 2)
-                            <a href="#" class="btn btn-primary mt-3">Bearbeiten</a>
-                            @endif
+                            </div>
+                            <div class="d-flex justify-content-between"> 
+                            <div>
+                                @if(Auth::user()->role_id <= 2)
+                                <a href="#" class="btn btn-primary mt-3">Bearbeiten</a>
+                                @endif
+                            </div>
+                            <div class="mt-3">
+                                <p> Wareneinsatz: {{$recipe->cost}}€ </p>
+                            </div>
+                            </div>
                         </div> 
                     </div>
                 </div>

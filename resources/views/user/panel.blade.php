@@ -22,7 +22,7 @@
                                         <div class="row text-center fs-3">
                                             <p class=""> Name: {{ Auth::user()->name }} </p>
                                             <p> Email: {{ Auth::user()->email }} </p>
-                                            <p> Geburtsdatum: {{ Auth::user()->birthdate }} </p>
+                                            <p> Geburtsdatum: {{ \Carbon\Carbon::parse(Auth::user()->birthdate)->format('d.m.Y') }} </p>
                                             <p> Abteilung: {{ $department->name }} </p>
                                         </div>
                                     </div>
