@@ -22,7 +22,7 @@
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                   <li class="nav-item dropdown pe-5">
-                    <a class="nav-link dropdown-toggle text-info text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-info" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       News
                     </a>
                     <ul class="dropdown-menu bg-dark">

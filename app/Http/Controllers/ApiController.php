@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingredient;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\{User, Ingredient, Checklisttask};
 
 class ApiController extends Controller
 {
@@ -18,5 +17,12 @@ class ApiController extends Controller
     {
         $ingredient = Ingredient::all();
         return $ingredient;
+    }
+
+    // NUR TEST FÜR DATENBANK STRUKTUR!
+    public function checklists()
+    {
+        $checklist = Checklisttask::all();
+        return $checklist[0]->name;
     }
 }
