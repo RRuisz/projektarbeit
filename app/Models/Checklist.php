@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Checklist extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
     public function checklisttask()
     {

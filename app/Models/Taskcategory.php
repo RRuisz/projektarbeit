@@ -14,4 +14,9 @@ class Taskcategory extends Model
     {
         return $this->belongsTo(Checklisttask::class);
     }
+
+    public function department() 
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

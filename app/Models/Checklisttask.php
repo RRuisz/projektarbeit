@@ -16,4 +16,9 @@ class Checklisttask extends Model
         return $this->belongsToMany(Checklist::class, 'checklist_checklisttask')
                     ->withPivot('status');
     }
+
+    public function taskcategory()
+    {
+        return $this->belongsTo(Taskcategory::class);
+    }
 }

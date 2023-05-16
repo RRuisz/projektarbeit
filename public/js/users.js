@@ -94,7 +94,7 @@ function userOutput() {
 function userSearch() {
     const searchInput = document.getElementById('userSearch');
     const select = document.querySelectorAll('.tablerow');
-    const searchTerm = searchInput.value;
+    const searchTerm = searchInput.value.toLowerCase();
 
     for (let i = 0; i < select.length; i++) {
       const selectName = select[i].firstElementChild.textContent.toLowerCase();

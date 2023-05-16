@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{IngredientController, InfoController, RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcommentController};
+use App\Http\Controllers\{ChecklisttaskController, IngredientController, InfoController, RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcategoryController, TaskcommentController, ChecklistController};
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home', [NewspostController::class, 'home', EngineeringtaskController::class, 'home'])->name('home');
 
+// NEWS ROUTES
 Route::get('/news', [NewspostController::class, 'index'])->name('news');
 Route::get('/news/new', [NewspostController::class, 'new'])->name('news.new');
 Route::post('/news/new', [NewspostController::class, 'save'])->name('news.new');
@@ -31,6 +32,7 @@ Route::get('/news/{id}/delete', [NewspostController::class, 'delete'])->name('ne
 Route::get('/news/{id}/edit', [NewspostController::class, 'edit'])->name('news.update');
 Route::post('/news/{id}/edit', [NewspostController::class, 'saveedit'])->name('news.update');
 
+// ENGINEERING ROUTES
 Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('engineering');
 Route::get('/engineering/new', [EngineeringtaskController::class, 'new'])->name('engineering.new');
 Route::post('/engineering/new', [EngineeringtaskController::class, 'save'])->name('engineering.new');
@@ -42,6 +44,7 @@ Route::get('/engineering/{id}/delete', [EngineeringtaskController::class, 'delet
 Route::get('/comment/delete/{id}', [TaskcommentController::class, 'deleteComment'])->name('comment.delete');
 Route::get('/engineering/open/{id}', [EngineeringtaskController::class, 'open'])->name('engineeringtask.open');
 
+// HANDOVER ROUTES
 Route::get('/handover', [HandoverController::class, 'index'])->name('handover');
 Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.new');
 Route::post('/handover/new', [HandoverController::class, 'save'])->name('handover.new');
@@ -50,7 +53,7 @@ Route::get('/handover/{id}/delete', [HandoverController::class, 'delete'])->name
 Route::get('/handover/{id}/edit', [HandoverController::class, 'edit'])->name('handover.update');
 Route::post('/handover/{id}/edit', [HandoverController::class, 'saveedit'])->name('handover.update');
 
-
+//ADMIN / USER ROUTES
 Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');
 Route::post('/admin/register', [UserController::class, 'save'])->name('admin.save');
 Route::get('/admin/change/{id}', [UserController::class, 'adminchange'])->name('admin.change');
@@ -61,6 +64,7 @@ Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('u
 Route::get('/user/change', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}', [UserController::class, 'singleuser'])->name('user.single');
 
+// RECIPE ROUTES
 Route::get('/recipes', [InfoController::class, 'index'])->name('recipe.index');
 Route::get('/category/{id}', [InfoController::class, 'category'])->name('recipe.cat')->where('id', '[0-9]+');
 Route::get('/recipes/new', [RecipeController::class, 'new'])->name('recipe.new');
@@ -71,4 +75,11 @@ Route::get('/recipes/ingredients/{id}', [IngredientController::class, 'single'])
 Route::get('/recipes/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new');
 Route::post('/recipes/ingredient/new', [IngredientController::class, 'save'])->name('ingredient.new');
 Route::get('/recipes/users', [UserController::class, 'overview'])->name('user.all');
+
+// CHECKLIST ROUTES
+Route::get('/checklists/tasks/new', [ChecklisttaskController::class, 'createtask'])->name('checklist.newtask');
+Route::post('/checklists/tasks/new', [ChecklisttaskController::class, 'savetask'])->name('checklist.newtask');
+Route::get('/checklists/category/new', [TaskcategoryController::class, 'createcategory'])->name('checklist.newcategory');
+Route::post('/checklists/category/new', [TaskcategoryController::class, 'savecategory'])->name('checklist.newcategory');
+Route::get('/checklist/new',  [ChecklistController::class, 'newchecklist']);
 });
