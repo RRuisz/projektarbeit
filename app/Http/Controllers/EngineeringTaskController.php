@@ -127,8 +127,23 @@ class EngineeringtaskController extends Controller
         return back();
     }
 
-    public function updatetask()
+    public function edittask($id)
     {
+        $task = EngineeringTask::find($id);
+
+        return view('engineering.edit', compact('task'));
+    }
+
+    public function editsave($id, Request $request)
+    {
+        $task = EngineeringTask::find($id);
+
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->save();
+
+        return redirect()->route('engineeringtask.single', $id);
 
     }
+
 }

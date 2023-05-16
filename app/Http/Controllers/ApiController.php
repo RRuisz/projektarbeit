@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{User, Ingredient, Checklisttask};
+use App\Models\{User, Ingredient, Checklisttask, Department};
 
 class ApiController extends Controller
 {
     public function users()
     {
         $user = User::all();
-        return $user;
+        $department = Department::all();
+        $users = [
+            'users' => $user, 
+            'department' => $department
+        ];
+        return $users;
     }
 
     public function ingredients()

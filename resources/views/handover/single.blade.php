@@ -22,7 +22,7 @@
           <div class="mt-2">
             @if(Auth::user()->role_id <= 2 || Auth::user()->id == $handover->user_id)
             <button type="button" id="delete-btn" class="btn btn-primary">Löschen</button>
-          <a href="{{ route('engineeringtask.update', $handover->id) }}" class="btn btn-primary "> Bearbeiten </a>
+          <a href="{{ route('handover.update', $handover->id) }}" class="btn btn-primary "> Bearbeiten </a>
           @endif 
         </div>
         <div id="deletebutton" class="mb-3" style="display: none;">

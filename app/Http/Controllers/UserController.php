@@ -165,4 +165,9 @@ class UserController extends Controller
 
         return view('user.update', compact('user'));
     }
+
+    public function overview()
+    {
+        return view('user.all');
+    }
 }

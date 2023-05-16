@@ -91,4 +91,22 @@ class NewspostController extends Controller
         $task->delete();
         return redirect()->route('news');
     }
+
+    public function update($id)
+    {
+        $post = Newspost::findOrFail($id);
+
+        return view('news.newsedit', compact('post'));
+    }
+
+    public function updatesave($id, Request $request)
+    {
+        $post = Newspost::find($id);
+
+        $post->topic = $request->topic;
+        $post->content = $request->content;
+        $post->save();
+
+        return redirect()->route('news.single', $id);
+    }
 }

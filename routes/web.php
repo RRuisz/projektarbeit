@@ -29,13 +29,15 @@ Route::post('/news/new', [NewspostController::class, 'save'])->name('news.new');
 Route::get('/news/{id}', [NewspostController::class, 'single'])->name('news.single');
 Route::get('/news/{id}/delete', [NewspostController::class, 'delete'])->name('news.delete');
 Route::get('/news/{id}/update', [NewspostController::class, 'update'])->name('news.update');
+Route::post('/news/{id}/update', [NewspostController::class, 'updatesave'])->name('news.update');
 
 Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('engineering');
 Route::get('/engineering/new', [EngineeringtaskController::class, 'new'])->name('engineering.new');
 Route::post('/engineering/new', [EngineeringtaskController::class, 'save'])->name('engineering.new');
 Route::get('/engineering/{id}', [EngineeringtaskController::class,'single'])->name('engineeringtask.single');
 Route::post('/engineering/{id}', [EngineeringtaskController::class,'update'])->name('engineeringtask.single');
-Route::get('/engineering/{id}/update', [EngineeringtaskController::class, 'updatetask'])->name('engineeringtask.update');
+Route::get('/engineering/{id}/edit', [EngineeringtaskController::class, 'edittask'])->name('engineeringtask.update');
+Route::post('/engineering/{id}/edit', [EngineeringtaskController::class, 'editsave'])->name('engineeringtask.update');
 Route::get('/engineering/{id}/delete', [EngineeringtaskController::class, 'delete'])->name('engineeringtask.delete');
 Route::get('/comment/delete/{id}', [TaskcommentController::class, 'deleteComment'])->name('comment.delete');
 Route::get('/engineering/open/{id}', [EngineeringtaskController::class, 'open'])->name('engineeringtask.open');
@@ -45,7 +47,8 @@ Route::get('/handover/new', [HandoverController::class, 'new'])->name('handover.
 Route::post('/handover/new', [HandoverController::class, 'save'])->name('handover.new');
 Route::get('/handover/{id}', [HandoverController::class, 'single'])->name('handover.single');
 Route::get('/handover/{id}/delete', [HandoverController::class, 'delete'])->name('handover.delete');
-Route::get('/handover/{id}/update', [HandoverController::class, 'update'])->name('handover.update');
+Route::get('/handover/{id}/edit', [HandoverController::class, 'edit'])->name('handover.update');
+Route::post('/handover/{id}/edit', [HandoverController::class, 'saveedit'])->name('handover.update');
 
 
 Route::get('/admin/register', [UserController::class, 'register'])->name('admin.register');
@@ -55,7 +58,6 @@ Route::post('/admin/change/{id}', [UserController::class, 'adminsavechange'])->n
 Route::get('/admin/all', [UserController::class, 'all'])->name('admin.all');
 Route::get('/userpanel/{id}', [UserController::class, 'panel'])->name('user.panel');
 Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('user.change');
-Route::get('/userpanel/overview/{id}', [UserController::class, 'overview'])->name('user.overview');
 Route::get('/user/change', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}', [UserController::class, 'singleuser'])->name('user.single');
 
@@ -68,4 +70,5 @@ Route::get('/informations/ingredients', [IngredientController::class, 'all'])->n
 Route::get('/informations/ingredients/{id}', [IngredientController::class, 'single'])->name('ingredient.single')->where('id', '[0-9]+');
 Route::get('/informations/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new');
 Route::post('/informations/ingredient/new', [IngredientController::class, 'save'])->name('ingredient.new');
+Route::get('/informations/users', [UserController::class, 'overview'])->name('user.all');
 });

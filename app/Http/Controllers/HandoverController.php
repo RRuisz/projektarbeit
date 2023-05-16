@@ -88,6 +88,24 @@ class HandoverController extends Controller
         $task->delete();
         return redirect()->route('handover');
     }
+
+    public function edit($id)
+    {
+        $handover = Handover::find($id);
+
+        return view('handover.edit', compact('handover'));
+    }
+
+    public function saveedit($id, Request $request)
+    {
+        $handover = Handover::find($id);
+
+        $handover->headline = $request->headline;
+        $handover->content = $request->content;
+        $handover->save();
+
+        return redirect()->route('handover.single', $id);
+    }
 }
 
 

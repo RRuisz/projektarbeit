@@ -26,24 +26,29 @@ let newSelect = document.getElementById('add');
 
     function addIngredient() {
         let div = document.createElement('div')
-        div.className = 'col mt-3';
+        div.className = 'col mt-3 mb-3';
         let select = document.createElement('select');
-        select.className = 'form-control select';
+        select.className = 'form-control select bg-secondary text-white';
         select.id = 'ingredient';
         select.name = 'ingredient[]';
         let label = document.createElement('label');
-        label.className = 'form-label';
+        label.className = 'form-label ';
         label.textContent = 'Zutat:'
         let amountSelect = document.createElement('input');
         amountSelect.type = 'number';
         amountSelect.name = 'ingredientAmount[]';
-        amountSelect.className = 'form-control p-1 amount';
+        amountSelect.className = 'form-control p-1 amount bg-secondary text-white';
         amountSelect.placeholder = 'Wie viel?';
         amountSelect.step = 'any';
         amountSelect.required = true;
+        amountSelect.value = 0;
         let searchInput = document.createElement('input');
         searchInput.type = 'text';
-        searchInput.placeholder =  'Zutat suchen...'
+        searchInput.className = 'bg-secondary text-white rounded border border-white';
+        searchInput.placeholder = 'Zutat suchen...';
+        let standartOption = document.createElement('option');
+        standartOption.selected = true;
+        standartOption.text = 'Zutat auswählen...';
         
 
 
@@ -81,6 +86,7 @@ let newSelect = document.getElementById('add');
         div.appendChild(label);
         div.appendChild(searchInput);
         div.appendChild(select);
+        select.appendChild(standartOption);
         div.appendChild(amountSelect);
 
         costBtn.addEventListener('click', sumCost);

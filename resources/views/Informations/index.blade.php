@@ -23,10 +23,6 @@
                   @endforeach
                 </tbody>
               </table>
-              @if (Auth::user()->role_id < 3)
-              {{-- TODO: Route neue kategorie anlegen! --}}
-              <a href="#" class="btn btn-primary btn-block">Neue Kategorie anlegen</a>
-              @endif
 
 
 
