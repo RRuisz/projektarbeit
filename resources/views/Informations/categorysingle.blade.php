@@ -16,7 +16,6 @@
                     </tr>
                 </thead>
                 <tbody class="table-hover"> 
-                    {{-- TODO: Was wenn kein Rezept? --}}
                   @foreach ($category->recipe as $item)
                   <tr >
                       <td colspan="2" class="text-white"><a href="{{route('recipe.single', $item->id)}}">{{$item->name}}</a></td>
@@ -25,12 +24,14 @@
                     @endforeach
                 </tbody>
             </table>
+            @if(Auth::user()->role_id <= 2)
             <div class="mb-3">
             <a class="btn btn-primary " href="{{route('ingredient.all')}}">Alle Zutaten anzeigen</a>
             </div>
             <div>
             <a class="btn btn-primary " href="{{route('recipe.new')}}">Neues Rezept anlegen</a>
             </div>
+            @endif
         </div>
     </div>
 </div>

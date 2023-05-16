@@ -19,7 +19,7 @@
             <p class="display-6 font-weight-bold text-gray-dark p-5">{{ $task->description }} </p>
           </div>
           </div>
-          <div>
+          <div class="mb-2 mt-2">
             @if(Auth::user()->role_id <= 2 || Auth::user()->id == $task->user_id)
           <button type="button" id="delete-btn" class="btn btn-primary">Löschen</button>
           <a href="{{ route('engineeringtask.update', $task->id) }}" class="btn btn-primary "> Bearbeiten </a>
@@ -39,10 +39,12 @@
             <h2 class=""> Kommentare:</h2>
             @foreach ($task->taskcomment as $comment)
             <div class="card-footer-item" style="background-color: #f5f5f5">
-              <p class="font-weight-bold text-gray-dark" style="font-size: 1.5rem;"> {{ $comment->description }} </p>
-              <p class="font-weight-bold text-gray-dark"> von: <a href="{{route('user.single', $comment->user_id)}}">{{ $comment->user->name }} </p>
-                {{-- TODO: Kommentar Datum uhrzeit? --}}
+              <p class="text-gray-dark" style="font-size: 1.5rem;"> {{ $comment->description }} </p>
+              <p class="font-weight-bold text-gray-dark"> von: <a href="{{route('user.single', $comment->user_id)}}">{{ $comment->user->name }}</a> </p>
+              <p class="text-gray-dark">Erstellt am: {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.Y H:i')}}</p>
+              @if(Auth::user()->role_id <= 2 || Auth::id() == $comment->user_id)
               <a href="{{ route('comment.delete', $comment->id) }}">löschen</a>
+              @endif
             </div>
             <hr>
             @endforeach

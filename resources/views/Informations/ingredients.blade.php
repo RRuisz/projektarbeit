@@ -12,7 +12,6 @@
                 <table class="table table-bordered table-dark table-hover mt-5" >
                   <thead>
                     <tr>
-                        {{-- TODO: GESCHEITEN TABLE ANLEGEN! --}}
                       <th colspan="3" class="text-white text-center">Name</th>
                       
                     </tr>

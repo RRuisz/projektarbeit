@@ -7,7 +7,7 @@
 <div class="container mt-5  h-100">
       <h2 class="text-center fs-1 fw-bolder">Alle Mitarbeiter</h2>
         <div class="row">
-          <div class="d-flex justify-content-center" id="depNav"> 
+          <div class="d-flex flex-wrap align-items-center justify-content-center" id="depNav"> 
 
           </div>
           <div class="col-2"></div>
@@ -24,6 +24,12 @@
                   <tbody class="table-hover" id="usertable">
                   </tbody>
                 </table>
+                @if(Auth::user()->role_id <= 2)
+                <a href="" class="btn btn-primary">Neuen Mitarbeiter anlegen</a>
+                @endif
+          </div>
+        </div>
+</div>
 
 @endsection
 
