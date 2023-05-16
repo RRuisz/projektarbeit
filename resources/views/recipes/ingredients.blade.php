@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-5  h-100">
-    <a href="{{ route('info.cat', 1) }}" class="btn btn-primary">Zurück zu den Rezepten</a> 
+    <a href="{{ route('recipe.cat', 1) }}" class="btn btn-primary">Zurück zu den Rezepten</a> 
       <h2 class="text-center fs-1 fw-bolder">Alle Zutaten</h2>
         <div class="row">
             <div class="col-lg-3"></div>

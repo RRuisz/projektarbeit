@@ -18,7 +18,7 @@
                   @foreach ($categorys as $category)
                     <tr>
                       
-                        <td colspan="3" class="text-white"><a href="{{route('info.cat', $category->id)}}">{{$category->name}}</a></td>
+                        <td colspan="3" class="text-white"><a href="{{route('recipe.cat', $category->id)}}">{{$category->name}}</a></td>
                     </tr>
                   @endforeach
                 </tbody>

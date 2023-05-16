@@ -61,14 +61,14 @@ Route::get('/userpanel/{id}/change', [UserController::class, 'change'])->name('u
 Route::get('/user/change', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{id}', [UserController::class, 'singleuser'])->name('user.single');
 
-Route::get('/informations', [InfoController::class, 'index'])->name('infos');
-Route::get('/informations/{id}', [InfoController::class, 'category'])->name('info.cat')->where('id', '[0-9]+');
-Route::get('/informations/recipe/new', [RecipeController::class, 'new'])->name('recipe.new');
-Route::post('/informations/recipe/new', [RecipeController::class, 'save'])->name('recipe.new');
-Route::get('/information/recipe/{id}', [RecipeController::class, 'single'])->name('recipe.single')->where('id', '[0-9]+');
-Route::get('/informations/ingredients', [IngredientController::class, 'all'])->name('ingredient.all');
-Route::get('/informations/ingredients/{id}', [IngredientController::class, 'single'])->name('ingredient.single')->where('id', '[0-9]+');
-Route::get('/informations/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new');
-Route::post('/informations/ingredient/new', [IngredientController::class, 'save'])->name('ingredient.new');
-Route::get('/informations/users', [UserController::class, 'overview'])->name('user.all');
+Route::get('/recipes', [InfoController::class, 'index'])->name('recipe.index');
+Route::get('/category/{id}', [InfoController::class, 'category'])->name('recipe.cat')->where('id', '[0-9]+');
+Route::get('/recipes/new', [RecipeController::class, 'new'])->name('recipe.new');
+Route::post('/recipes/new', [RecipeController::class, 'save'])->name('recipe.new');
+Route::get('//recipe/{id}', [RecipeController::class, 'single'])->name('recipe.single')->where('id', '[0-9]+');
+Route::get('/recipes/ingredients', [IngredientController::class, 'all'])->name('ingredient.all');
+Route::get('/recipes/ingredients/{id}', [IngredientController::class, 'single'])->name('ingredient.single')->where('id', '[0-9]+');
+Route::get('/recipes/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new');
+Route::post('/recipes/ingredient/new', [IngredientController::class, 'save'])->name('ingredient.new');
+Route::get('/recipes/users', [UserController::class, 'overview'])->name('user.all');
 });

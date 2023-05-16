@@ -35,7 +35,7 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
 
-        return view('informations.singlerecipe', compact('recipe'));
+        return view('recipes.singlerecipe', compact('recipe'));
     }
 
     /**
@@ -45,7 +45,7 @@ class RecipeController extends Controller
      */
     public function new() 
     {
-        return view('informations.newrecipe');
+        return view('recipes.newrecipe');
     }
 
     /**

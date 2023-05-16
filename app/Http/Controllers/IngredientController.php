@@ -9,7 +9,7 @@ class IngredientController extends Controller
 {
     public function new()
     {
-        return view('informations.newingredient');
+        return view('recipes.newingredient');
     }
 
     public function save(Request $request)
@@ -32,13 +32,13 @@ class IngredientController extends Controller
     {
         $ingredients = Ingredient::all();
 
-        return view('informations.ingredients', compact('ingredients'));
+        return view('recipes.ingredients', compact('ingredients'));
     }
 
     public function single($id)
     {
         $item = Ingredient::find($id);
-        return view('informations.singleingredient');
+        return view('recipes.singleingredient');
     }
 
 }
