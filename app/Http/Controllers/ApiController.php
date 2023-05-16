@@ -7,6 +7,11 @@ use App\Models\{User, Ingredient, Checklisttask, Department};
 
 class ApiController extends Controller
 {
+
+    /**
+     * API for Member Site
+     * @return $users = all users and departments
+     */
     public function users()
     {
         $user = User::all();
@@ -18,6 +23,11 @@ class ApiController extends Controller
         return $users;
     }
 
+    /**
+     * API for new Recipe site
+     * 
+     * @return $ingredient;
+     */
     public function ingredients()
     {
         $ingredient = Ingredient::all();

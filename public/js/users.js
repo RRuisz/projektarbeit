@@ -33,25 +33,25 @@ function departmentNav() {
   }
 
   depNav.addEventListener('click', function(event) {
-if (event.target.classList.contains('navBtn')) {
-let tablerows = document.querySelectorAll('.tablerow');
-let department = event.target.getAttribute('data-dept');
+    if (event.target.classList.contains('navBtn')) {
+        let tablerows = document.querySelectorAll('.tablerow');
+        let department = event.target.getAttribute('data-dept');
 
-for (let i = 0; i < tablerows.length; i++) {
-  const tablerow = tablerows[i];
-  const rowDept = tablerow.getAttribute('data-dept');
+        for (let i = 0; i < tablerows.length; i++) {
+            const tablerow = tablerows[i];
+            const rowDept = tablerow.getAttribute('data-dept');
 
-  if (rowDept !== department) {
-    tablerow.style.display = 'none';
-  } else {
-    tablerow.style.display = '';
-  }
-}
-}
+            if (rowDept !== department) {
+                tablerow.style.display = 'none';
+            } else {
+                tablerow.style.display = '';
+            }
+        }
+    }
 });
 }
 
-  function showDepartmentUser(event) {
+function showDepartmentUser(event) {
     const selectedDepartment = event.currentTarget.getAttribute('data-dept');
     const tablerows = document.querySelectorAll('.tablerow');
 

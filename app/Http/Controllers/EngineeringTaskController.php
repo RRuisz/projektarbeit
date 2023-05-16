@@ -127,6 +127,12 @@ class EngineeringtaskController extends Controller
         return back();
     }
 
+    /**
+     * to edit existing tasks
+     * 
+     * @param $id
+     * @return view and $task
+     */
     public function edittask($id)
     {
         $task = EngineeringTask::find($id);
@@ -134,6 +140,12 @@ class EngineeringtaskController extends Controller
         return view('engineering.edit', compact('task'));
     }
 
+    /**
+     * saves edited task
+     * 
+     * @param Request $request, $id
+     * @return redirect to single view
+     */
     public function editsave($id, Request $request)
     {
         $task = EngineeringTask::find($id);

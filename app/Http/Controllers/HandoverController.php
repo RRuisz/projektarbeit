@@ -89,6 +89,12 @@ class HandoverController extends Controller
         return redirect()->route('handover');
     }
 
+    /**
+     * to edit existing handover
+     * 
+     * @param $id
+     * @return view and $handover
+     */
     public function edit($id)
     {
         $handover = Handover::find($id);
@@ -96,6 +102,12 @@ class HandoverController extends Controller
         return view('handover.edit', compact('handover'));
     }
 
+    /**
+     * saves edited handover
+     * 
+     * @param Request $request, $id
+     * @return redirect to single view
+     */
     public function saveedit($id, Request $request)
     {
         $handover = Handover::find($id);

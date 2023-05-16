@@ -152,13 +152,23 @@ class UserController extends Controller
         return redirect()->route('admin.all');
     }
 
+    /**
+     * Gets an single User from database
+     * 
+     * @param int $id
+     * @return view & $user
+     */
     public function singleuser($id) 
     {
         $user = User::find($id);
-        // return $user;
         return view('user.single', compact('user'));
     }
 
+    /**
+     * gets data of Logedin User from Database
+     * 
+     * @return view & $user
+     */
     public function update()
     {
         $user = Auth::user();
@@ -166,6 +176,7 @@ class UserController extends Controller
         return view('user.update', compact('user'));
     }
 
+    // TODO: Brauch ich das noch?? 
     public function overview()
     {
         return view('user.all');

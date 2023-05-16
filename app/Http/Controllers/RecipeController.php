@@ -50,7 +50,7 @@ class RecipeController extends Controller
 
     /**
      * Save route for new Recipe
-     * Attaches for each ingredient the recipe to each ingredient
+     * Attaches each ingredient to the recipe
      * 
      * @param Request $request
      * @return redirect single recipe view

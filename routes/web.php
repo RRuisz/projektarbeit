@@ -28,8 +28,8 @@ Route::get('/news/new', [NewspostController::class, 'new'])->name('news.new');
 Route::post('/news/new', [NewspostController::class, 'save'])->name('news.new');
 Route::get('/news/{id}', [NewspostController::class, 'single'])->name('news.single');
 Route::get('/news/{id}/delete', [NewspostController::class, 'delete'])->name('news.delete');
-Route::get('/news/{id}/update', [NewspostController::class, 'update'])->name('news.update');
-Route::post('/news/{id}/update', [NewspostController::class, 'updatesave'])->name('news.update');
+Route::get('/news/{id}/edit', [NewspostController::class, 'edit'])->name('news.update');
+Route::post('/news/{id}/edit', [NewspostController::class, 'saveedit'])->name('news.update');
 
 Route::get('/engineering', [EngineeringtaskController::class, 'index'])->name('engineering');
 Route::get('/engineering/new', [EngineeringtaskController::class, 'new'])->name('engineering.new');

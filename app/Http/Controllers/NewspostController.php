@@ -92,14 +92,26 @@ class NewspostController extends Controller
         return redirect()->route('news');
     }
 
-    public function update($id)
+    /**
+     * to edit existing news
+     * 
+     * @param $id
+     * @return view and $news
+     */
+    public function edit($id)
     {
         $post = Newspost::findOrFail($id);
 
         return view('news.newsedit', compact('post'));
     }
 
-    public function updatesave($id, Request $request)
+    /**
+     * saves edited news
+     * 
+     * @param Request $request, $id
+     * @return redirect to single view
+     */
+    public function saveedit($id, Request $request)
     {
         $post = Newspost::find($id);
 
