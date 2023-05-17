@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="container mt-5  h-100">
-    {{-- <a href=" {{route('checklist.new')}}">TODO</a> --}}
     <h2 class="text-center fs-1 fw-bolder">Offene Aufgaben</h2>
+    <a href="{{route('checklist.new')}}" class=" btn btn-primary">Neue Checkliste</a>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-lg-8">

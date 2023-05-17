@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5  h-100">
-    <h2 class="text-center fs-1 fw-bolder">Kategorien</h2>
+    <h2 class="text-center fs-1 fw-bolder">Checkliste</h2>
       <div class="row">
         <div class="col-3"></div>
           <div class="col-lg-6">
@@ -10,26 +10,26 @@
                 <thead>
                   <tr>
                     <th colspan="3" class="text-white">Aufgabe</th>
+                    <th colspan="1" class="text-white">Erledigt von</th>
+                    <th colspan="1" class="text-white">Erledigt um</th>
                   </tr>
                 </thead>
                 <tbody class="table-hover">
                     @foreach($checklist->checklisttask as $item)
                         <tr>
-                            <td>
+                            <td colspan="3">
                                 @if($item->pivot->status == 1)
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <input type="checkbox" data-checklist="{{$checklist->id}}" name="{{$item->id}}" id="{{$item->id}}" class="input" checked>
-                                            <label for="{{$item->id}}">{{$item->name}}</label>
-                                        </div>
-                                        <div>
-                                            <p>Erledigt von: {{$item->pivot->user_name}}</p>
-                                            <p>Um: {{Carbon\Carbon::parse($item->pivot->done_at)->format('H:i');}}</p>
-                                        </div>
-                                    </div>
+                                    <input type="checkbox" data-checklist="{{$checklist->id}}" name="{{$item->id}}" id="{{$item->id}}" class="input" checked>
+                                    <label for="{{$item->id}}">{{$item->name}}</label>
+                            </td>
+                            <td>{{$item->pivot->user_name}}</td>
+                            <td>{{Carbon\Carbon::parse($item->pivot->done_at)->format('H:i')}}</td>
+                                    
                                 @elseif($item->pivot->status == 0)
                                     <input type="checkbox" data-checklist="{{$checklist->id}}" name="{{$item->id}}" id="{{$item->id}}" class="input">
                                     <label for="{{$item->id}}">{{$item->name}}</label>
+                                    <td></td>
+                                    <td></td>
                                 @endif
                             </td>
                         </tr>

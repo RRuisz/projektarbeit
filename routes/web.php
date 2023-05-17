@@ -89,6 +89,6 @@ Route::post('/checklists/tasks/new', [ChecklisttaskController::class, 'savetask'
 Route::post('/checklists/tasks/update', [ChecklistController::class, 'updatestatus'])->name('checklist.taskstatus');
 Route::get('/checklists/category/new', [TaskcategoryController::class, 'createcategory'])->name('checklist.newcategory');
 Route::post('/checklists/category/new', [TaskcategoryController::class, 'savecategory'])->name('checklist.newcategory');
-Route::get('/checklists/new',  [ChecklistController::class, 'newchecklist']);
+Route::get('/checklists/new',  [ChecklistController::class, 'newchecklist'])->name('checklist.new');
 
 });
