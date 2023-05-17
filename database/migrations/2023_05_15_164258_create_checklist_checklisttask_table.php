@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('checklisttask_id')->constrained();
             $table->boolean('status')->default(0);
             $table->primary(['checklist_id', 'checklisttask_id']);
+            $table->timestamp('done_at')->nullable();
+            $table->string('user_name')->nullable();
         });
     }
 

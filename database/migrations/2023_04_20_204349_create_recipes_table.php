@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price', 7, 2);
+            $table->decimal('cost', 7, 2);
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
         });

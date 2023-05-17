@@ -55,28 +55,6 @@ class DatabaseSeeder extends Seeder
             'department_id' => 2,
        ]);
 
-       DB::table('ingredients')->insert([
-        'name' => 'Vodka',
-        'price' => 1,
-        'amount' => 1,
-        'measure' => 'cl'
-       ]);
-       
-       DB::table('categories')->insert([
-        'name' => 'Cocktails'
-       ]);
-
-       DB::table('recipes')->insert([
-        'name' => 'Cosmo',
-        'user_id' => 1,
-        'category_id' => 1
-       ]);
-
-       DB::table('ingredient_recipe')->insert([
-        'recipe_id' => 1,
-        'ingredient_id' => 1,
-        'ingredient_amount' => 4
-       ]);
 
     }
 }

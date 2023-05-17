@@ -14,7 +14,7 @@ class Checklisttask extends Model
     public function checklist()
     {
         return $this->belongsToMany(Checklist::class, 'checklist_checklisttask')
-                    ->withPivot('status');
+                    ->withPivot('status', 'done_at', 'user_name');
     }
 
     public function taskcategory()

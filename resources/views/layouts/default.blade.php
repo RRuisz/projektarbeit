@@ -52,6 +52,7 @@
                   </li>
                   <a class="nav-link text-info pe-5" href="{{route('recipe.index')}}">Rezepte</a>                  
                   <a class="nav-link text-info pe-5" href="{{route('user.all')}}">Mitarbeiter</a>                  
+                  <a class="nav-link text-info pe-5" href="{{route('checklist')}}">Checklisten</a>                  
                   
                 </div>
               </div>

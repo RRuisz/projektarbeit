@@ -12,7 +12,7 @@ class Checklist extends Model
     public function checklisttask()
     {
         return $this->belongsToMany(Checklisttask::class, 'checklist_checklisttask')
-                    ->withPivot('status');
+                    ->withPivot('status', 'done_at', 'user_name');
     }
 
     public function department()

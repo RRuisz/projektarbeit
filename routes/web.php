@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Route, Auth};
+
 use App\Http\Controllers\{ChecklisttaskController, IngredientController, InfoController, RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcategoryController, TaskcommentController, ChecklistController};
 
 /*
@@ -15,7 +16,11 @@ use App\Http\Controllers\{ChecklisttaskController, IngredientController, InfoCon
 */
 
 Route::get('/', function () {
+    if(Auth::user()){
+        return redirect()->route('home');
+    } else{
     return view('welcome');
+    }
 })->name('welcome');
 Route::post('/login', [Usercontroller::class, 'login'])->name('login');
 Route::middleware('auth')->group(function () {
@@ -77,9 +82,13 @@ Route::post('/recipes/ingredient/new', [IngredientController::class, 'save'])->n
 Route::get('/recipes/users', [UserController::class, 'overview'])->name('user.all');
 
 // CHECKLIST ROUTES
+Route::get('/checklists', [ChecklistController::class, 'index'])->name('checklist');
+Route::get('/checklists/{id}', [ChecklistController::class, 'single'])->name('checklist.single')->where('id', '[0-9]+');
 Route::get('/checklists/tasks/new', [ChecklisttaskController::class, 'createtask'])->name('checklist.newtask');
 Route::post('/checklists/tasks/new', [ChecklisttaskController::class, 'savetask'])->name('checklist.newtask');
+Route::post('/checklists/tasks/update', [ChecklistController::class, 'updatestatus'])->name('checklist.taskstatus');
 Route::get('/checklists/category/new', [TaskcategoryController::class, 'createcategory'])->name('checklist.newcategory');
 Route::post('/checklists/category/new', [TaskcategoryController::class, 'savecategory'])->name('checklist.newcategory');
-Route::get('/checklist/new',  [ChecklistController::class, 'newchecklist']);
+Route::get('/checklists/new',  [ChecklistController::class, 'newchecklist']);
+
 });
