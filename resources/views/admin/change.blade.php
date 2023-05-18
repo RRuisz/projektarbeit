@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-5 p-5">
-        <a href="{{route('admin.all')}}" class="btn btn-primary">Zurück zur Übersicht</a>
+        <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
         <h1 class="text-center mb-5">Mitarbeiter Daten ändern</h1>
         <form method="POST" class="form-control p-5">
             @csrf

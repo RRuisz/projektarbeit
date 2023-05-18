@@ -66,6 +66,9 @@
             <li class="text-info text-center"> Eingeloggt:</li>
             <li class="text-warning text-center mb-1"> {{ Auth::user()->name }} </li>
             <li><a class="dropdown-item text-info" href="{{ route('user.panel', Auth::user()->id) }}">Übersicht</a></li>
+            @if(Auth::user()->role_id <= 2)
+            <li><a class="dropdown-item text-info" href="{{ route('admin') }}">Adminpanel</a></li>
+            @endif
             <li><a class="dropdown-item text-info" href="{{ route('logout') }}">Logout</a></li>
           </ul>
         </li>

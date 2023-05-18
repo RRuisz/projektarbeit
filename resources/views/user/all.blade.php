@@ -5,6 +5,7 @@
 
 @section('content')
 <div class="container mt-5  h-100">
+  <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
       <h2 class="text-center fs-1 fw-bolder">Alle Mitarbeiter</h2>
         <div class="row">
           <div class="d-flex flex-wrap align-items-center justify-content-center" id="depNav"> 

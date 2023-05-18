@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="container mt-5  h-100">
+    <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
     <h2 class="text-center fs-1 fw-bolder">Offene Aufgaben</h2>
     <a href="{{route('checklist.new')}}" class=" btn btn-primary">Neue Checkliste</a>
     <div class="row">

@@ -19,9 +19,13 @@ class UserController extends Controller
      * @return View admin.regist && $roles - $departments
      */
     public function register(){
+        if(Auth::user()->role_id === 1){
         $role = Role::all();
         $departments = Department::all();
         return view('admin.register', ['roles' => $role, 'departments' => $departments]);
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -108,7 +112,6 @@ class UserController extends Controller
     public function all(){
         $users = User::all();
         return view('admin.all', ['users' => $users]);
-
     }
 
     /**
@@ -121,12 +124,15 @@ class UserController extends Controller
      */
     public function adminchange($id)
     {
-        
-        $user = User::find($id);
-        $roles = Role::all();
-        $departments = Department::all();
+        if(Auth::user()->role_id === 1){
+            $user = User::find($id);
+            $roles = Role::all();
+            $departments = Department::all();
 
-        return view('admin.change', compact('user', 'roles', 'departments'));
+            return view('admin.change', compact('user', 'roles', 'departments'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -176,7 +182,11 @@ class UserController extends Controller
         return view('user.update', compact('user'));
     }
 
-    // TODO: Brauch ich das noch?? 
+    public function admin()
+    {
+        return view('admin.panel');
+    }
+
     public function overview()
     {
         return view('user.all');

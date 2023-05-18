@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container mt-5  h-100">
+  <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
     <h2 class="text-center fs-1 fw-bolder">Checkliste</h2>
       <div class="row">
         <div class="col-3"></div>
@@ -19,15 +20,15 @@
                         <tr>
                             <td colspan="3">
                                 @if($item->pivot->status == 1)
-                                    <input type="checkbox" data-checklist="{{$checklist->id}}" name="{{$item->id}}" id="{{$item->id}}" class="input" checked>
-                                    <label for="{{$item->id}}">{{$item->name}}</label>
+                                    <input type="checkbox" data-checklist="{{$checklist->id}}" name="{{$item->id}}" id="{{$item->id}}" class="input form-check-input" checked>
+                                    <label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
                             </td>
                             <td>{{$item->pivot->user_name}}</td>
                             <td>{{Carbon\Carbon::parse($item->pivot->done_at)->format('H:i')}}</td>
                                     
                                 @elseif($item->pivot->status == 0)
-                                    <input type="checkbox" data-checklist="{{$checklist->id}}" name="{{$item->id}}" id="{{$item->id}}" class="input">
-                                    <label for="{{$item->id}}">{{$item->name}}</label>
+                                    <input type="checkbox" data-checklist="{{$checklist->id}}" name="{{$item->id}}" id="{{$item->id}}" class="input form-check-input">
+                                    <label class="form-check-label" for="{{$item->id}}">{{$item->name}}</label>
                                     <td></td>
                                     <td></td>
                                 @endif

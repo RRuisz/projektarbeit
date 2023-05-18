@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-5  h-100">
-    <a href="{{ route('handover')}}" class="btn btn-primary mb-3">Zurück</a>
+  <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
       <div class="row">
         <div class="card">
           <div class="card-header">

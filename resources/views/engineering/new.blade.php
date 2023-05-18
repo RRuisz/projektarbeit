@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <div class="page-header mt-5">
         <div class="container mt-5  h-100">
-            <a href="{{ route('engineering')}}" class="btn btn-primary mb-3">Zurück zur Übersicht</a>
+            <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="POST" class="form-control bg-dark p-5 mt-5">

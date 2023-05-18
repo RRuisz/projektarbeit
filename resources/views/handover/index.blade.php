@@ -5,6 +5,7 @@
 @section('content')
 {{-- UNGELESENE ÜBERGABEN --}}
 <div class="container mt-5  h-100">
+          <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
     <h2 class="text-center fs-1 fw-bolder">Ungelesene Übergaben</h2>
       <div class="row">
           <div class="col-lg-12">

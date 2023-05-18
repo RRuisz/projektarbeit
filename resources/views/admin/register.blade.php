@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-5 p-5">
-        <a href="{{route('admin.all')}}" class="btn btn-primary">Zurück zur Übersicht</a>
+        <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
         <h1 class="text-center mb-5">Neuen Mitarbeiter anlegen</h1>
         <form action="{{ route('admin.save') }}" method="POST" class="form-control p-5 bg-dark text-white">
             @csrf

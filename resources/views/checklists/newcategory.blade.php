@@ -6,12 +6,11 @@
 <div class="container mt-5">
     <div class="page-header mt-5">
         <div class="container mt-5  h-100">
-            {{-- TODO: ROUTE! --}}
-            <a href="{{ route('engineering')}}" class="btn btn-primary mb-3">Zurück zur Übersicht</a>
+            <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1 class="text-center mb-5">Neue Checklist-Kategorie anlegen</h1>
             <form method="POST" class="form-control bg-dark p-5 mt-5">
-                            <h1 class="text-center mb-5 text-info">Neue Checklist-Kategorie anlegen</h1>
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-12">

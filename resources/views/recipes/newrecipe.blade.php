@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5 p-5">
-    <a href="{{ back() }}" class="btn btn-primary">Zurück zur Übersicht</a>
+    <a href="{{ url()->previous() }}" class="btn btn-primary">Zurück</a>
     <h1 class="text-center mb-5">Neues Rezept anlegen</h1>
     <form method="POST" class="form-control p-5 bg-dark text-white">
         @csrf
