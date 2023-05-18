@@ -5,54 +5,56 @@ Durch meinen derzeitigen Job als Barkeeper, war es für mich ziemlich schnell kl
 meinem Projekt, die zwei Welten für mein Projekt zusammenbringen möchte. Dadurch hab ich 
 während dem arbeiten überlegt, was kann einem das arbeiten erleichtern. Da bin ich schnell auf 
 die Idee gekommen, eine Seite zu bauen, mit der man Administrative Aufgaben in einem Hotel 
-planen und erstellen kann wie z.B: Interne News, Übergaben, Technikaufträge, Informationen
-(Rezepte, Abläufe, ToDo-Listen?), Kalenderfunktion wo man eigene Termine einsehen, und mit 
-anderen Mitarbeitern Termine planen und erstellen kann
+planen und erstellen kann. <br>
+Derzeit implementiert: Interne News, Übergaben, Technikaufträge, Rezepte,
+Mitarbeiter übersicht, Checklisten, Userpanel (Eigene Daten ändern) <br>
+In arbeit: Adminpanel (User anlegen, User bearbeiten) <br>
+In Überlegung: Chatfunktion unter Mitarbeitern, Kalenderfunktion, Dienstpläne (CRUD) <br>
+
 
 2.	Techniken <br>
     2.1	Front-end
-        HTML / CSS / JavaScript (möglicherweise Frameworks wie Bootstrap, jQuery)
+        HTML / CSS / JavaScript 
 
     2.2	Back-end 
         PHP, Laravel, 
 
     2.3	Sonstiges
-        GitLab,  (Websockets/Javascript-Funktion? für Benachrichtigung bei neuen Updates)
+        GitLab, Bootstrap
 
 
 
 3.	Aufbau
 
-    3.1	Startseite
+    3.1	Startseite <br>
         Login Seite für Mitarbeiter
 
-    3.2	Übersicht
+    3.2	Übersicht <br>
         Übersicht über die neuesten News und Offene Technikaufträge 
         
-    3.3	Übergaben
+    3.3	Übergaben <br>
         Übersicht über aktuelle Übergaben innerhalb seiner Abteilung
         Neue Übergaben erstellen 
 
-    3.4	Technikaufträge 
+    3.4	Technikaufträge <br>
         Neue Aufträge erstellen, Status der Aufträge einsehen, bei Bearbeitung Status ändern und Kommentar dazu verfassen (Wurde das Problem behoben, was wurde gemacht…)
 
-    3.5	Informationen
-        Übersicht je nach Abteilung über Abläufe, Rezepte, generelle Informationen, API für JavaScript-Suche nach Rezept, Daten in Kategorien speichern für Filter, 
-        (Komplette Speise und Getränke Karte downloadbar als PDF?)
+    3.5	Rezepte <br>
+        Übersicht über Rezepte -> Admins und Abteilungsleiter können neue Zutaten & Rezepte anlegen
 
-    3.6	Userpanel
+    3.6	Userpanel <br>
         Mitarbeiter können Daten bearbeiten
 
-    3.7	Adminseite
-        Admins können Mitarbeiter anlegen, ändern, entfernen
+    3.7	Mitarbeiter <br>
+        Übersich über alle Mitarbeiter, per JavaScript filter leiste, suche nach Abteilung bzw suche per Namen
         
-    3.8	Kalenderfunktion
-        Mitarbeiter können Kalender einsehen, und Termine mit anderen Usern festlegen
-        Benachrichtigung per E-Mail wenn Termin erstellt wurde
+    3.8	Checklisten <br>
+        Checklisten für seine Abteilung, gelistet nach Tag <br>
+
 
 
 
 4.	Linksammlung
 
-Vorläufiges Datenbankmodell: https://miro.com/app/board/uXjVMXKFt_A=/
+Datenbankmodell: https://miro.com/app/board/uXjVMXKFt_A=/
 
