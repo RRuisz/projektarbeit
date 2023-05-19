@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{DB, Auth};
 use App\Models\Checklist;
 use App\Models\Checklisttask;
+use App\Models\Taskcategory;
 use Carbon\Carbon;
 
 class ChecklistController extends Controller
@@ -22,8 +23,8 @@ class ChecklistController extends Controller
     public function single(int $id)
     {
         $checklist = Checklist::find($id);
-    
-        return view('checklists.single', compact('checklist'));
+        $categories = Taskcategory::where('department_id', Auth::user()->department_id)->get();
+        return view('checklists.single', compact('checklist', 'categories'));
     }
 
     /**
@@ -60,5 +61,18 @@ class ChecklistController extends Controller
             'done_at' => Carbon::now(),
             'user_name' => Auth::user()->name
         ]);
+        
     } 
+
+    public function tasksByCategory(Request $request)
+    {   
+        $categories = Taskcategory::where('department_id', Auth::user()->department_id);
+        $categoryId = $request->categoryId;
+        $checklist = Checklist::with(['checklisttask' => function ($query) use ($categoryId) {
+            $query->where('taskcategory_id', $categoryId);
+        }])
+        ->find($request->checklistId);
+    
+        return $checklist;
+    }
 }

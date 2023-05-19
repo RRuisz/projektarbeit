@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/checklists/category/new', [TaskcategoryController::class, 'createcategory'])->name('checklist.newcategory')->Middleware('checkRole');
     Route::post('/checklists/category/new', [TaskcategoryController::class, 'savecategory'])->name('checklist.newcategory')->Middleware('checkRole');
     Route::get('/checklists/new',  [ChecklistController::class, 'newchecklist'])->name('checklist.new');
+    Route::post('/checklist/category/tasks', [ChecklistController::class, 'tasksByCategory']);
 
     // ADMIN ROUTES
     
