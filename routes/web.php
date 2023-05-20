@@ -68,10 +68,9 @@ Route::middleware('auth')->group(function () {
 
     // RECIPE ROUTES
     Route::get('/recipes', [InfoController::class, 'index'])->name('recipe.index');
-    Route::get('/category/{id}', [InfoController::class, 'category'])->name('recipe.cat')->where('id', '[0-9]+');
     Route::get('/recipes/new', [RecipeController::class, 'new'])->name('recipe.new')->Middleware('checkRole');
     Route::post('/recipes/new', [RecipeController::class, 'save'])->name('recipe.new')->Middleware('checkRole');
-    Route::get('//recipe/{id}', [RecipeController::class, 'single'])->name('recipe.single')->where('id', '[0-9]+');
+    Route::get('/recipe/{id}', [RecipeController::class, 'single'])->name('recipe.single')->where('id', '[0-9]+');
     Route::get('/recipes/ingredients', [IngredientController::class, 'all'])->name('ingredient.all');
     Route::get('/recipes/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new')->Middleware('checkRole');
     Route::post('/recipes/ingredient/new', [IngredientController::class, 'save'])->name('ingredient.new')->Middleware('checkRole');

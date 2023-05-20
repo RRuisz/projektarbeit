@@ -19,7 +19,7 @@ class ChecklistController extends Controller
      */
     public function index()
     {
-        $checklist = Checklist::where('department_id', Auth::user()->department_id)->get();
+        $checklist = Checklist::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC')->get();
         $todayDate = Carbon::now()->toDateString();
 
         return view('checklists.index', compact('checklist', 'todayDate'));

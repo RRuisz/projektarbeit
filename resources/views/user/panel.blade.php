@@ -3,35 +3,25 @@
 @section('title', 'Userpanel')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header bg-secondary ">
-                        <h3 class="card-title text-center">Userpanel</h3>
-                  {{-- TODO: DESIGN!!! --}}
+    <div class="container mt-5  h-100">
+        <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
+            <div class="row">
+                <div class="col-2"></div>
+              <div class="card col-8">
+                  <div class="card-header">
+                    <div class="">
+                        <h1 class="text-gray-dark mb-3 text-center">Userpanel</h1>
                     </div>
-                    <div class="card-body bg-dark">
-                        <div class="row">
-                            <div class="col-md-12">
-                                    <div class="container mt-4">
-                                        <div class="row text-center fs-3 text-secondary">
-                                            <p class=""> Name: {{ Auth::user()->name }} </p>
-                                            <p> Email: {{ Auth::user()->email }} </p>
-                                            <p> Geburtsdatum: {{ \Carbon\Carbon::parse(Auth::user()->birthdate)->format('d.m.Y') }} </p>
-                                            <p> Abteilung: {{ $department->name }} </p>
-                                        </div>
-                                    </div>
-                                    <div class="container mt-3 mb-3">
-                                        <a href="{{ route('user.update') }}" class="btn btn-primary">Daten ändern</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div> 
-            </div>
-        </div>
-    </div>
-
+                <div class="card-body mt-2" style="background-color: #f5f5f5">
+                <div class="">
+                  <p class="display-6  text-gray-dark text-center mb-3">Name: {{ Auth::user()->name }} </p>
+                  <p class="display-6  text-gray-dark text-center mb-3"> Email: {{ Auth::user()->email }} </p>
+                  <p class="display-6  text-gray-dark text-center mb-3"> Geburtsdatum: {{ \Carbon\Carbon::parse(Auth::user()->birthdate)->format('d.m.Y') }} </p>
+                  <p class="display-6  text-gray-dark text-center mb-3"> Abteilung: {{ $department->name }} </p>
+                </div>
+                <div class="container mt-5 mb-3">
+                    <a href="{{ route('user.update') }}" class="btn btn-primary">Daten ändern</a>
+                </div>
+        
 @endsection

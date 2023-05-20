@@ -6,60 +6,128 @@
 <div class="container mt-5  h-100">
   <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Zurück</a>
     <h2 class="text-center fs-1 fw-bolder">Kategorien</h2>
+    <div class="d-flex justify-content-center mb-5 mt-5" id="categoryNav">
+    </div>
       <div class="row">
         <div class="col-3"></div>
           <div class="col-lg-6">
-              <table class="table table-bordered table-dark table-hover " >
+            <input type="text" id="recipeSearch" placeholder="Rezept suchen..." class="rounded bg-dark text-white border border-secondary">
+              <table class="table table-bordered table-dark table-hover mt-3" >
                 <thead>
                   <tr>
-                    <th colspan="3" class="text-white">Kategorie</th>
+                    <th colspan="3" class="text-white">Rezepte</th>
                   </tr>
                 </thead>
-                <tbody class="table-hover">
-                  @foreach ($categorys as $category)
-                    <tr>
-                      
-                        <td colspan="3" class="text-white"><a href="{{route('recipe.cat', $category->id)}}">{{$category->name}}</a></td>
-                    </tr>
-                  @endforeach
+                <tbody class="table-hover" id="table">
                 </tbody>
               </table>
 
 
 
-
-              {{-- TODO: Alle Info Posts ausgeben! --}}
-{{-- <div class="container mt-5  h-100">
-    <h2 class="text-center fs-1 fw-bolder">Alle Informationen</h2>
-      <div class="row">
-          <div class="col-lg-12">
-              <table class="table table-bordered table-dark table-hover " >
-                <thead>
-                  <tr>
-                    <th colspan="3" class="text-white">Thema</th>
-                    <th colspan="1" class="text-white">Ersteller</th>
-                    <th colspan="1" class="text-white">Datum</th>
-                  </tr>
-                </thead>
-                <tbody class="table-hover">
-                  @foreach ($news as $newspost)
-                    <tr>
-                      
-                        <td colspan="3" class="text-white"><a href="{{route('news.single', $newspost->id)}}">{{$newspost->topic}}</a></td>
-                        <td colspan="1" class="text-white"><a href="{{route('user.single', $newspost->user_id)}}" class="text-white">{{$newspost->user->name}}</td>
-                        <td colspan="1" class="text-white">{{$newspost->created_at}}</td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              @if (Auth::user()->role_id < 3)
-              <a href="{{ route('news.new') }} " class="btn btn-primary btn-block">Neue News anlegen</a>
-              @endif
-          </div>
-      </div>
-  </div> --}}
 
           </div>
       </div>
   </div>
+@endsection
+
+@section('scripts')
+  <script>
+    let response;
+    let categoryFilter = document.getElementById('categoryNav');
+    let searchField = document.getElementById('recipeSearch');
+    let recipeTable = document.getElementById('table')
+    let xhr = new XMLHttpRequest();
+    
+    xhr.open('GET', 'http://127.0.0.1:8000/api/recipes', true);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          response = JSON.parse(xhr.responseText);
+          recipeOutput();
+          createCategoryBtn();
+          searchField.addEventListener('input', recipeSearch);
+        }
+      }
+      xhr.send();
+
+
+      function createCategoryBtn() {
+        let categories = response.categories;
+        let showallBtn = document.createElement('button');
+        showallBtn.textContent = 'Alle anzeigen';
+        showallBtn.className = 'btn btn-primary me-2';
+        showallBtn.dataset.category = 0;
+
+        showallBtn.addEventListener('click', function() {
+          let tablerow = document.querySelectorAll('.tablerow')
+              
+              for (let i = 0; i < tablerow.length; i++){
+                  tablerow[i].style.display = '';
+              }
+        })
+
+        categoryFilter.appendChild(showallBtn);
+
+        for(let i = 0; i < categories.length; i++){
+          let btn = document.createElement('button')
+          btn.textContent = categories[i].name;
+          btn.className = 'btn btn-primary me-2';
+          btn.dataset.category = categories[i].id;
+
+          categoryFilter.appendChild(btn);
+
+          btn.addEventListener('click', function () {
+              let data = this.getAttribute('data-category');
+              let tablerow = document.querySelectorAll('.tablerow')
+              
+              for (let i = 0; i < tablerow.length; i++){
+                let rowdata = tablerow[i].getAttribute('data-category')
+                if(data == rowdata){
+                  tablerow[i].style.display = '';
+                } else {
+                  tablerow[i].style.display = 'none';
+                }
+              }
+          })
+        }
+      }
+
+      function recipeOutput(){
+        let recipes = response.recipes;
+
+        for(let i = 0; i < recipes.length; i++){
+          let tablerow = document.createElement('tr');
+          tablerow.dataset.category = recipes[i].category_id;
+          tablerow.className = 'tablerow'
+          let tabledata = document.createElement('td');
+          tabledata.dataset.name = recipes[i].name
+          let recipe = document.createElement('a');
+          recipe.setAttribute('href', `/recipe/${recipes[i].id}`);
+          recipe.textContent = recipes[i].name;
+          recipe.className = 'text-white'; 
+
+          recipeTable.appendChild(tablerow);
+          tablerow.appendChild(tabledata);
+          tabledata.appendChild(recipe);
+        }
+      }
+
+      function recipeSearch(){
+        let searchField = document.getElementById('recipeSearch');
+        let searchTerm = searchField.value.toLowerCase();
+        let tablerow = document.querySelectorAll('.tablerow');
+
+        for(let i = 0; i < tablerow.length; i++) {
+          let recipeName = tablerow[i].firstElementChild.getAttribute('data-name').toLowerCase();
+          if (recipeName.includes(searchTerm)) {
+            tablerow[i].style.display = '';
+          } else {
+            tablerow[i].style.display = 'none';
+          }
+        }
+        
+      }
+
+
+  </script>
 @endsection

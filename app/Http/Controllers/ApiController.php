@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{User, Ingredient, Checklisttask, Department};
+use App\Models\{User, Ingredient, Checklisttask, Department, Category, Recipe};
 
 class ApiController extends Controller
 {
@@ -39,5 +39,20 @@ class ApiController extends Controller
     {
         $checklist = Checklisttask::all();
         return $checklist[0]->name;
+    }
+
+    /**
+     * API for recipe site
+     */
+    public function recipes()
+    {
+        $category = Category::all();
+        $recipe = Recipe::all();
+        $recipes = [
+            'recipes' => $recipe,
+            'categories' => $category
+        ];
+
+        return $recipes;
     }
 }
