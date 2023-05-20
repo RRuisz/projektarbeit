@@ -182,11 +182,19 @@ class UserController extends Controller
         return view('user.update', compact('user'));
     }
 
+    /**
+     * shows admin panel view
+     * @return view
+     */
     public function admin()
     {
         return view('admin.panel');
     }
 
+    /**
+     * shows overview of all users
+     * @return view
+     */
     public function overview()
     {
         return view('user.all');

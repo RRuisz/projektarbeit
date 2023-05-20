@@ -12,6 +12,11 @@ use Carbon\Carbon;
 class ChecklistController extends Controller
 {
 
+    /**
+     * gets all checklists by loggedin user
+     * 
+     * @return view & $checklist, $todayDate
+     */
     public function index()
     {
         $checklist = Checklist::where('department_id', Auth::user()->department_id)->get();
@@ -20,6 +25,13 @@ class ChecklistController extends Controller
         return view('checklists.index', compact('checklist', 'todayDate'));
     }
 
+    /**
+     * Gets an Checklist by ID
+     * Gets all categorys for the loggedin users department
+     * 
+     * @param int $id
+     * @return view & $checklist, $categories
+     */
     public function single(int $id)
     {
         $checklist = Checklist::find($id);
@@ -28,7 +40,9 @@ class ChecklistController extends Controller
     }
 
     /**
-     * TODO: DOC!
+     * checks if there is allready a Checklist for this day and department
+     * 
+     * @return redirect 
      */
     public function newchecklist()
     {
@@ -52,6 +66,10 @@ class ChecklistController extends Controller
 
     }
 
+    /**
+     * updates the status of the task
+     * @param Request $request
+     */
     public function updatestatus(Request $request)
     {
         $checklist = Checklist::find($request->checklistId);
@@ -64,6 +82,12 @@ class ChecklistController extends Controller
         
     } 
 
+    /**
+     * gets the task by the choosen category 
+     * 
+     *  @param Request $request
+     *  @return $checklist
+     */
     public function tasksByCategory(Request $request)
     {   
         $categories = Taskcategory::where('department_id', Auth::user()->department_id);

@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\{DB, Auth};
 
 class ChecklisttaskController extends Controller
 {
+    /**
+     * gets categories for the users department 
+     * view to create a new checklisttask
+     * 
+     * @return view
+     */
     public function createtask()
     {
         $taskcategory = Taskcategory::where('department_id', Auth::user()->department_id)->orderBy('name','asc')->get();
@@ -16,6 +22,12 @@ class ChecklisttaskController extends Controller
         return view('checklists.newtask', compact('taskcategory'));
     }
 
+    /**
+     * saves the new checklist task
+     * 
+     * @param Request $request
+     * @return $task
+     */
     public function savetask(Request $request)
     {
         $task = new Checklisttask;

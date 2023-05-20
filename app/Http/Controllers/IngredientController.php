@@ -51,11 +51,6 @@ class IngredientController extends Controller
         return view('recipes.ingredients', compact('ingredients'));
     }
 
-    // TODO: NOT WORKING YET!!
-    public function single($id)
-    {
-        $item = Ingredient::find($id);
-        return view('recipes.singleingredient');
-    }
+
 
 }

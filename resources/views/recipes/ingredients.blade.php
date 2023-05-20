@@ -19,7 +19,7 @@
                   <tbody class="table-hover">
                     @foreach ($ingredients as $item)
                       <tr>
-                          <td  class="text-white  text-center"><a class="text-white" href="{{route('ingredient.single', $item->id)}}" class="text-white">{{$item->name}}</td>
+                          <td  class="text-white  text-center">{{$item->name}}</td>
                       </tr>
                     @endforeach
                   </tbody>
