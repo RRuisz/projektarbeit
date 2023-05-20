@@ -27,11 +27,7 @@
 
 @section('scripts')
 <script>
-// TODO: bei auslagerung 419 Page expired, CSRF Token??
   let categorySelect = document.getElementById('select');
-  categorySelect.selectedIndex = 0;
-
-//TODO: JavaScript üben, katastrophe!
 
 categorySelect.addEventListener('change', createChecklistTasks)
 window.addEventListener('DOMContentLoaded', createChecklistTasks);

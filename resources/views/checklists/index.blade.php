@@ -51,7 +51,7 @@
                   @foreach ($checklist as $item)
                   @if ($item->created_at->format('Y-m-d') !== $todayDate) 
                   <tr>
-                      <td colspan="3" class="text-white"><a href=" {{route('engineeringtask.single', $item->id)}} ">{{$item->name}}</a></td>
+                      <td colspan="3" class="text-white"><a href="{{route('checklist.single', $item->id)}}">{{$item->name}}</a></td>
                       <td colspan="1" class="text-white">{{\Carbon\Carbon::parse($item->created_at)->format('d.m.Y')}}</td>
                   </tr>
                   @endif
