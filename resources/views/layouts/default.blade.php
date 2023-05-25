@@ -9,6 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <style>
       .dropdown-item:hover { background-color: #414040 !important; }
+
+      @media(max-width: 1280px){
+      .useronlinediv{
+          display: none;
+        }
+      }
       </style>
 </head>
 <body class="bg-secondary">
@@ -74,7 +80,12 @@
         </li>
       </div>
     </div>
+    <div class="position-absolute end-0 rounded h-50 bg-dark useronlinediv" data-userid="{{Auth::id()}}" id="online_user" style="top:25%; width:10%;">
+     <p class="text-center fs-2 text-white">Online</p>
+     <div id="userDiv" class="bg-secondary text-white m-2 p-2 rounded">Keine User Online</div>
+    </div>
     @yield('content')
     @yield('scripts')
+    <script src="/js/useronline.js"></script>
 </body>
 </html>

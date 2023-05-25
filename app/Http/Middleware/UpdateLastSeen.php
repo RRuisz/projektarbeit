@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UpdateLastSeen
 {
@@ -16,10 +17,10 @@ class UpdateLastSeen
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
+        $user = User::find(Auth::id());
         $user->last_seen = now();
         $user->save();
-        
+
         return $next($request);
     }
 }
