@@ -5,8 +5,8 @@ window.addEventListener('DOMContentLoaded', createChecklistTasks);
 
 //Gets data from Route, and creates table for the choosen category
 function createChecklistTasks(){
-  let formData = new FormData();
   const csrfTokenChecklist = document.getElementById('csrf_token').value;
+  let formData = new FormData();
   formData.append('categoryId', categorySelect.value)
   formData.append('checklistId', categorySelect.options[categorySelect.selectedIndex].getAttribute('data-checklist'));
   formData.append('_token', csrfTokenChecklist);
