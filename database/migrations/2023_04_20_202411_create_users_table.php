@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('role_id')->constrained();
             $table->foreignId('department_id')->constrained();
+            $table->timestamp('last_seen')->nullable();
             $table->timestamps();
         });
     }
