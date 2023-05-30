@@ -7,9 +7,8 @@ während dem arbeiten überlegt, was kann einem das arbeiten erleichtern. Da bin
 die Idee gekommen, eine Seite zu bauen, mit der man Administrative Aufgaben in einem Hotel 
 planen und erstellen kann. <br>
 Derzeit implementiert: Interne News, Übergaben, Technikaufträge, Rezepte,
-Mitarbeiter übersicht, Checklisten, Userpanel (Eigene Daten ändern) <br>
-In arbeit: Adminpanel (User anlegen, User bearbeiten) <br>
-In Überlegung: Chatfunktion unter Mitarbeitern, Kalenderfunktion, Dienstpläne (CRUD) <br>
+Mitarbeiter übersicht, Checklisten, Userpanel (Eigene Daten ändern), Online ansicht der Mitarbeiter <br>
+
 
 
 2.	Techniken <br>

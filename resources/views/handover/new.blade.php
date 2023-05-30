@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form method="POST" class="form-control bg-dark p-5 mt-5">
-                            <h1 class="text-center mb-5 text-info">Neue Aufgabe anlegen</h1>
+                            <h1 class="text-center mb-5 text-info">Neue Übergabe anlegen</h1>
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-12">
