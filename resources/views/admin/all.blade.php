@@ -25,9 +25,6 @@
                   <tbody class="table-hover" id="usertable">
                   </tbody>
                 </table>
-                @if(Auth::user()->role_id <= 2)
-                <a href="" class="btn btn-primary">Neuen Mitarbeiter anlegen</a>
-                @endif
           </div>
         </div>
 </div>

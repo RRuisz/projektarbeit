@@ -35,6 +35,6 @@ class ChecklisttaskController extends Controller
         $task->taskcategory_id = $request->taskcategory_id;
         $task->save();
 
-        return $task;
+        return redirect('admin');
     }
 }

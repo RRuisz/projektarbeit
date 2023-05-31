@@ -25,6 +25,7 @@
                     @endif
                     <tr>
                         <td class="d-flex justify-content-around p-4">
+                            <a href="{{route('category.new')}}" class="btn btn-primary">Kategorie anlegen</a>
                             <a href="{{route('ingredient.new')}}" class="btn btn-primary">Zutat anlegen</a>
                             <a href="{{route('recipe.new')}}" class="btn btn-primary">Rezept anlegen</a>
                         </td>

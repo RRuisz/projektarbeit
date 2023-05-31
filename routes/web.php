@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\{Route, Auth};
 
-use App\Http\Controllers\{ChecklisttaskController, IngredientController, InfoController, RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcategoryController, TaskcommentController, ChecklistController};
+use App\Http\Controllers\{CategoryController, ChecklisttaskController, IngredientController, InfoController, RecipeController, UserController, EngineeringtaskController, NewspostController, HandoverController, TaskcategoryController, TaskcommentController, ChecklistController};
 use GuzzleHttp\Middleware;
 
 /*
@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/recipes/ingredients', [IngredientController::class, 'all'])->name('ingredient.all');
         Route::get('/recipes/ingredient/new', [IngredientController::class, 'new'])->name('ingredient.new')->Middleware('checkRole');
         Route::post('/recipes/ingredient/new', [IngredientController::class, 'save'])->name('ingredient.new')->Middleware('checkRole');
+        Route::get('/recipe/category/new', [CategoryController::class, 'new'])->name('category.new');
+        Route::post('/recipe/category/new', [CategoryController::class, 'save']);
 
         // CHECKLIST ROUTES
         Route::get('/checklists', [ChecklistController::class, 'index'])->name('checklist');

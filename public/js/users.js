@@ -23,6 +23,20 @@ xhr.send();
 function departmentNav() {
   const department = response.department;
   const depNav = document.getElementById('depNav');
+  let showallBtn = document.createElement('button');
+  showallBtn.textContent = 'Alle anzeigen';
+  showallBtn.className = 'btn btn-primary me-2';
+  showallBtn.dataset.category = 0;
+
+  showallBtn.addEventListener('click', function() {
+    let tablerow = document.querySelectorAll('.tablerow')
+        
+        for (let i = 0; i < tablerow.length; i++){
+            tablerow[i].style.display = '';
+        }
+  })
+
+  depNav.appendChild(showallBtn);
 
   for (let i = 0; i < department.length; i++){
     let btn = document.createElement('button');
