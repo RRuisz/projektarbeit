@@ -84,7 +84,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/checklists/{id}', [ChecklistController::class, 'single'])->name('checklist.single')->where('id', '[0-9]+');
         Route::get('/checklists/tasks/new', [ChecklisttaskController::class, 'createtask'])->name('checklist.newtask')->Middleware('checkRole');
         Route::post('/checklists/tasks/new', [ChecklisttaskController::class, 'savetask'])->name('checklist.newtask')->Middleware('checkRole');
-        Route::post('/checklists/tasks/update', [ChecklistController::class, 'updatestatus'])->name('checklist.taskstatus')->Middleware('checkRole');
+        Route::post('/checklists/tasks/update', [ChecklistController::class, 'updatestatus'])->name('checklist.taskstatus');
         Route::get('/checklists/category/new', [TaskcategoryController::class, 'createcategory'])->name('checklist.newcategory')->Middleware('checkRole');
         Route::post('/checklists/category/new', [TaskcategoryController::class, 'savecategory'])->name('checklist.newcategory')->Middleware('checkRole');
         Route::get('/checklists/new',  [ChecklistController::class, 'newchecklist'])->name('checklist.new');
