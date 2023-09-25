@@ -11,10 +11,10 @@ class TaskcategoryController extends Controller
     /**
      * gets all departments
      * shows view where the admin can create a new taskcategory
-     * 
+     *
      * @return view
      */
-    public function createcategory() 
+    public function createcategory()
     {
         $departments = Department::all();
         return view('checklists.newcategory', compact('departments'));
@@ -22,7 +22,7 @@ class TaskcategoryController extends Controller
 
     /**
      * saves the new Taskcategory
-     * 
+     *
      * @param Request $request
      * @return $category
      */
@@ -32,7 +32,7 @@ class TaskcategoryController extends Controller
         $category->name = $request->name;
         $category->department_id = $request->department_id;
         $category->save();
-        
-        return $category;
+
+        return redirect(route('admin'));
     }
 }
